@@ -301,10 +301,10 @@
         }
 
         .events-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
-            max-width: 1200px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            max-width: 900px;
             margin: 0 auto;
         }
 
@@ -316,8 +316,11 @@
             position: relative;
             overflow: hidden;
             transform-style: preserve-3d;
-            perspective: 1000px;
             backdrop-filter: blur(5px);
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            min-height: 200px;
         }
 
         .event-card::before {
