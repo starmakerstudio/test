@@ -25,7 +25,7 @@
             scroll-behavior: smooth;
         }
 
-        /* Video Background - FIXED */
+        /* Video Background - FIXED AND STATIC */
         video {
             position: fixed;
             top: 0;
@@ -34,6 +34,7 @@
             height: 100%;
             object-fit: cover;
             z-index: -2;
+            transform: none !important;
         }
 
         .video-overlay {
@@ -672,14 +673,7 @@
             });
         });
 
-        // Parallax effect on scroll
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const video = document.querySelector('video');
-            if (video) {
-                video.style.transform = `translateY(${scrolled * 0.5}px)`;
-            }
-        });
+        // Video stays fixed - no parallax effect needed
 
         // 3D tilt effect on feature cards
         document.querySelectorAll('.feature-card').forEach(card => {
