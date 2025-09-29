@@ -317,10 +317,9 @@
             overflow: hidden;
             transform-style: preserve-3d;
             backdrop-filter: blur(5px);
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            min-height: 200px;
+            display: block;
+            text-decoration: none;
+            cursor: pointer;
         }
 
         .event-card::before {
@@ -339,63 +338,27 @@
         }
 
         .event-card:hover {
-            transform: translateY(-8px) rotateX(2deg) rotateY(2deg);
+            transform: translateY(-5px) scale(1.02);
             background: rgba(0, 0, 0, 0.5);
             border-color: rgba(255, 41, 111, 0.4);
+            box-shadow: 0 15px 40px rgba(255, 41, 111, 0.3);
         }
 
         .event-card img {
             width: 100%;
-            height: 200px;
+            height: 250px;
             object-fit: cover;
-            border-radius: 20px 20px 0 0;
+            border-radius: 20px;
             transition: transform 0.4s ease;
+            display: block;
         }
 
         .event-card:hover img {
-            transform: scale(1.05);
+            transform: scale(1.08);
         }
 
         .event-card-content {
-            padding: 25px;
-        }
-
-        .event-card h3 {
-            font-size: 20px;
-            margin-bottom: 15px;
-            color: #fff;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-        }
-
-        .event-card p {
-            color: rgba(255, 255, 255, 0.8);
-            line-height: 1.7;
-            font-size: 14px;
-            font-weight: 300;
-            margin-bottom: 20px;
-        }
-
-        .event-btn {
-            display: inline-block;
-            padding: 10px 25px;
-            background: linear-gradient(135deg, #ff296f, #ff6b9d);
-            color: #fff;
-            text-decoration: none;
-            border-radius: 25px;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 12px;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .event-btn:hover {
-            background: #fff;
-            color: #ff296f;
-            border-color: #ff296f;
-            transform: translateY(-2px);
+            display: none;
         }
 
         /* Social Section */
@@ -671,8 +634,18 @@
             }
 
             .events-grid {
-                gap: 25px;
-                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .event-card {
+                flex-direction: column;
+                min-height: auto;
+            }
+
+            .event-card img {
+                width: 100%;
+                height: 220px;
+                border-radius: 20px;
             }
 
             .btn-group {
@@ -777,59 +750,21 @@
     <section class="events-section" id="events">
         <h2 class="section-title">Current Events</h2>
         <div class="events-grid">
-            <div class="event-card">
+            <a href="../web/Starmaker%20Web/Login/login.html" class="event-card">
                 <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiEeRAAdObfwAfESe_tENCnWFCRVDDtPL_TuT7ys6JYXBKit2MLAUGF2uuGmMegj1zK0GmhefzxR2t9bjbH1KqsfQ6o7G9oXnS6yGq4qZb3pAM-VulsbH8zVIgrnSYaGYoeG0OszyCizfTCWqAsXD31_fSt4BoZRFmqIiGqvi8_mmX-9AwyrPear6sbjaA/s500/IMG_20231201_054601.png" alt="Treasure Of V-tags">
-                <div class="event-card-content">
-                    <h3>Treasure Of V-tags</h3>
-                    <p>Discover hidden treasures and collect exclusive V-tags! Complete daily challenges and unlock amazing rewards that will boost your StarMaker journey.</p>
-                    <a href="../Login/login.html" class="event-btn">Participate Now</a>
-                </div>
-            </div>
+            </a>
 
-            <div class="event-card">
+            <a href="../web/Starmaker%20Web/Login/login.html" class="event-card">
                 <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiwOUAiXiRVc2Ns4b3ZkiL_z0K19VI8ve8Ckhqk5IIZ2Gf848SQEbhjznK36ub6OYodhsB4DE_04nyOTutuVa5dbx7JtD3K_3piKKGjiWgxDDZryTNmBHdM3YV-jyBmGOdEHOFPSv7NeFNU-VW-tTShLppZd-8txZZmRJWeYy6n9XNK_mcdICh8gDz0bl4/s500/IMG_20231201_061936.png" alt="Gold Coins">
-                <div class="event-card-content">
-                    <h3>Gold Coins - Get all for Free</h3>
-                    <p>Earn unlimited gold coins through our special event! Join now and get access to premium features, exclusive songs, and special effects completely free.</p>
-                    <a href="../Login/login.html" class="event-btn">Claim Rewards</a>
-                </div>
-            </div>
+            </a>
 
-            <div class="event-card">
+            <a href="../web/Starmaker%20Web/Login/login.html" class="event-card">
                 <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgYXN2Ik3qQ3DTW-_mRz4tT_n_1rbftVD5s84cNExIzjEV551zBeYXz57mcP7zw-4qBUtMkrw7wCDhOSog1460MM9wPbSnGf8wWGoUWCPe2WGS7QG11he1GGmxR6YJ1IwFR4chbbbTwaNeSpOWZfXcVggbXKdml6iU1feC-eshjsIUWcaBa81A1JU-AOJo/s500/IMG_20231201_071148.png" alt="Be Vip Forever">
-                <div class="event-card-content">
-                    <h3>Be VIP Forever</h3>
-                    <p>Unlock lifetime VIP status and enjoy all premium benefits forever! Get access to exclusive content, priority support, and special recognition in the community.</p>
-                    <a href="../Login/login.html" class="event-btn">Become VIP</a>
-                </div>
-            </div>
+            </a>
 
-            <div class="event-card">
+            <a href="../web/Starmaker%20Web/Login/login.html" class="event-card">
                 <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEioNiVV28W_zqHm1ZMgRThcIBm2-nuOpdHL5GKjB0q2esp7IYkF_Sv6ZVMYz-PZy4Bsu4deofDLf93vmznvoEoeBwEiMFJyLtQJ5lar-Kb4DzFYZPekfnMyXFDxcSNtfbZEEEtbVssfrJIGAd-qxJ8ECvQezchIkX2cvulvwO33Uv6NGuLr8rmIpbGNvhM/w400-h196/IMG_20231129_222633.png" alt="10K Room Exp Giveaway">
-                <div class="event-card-content">
-                    <h3>10K Room Exp Giveaway</h3>
-                    <p>Join our massive experience giveaway event! Boost your room level instantly and unlock new features, decorations, and exclusive privileges.</p>
-                    <a href="../Login/login.html" class="event-btn">Join Giveaway</a>
-                </div>
-            </div>
-
-            <div class="event-card">
-                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi5cwEjEiyLQ2Xfg6Q7YkezUCIME_DVAAhsXmwPnWaolKqB0LydcxEXZ4TNDdNXsXcJ_fNPG4C6jG-YbCDkUk6u6G34NupOlxuLIU58M_hasPKdtCmeyzdV0I6NBBxAsU6_QC0zq3qfEppiEnUq2ijWsuomKmsQ3H_d7-5gnIXipf4fmRZhG-AaiAYZAqk/s384/IMG_20231118_020618.png" alt="Special Contest">
-                <div class="event-card-content">
-                    <h3>Weekly Singing Contest</h3>
-                    <p>Show off your vocal skills in our weekly singing competition! Compete against talented singers worldwide and win amazing prizes and recognition.</p>
-                    <a href="../Login/login.html" class="event-btn">Enter Contest</a>
-                </div>
-            </div>
-
-            <div class="event-card">
-                <img src="https://static.starmakerstudios.com/production/cdn/vue/starx-official/prod/_next/static/assets/images/app-icon.d79097a124ad0a00.png" alt="New User Bonus">
-                <div class="event-card-content">
-                    <h3>New User Welcome Bonus</h3>
-                    <p>New to StarMaker? Get exclusive welcome bonuses including free coins, VIP trial, and special starter pack to kickstart your musical journey!</p>
-                    <a href="../Login/login.html" class="event-btn">Get Bonus</a>
-                </div>
-            </div>
+            </a>
         </div>
     </section>
 
@@ -926,14 +861,14 @@
                 const centerX = rect.width / 2;
                 const centerY = rect.height / 2;
                 
-                const rotateX = (y - centerY) / 15;
-                const rotateY = (centerX - x) / 15;
+                const rotateX = (y - centerY) / 25;
+                const rotateY = (centerX - x) / 25;
                 
-                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-5px) scale(1.02)`;
             });
             
             card.addEventListener('mouseleave', () => {
-                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0) scale(1)';
             });
         });
 
