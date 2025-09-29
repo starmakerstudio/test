@@ -347,14 +347,16 @@
         .event-card img {
             width: 100%;
             height: 250px;
-            object-fit: cover;
+            object-fit: contain;
+            object-position: center;
             border-radius: 20px;
             transition: transform 0.4s ease;
             display: block;
+            background: rgba(0, 0, 0, 0.2);
         }
 
         .event-card:hover img {
-            transform: scale(1.08);
+            transform: scale(1.05);
         }
 
         .event-card-content {
