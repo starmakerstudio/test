@@ -353,7 +353,7 @@
 
         /* Social Section */
         .social-section {
-            padding: 100px 5%;
+            padding: 100px 5% 40px;
             text-align: center;
             position: relative;
             z-index: 1;
@@ -388,6 +388,64 @@
             background: linear-gradient(135deg, #ff296f, #ff6b9d);
             border-color: rgba(255, 255, 255, 0.4);
             transform: translateY(-5px) rotateZ(360deg) translateZ(10px);
+        }
+
+        /* Footer Section */
+        .footer-section {
+            padding: 60px 5% 40px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            background: transparent;
+        }
+
+        .footer-copyright {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .footer-links a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: #ff296f;
+            transition: width 0.3s ease;
+        }
+
+        .footer-links a:hover::before {
+            width: 100%;
+        }
+
+        .footer-links a:hover {
+            color: #fff;
+        }
+
+        .footer-links .separator {
+            color: rgba(255, 255, 255, 0.3);
         }
 
         /* Mobile Menu - 3D Minimalist */
@@ -589,6 +647,15 @@
             .mobile-menu ul {
                 grid-template-columns: 1fr;
             }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .footer-links .separator {
+                display: none;
+            }
         }
 
         /* Context Menu Block */
@@ -718,6 +785,18 @@
             </a>
         </div>
     </section>
+
+    <!-- Footer Section -->
+    <footer class="footer-section">
+        <div class="footer-copyright">
+            © 2025 StarMaker Studios. All Rights Reserved.
+        </div>
+        <div class="footer-links">
+            <a href="https://m.starmakerstudios.com/setting/terms/sm/index#/terms/sm">Terms</a>
+            <span class="separator">|</span>
+            <a href="https://www.starmakerstudios.com/en/law">Law Enforcement Guidelines</a>
+        </div>
+    </footer>
 
     <script>
         // Mobile Menu
