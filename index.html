@@ -190,6 +190,37 @@
             opacity: 0;
             animation: fadeInUp 1s ease forwards 0.8s;
             letter-spacing: 2px;
+            min-height: 140px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-content h1 .word-rotate {
+            display: inline-block;
+            position: relative;
+            min-width: 300px;
+            text-align: left;
+        }
+
+        .hero-content h1 .word-rotate .word {
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            transform: translateY(20px) rotateX(-90deg);
+            transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .hero-content h1 .word-rotate .word.active {
+            position: relative;
+            opacity: 1;
+            transform: translateY(0) rotateX(0deg);
+        }
+
+        .hero-content h1 .word-rotate .word.exit {
+            opacity: 0;
+            transform: translateY(-20px) rotateX(90deg);
         }
 
         .hero-content p {
@@ -202,6 +233,17 @@
             font-weight: 300;
             letter-spacing: 1px;
             color: rgba(255, 255, 255, 0.9);
+            min-height: 60px;
+        }
+
+        .typing-text::after {
+            content: '|';
+            animation: blink 0.7s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
         }
 
         @keyframes fadeInUp {
@@ -715,8 +757,11 @@
     <!-- Hero Section -->
     <section class="hero-section">
         <div class="hero-content">
-            <h1>WE DISCOVER</h1>
-            <p>THE NEXT GENERATION OF MUSIC STARS AND GIVE TALENTS THE BEST SHOT AT STARDOM</p>
+            <h1>WE <span class="word-rotate" id="rotatingWord">
+                <span class="word active">DISCOVER</span>
+                <span class="word">HELP</span>
+            </span></h1>
+            <p class="typing-text" id="typingText"></p>
             <div class="btn-group">
                 <a href="Starmaker Web/Login/login.html" class="btn">Login</a>
                 <a href="Starmaker Web/Events/events.html" class="btn">Events</a>
@@ -799,6 +844,54 @@
     </footer>
 
     <script>
+        // Enhanced word rotation animation with 3D flip
+        const wordElements = document.querySelectorAll('.word-rotate .word');
+        let currentWordIndex = 0;
+
+        function rotateWord() {
+            const currentWord = wordElements[currentWordIndex];
+            const nextWordIndex = (currentWordIndex + 1) % wordElements.length;
+            const nextWord = wordElements[nextWordIndex];
+
+            // Exit animation for current word
+            currentWord.classList.add('exit');
+            
+            setTimeout(() => {
+                currentWord.classList.remove('active', 'exit');
+                
+                // Enter animation for next word
+                nextWord.classList.add('active');
+                currentWordIndex = nextWordIndex;
+            }, 600);
+        }
+
+        // Start rotation after initial load
+        setTimeout(() => {
+            setInterval(rotateWord, 5000);
+        }, 2000);
+
+        // Typing animation
+        const typingText = document.getElementById('typingText');
+        const fullText = "THE NEXT GENERATION OF MUSIC STARS AND GIVE TALENTS THE BEST SHOT AT STARDOM";
+        let charIndex = 0;
+
+        function typeText() {
+            if (charIndex < fullText.length) {
+                typingText.textContent = fullText.substring(0, charIndex + 1);
+                charIndex++;
+                setTimeout(typeText, 50);
+            } else {
+                setTimeout(() => {
+                    typingText.classList.remove('typing-text');
+                }, 500);
+            }
+        }
+
+        // Start typing after page load
+        setTimeout(() => {
+            typeText();
+        }, 1500);
+
         // Mobile Menu
         const menuBtn = document.getElementById('menuBtn');
         const closeBtn = document.getElementById('closeBtn');
