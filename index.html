@@ -154,6 +154,13 @@
             display: none;
             cursor: pointer;
             z-index: 1001;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .menu-button.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
         }
 
         .menu-button svg {
@@ -398,7 +405,7 @@
             background: linear-gradient(135deg, rgba(0, 0, 0, 0.95), rgba(20, 0, 20, 0.95));
             backdrop-filter: blur(20px);
             padding: 80px 0;
-            z-index: 999;
+            z-index: 1500;
             transition: right 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
             border-left: 2px solid rgba(255, 41, 111, 0.5);
             box-shadow: -10px 0 50px rgba(255, 41, 111, 0.3);
@@ -436,6 +443,7 @@
             border-radius: 50%;
             border: 2px solid rgba(255, 255, 255, 0.3);
             transition: all 0.3s ease;
+            z-index: 1600;
         }
 
         .close-button:hover {
@@ -740,16 +748,19 @@
 
         menuBtn.addEventListener('click', () => {
             mobileMenu.classList.add('active');
+            menuBtn.classList.add('hidden');
         });
 
         closeBtn.addEventListener('click', () => {
             mobileMenu.classList.remove('active');
+            menuBtn.classList.remove('hidden');
         });
 
         // Close mobile menu when clicking on a link
         document.querySelectorAll('.mobile-menu a').forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.remove('active');
+                menuBtn.classList.remove('hidden');
             });
         });
 
