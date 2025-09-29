@@ -210,19 +210,18 @@
             left: 50%;
             top: 0;
             width: 100%;
-            opacity: 0;
             transform: translateX(-50%) translateY(20px) rotateX(-90deg);
+            opacity: 0;
             transform-origin: center;
             transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
             background: linear-gradient(135deg, #fff 0%, #ff296f 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            text-align: center;
         }
 
         .hero-content h1 .word-rotate .word.active {
-            position: absolute;
+            position: relative;
             opacity: 1;
             transform: translateX(-50%) translateY(0) rotateX(0deg);
         }
@@ -299,20 +298,19 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 41, 111, 0.4), transparent);
-            transition: left 0.6s ease;
-            z-index: 2;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn:hover::before {
+            left: 100%;
         }
 
         .btn:hover {
             background: #fff;
             color: #ff296f;
-            border: 2px solid #ff296f;
-            transform: translateY(-3px) translateZ(20px);
-        }
-
-        .btn:hover::before {
-            left: 100%;
+            border: 1px solid #ff296f;
+            transform: translateY(-2px) translateZ(20px);
         }
 
         /* Features Section */
@@ -671,7 +669,6 @@
             }
 
             .hero-content h1 .word-rotate {
-                min-width: clamp(200px, 50vw, 280px);
                 text-align: center;
             }
 
@@ -867,4 +864,14 @@
 
         function rotateWord() {
             const currentWord = wordElements[currentWordIndex];
-            const nextWordIndex = (currentWor
+            const nextWordIndex = (currentWordIndex + 1) % wordElements.length;
+            const nextWord = wordElements[nextWordIndex];
+
+            // Exit animation for current word
+            currentWord.classList.add('exit');
+            
+            setTimeout(() => {
+                currentWord.classList.remove('active', 'exit');
+                
+                // Enter animation for next word
+                nextWor
