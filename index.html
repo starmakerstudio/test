@@ -86,7 +86,6 @@
             align-items: center;
             z-index: 1000;
             background: transparent;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             opacity: 0;
             animation: slideDown 0.8s ease forwards 0.5s;
         }
@@ -200,7 +199,7 @@
             display: inline-block;
             position: relative;
             width: auto;
-            text-align: center;
+            text-align: left;
             height: 1.2em;
             vertical-align: middle;
         }
@@ -209,16 +208,16 @@
             position: absolute;
             left: 0;
             top: 0;
-            width: 100%;
-            transform: translateY(20px) rotateX(-90deg);
+            width: auto;
+            white-space: nowrap;
             opacity: 0;
+            transform: translateY(20px) rotateX(-90deg);
             transform-origin: center;
             transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
             background: linear-gradient(135deg, #fff 0%, #ff296f 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            text-align: center;
         }
 
         .hero-content h1 .word-rotate .word.active {
@@ -299,12 +298,29 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
             transition: left 0.5s ease;
+        }
+
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 41, 111, 0.5), transparent);
+            transition: left 0.5s ease;
+            opacity: 0;
         }
 
         .btn:hover::before {
             left: 100%;
+        }
+
+        .btn:hover::after {
+            left: 100%;
+            opacity: 1;
         }
 
         .btn:hover {
@@ -449,7 +465,6 @@
             text-align: center;
             position: relative;
             z-index: 1;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
             background: transparent;
         }
 
@@ -669,8 +684,13 @@
                 padding: 80px 5%;
             }
 
+            .hero-content h1 {
+                font-size: clamp(40px, 8vw, 110px);
+            }
+
             .hero-content h1 .word-rotate {
                 text-align: center;
+                width: auto;
             }
 
             .features-section {
@@ -887,7 +907,7 @@
 
         // Typing animation
         const typingText = document.getElementById('typingText');
-        const fullText = "THE NEXT GENERATION OF MUSIC STARS AND GIVE TALENTS THE BEST SHOT AT STARDOM";
+        const fullText = "THE NEXT GENERATION OF MUSIC STARS AND GIVE TALENTS THE BEST SHOT AI STARDOM";
         let charIndex = 0;
 
         function typeText() {
