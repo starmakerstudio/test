@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StarMaker Studios</title>
+    <title>StarMaker Events</title>
     <link rel="icon" type="image/png" href="https://m.media-amazon.com/images/I/81Z2rz4-hEL.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -189,46 +189,6 @@
             opacity: 0;
             animation: fadeInUp 1s ease forwards 0.8s;
             letter-spacing: 2px;
-            min-height: 140px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .hero-content h1 .word-rotate {
-            display: inline-block;
-            position: relative;
-            width: auto;
-            text-align: left;
-            height: 1.2em;
-            vertical-align: middle;
-        }
-
-        .hero-content h1 .word-rotate .word {
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: auto;
-            white-space: nowrap;
-            opacity: 0;
-            transform: translateY(20px) rotateX(-90deg);
-            transform-origin: center;
-            transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            background: linear-gradient(135deg, #fff 0%, #ff296f 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero-content h1 .word-rotate .word.active {
-            position: relative;
-            opacity: 1;
-            transform: translateY(0) rotateX(0deg);
-        }
-
-        .hero-content h1 .word-rotate .word.exit {
-            opacity: 0;
-            transform: translateY(-20px) rotateX(90deg);
         }
 
         .hero-content p {
@@ -241,17 +201,6 @@
             font-weight: 300;
             letter-spacing: 1px;
             color: rgba(255, 255, 255, 0.9);
-            min-height: 60px;
-        }
-
-        .typing-text::after {
-            content: '|';
-            animation: blink 0.7s infinite;
-        }
-
-        @keyframes blink {
-            0%, 50% { opacity: 1; }
-            51%, 100% { opacity: 0; }
         }
 
         @keyframes fadeInUp {
@@ -330,8 +279,8 @@
             transform: translateY(-2px) translateZ(20px);
         }
 
-        /* Features Section */
-        .features-section {
+        /* Events Section */
+        .events-section {
             min-height: 100vh;
             padding: 120px 5%;
             background: transparent;
@@ -351,18 +300,17 @@
             letter-spacing: 1px;
         }
 
-        .features-grid {
+        .events-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 40px;
             max-width: 1200px;
             margin: 0 auto;
         }
 
-        .feature-card {
+        .event-card {
             background: rgba(0, 0, 0, 0.3);
-            padding: 45px 35px;
-            border-radius: 15px;
+            border-radius: 20px;
             border: 1px solid rgba(255, 255, 255, 0.15);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
@@ -372,7 +320,7 @@
             backdrop-filter: blur(5px);
         }
 
-        .feature-card::before {
+        .event-card::before {
             content: '';
             position: absolute;
             top: 0;
@@ -383,41 +331,68 @@
             transition: left 0.6s ease;
         }
 
-        .feature-card:hover::before {
+        .event-card:hover::before {
             left: 100%;
         }
 
-        .feature-card:hover {
+        .event-card:hover {
             transform: translateY(-8px) rotateX(2deg) rotateY(2deg);
             background: rgba(0, 0, 0, 0.5);
             border-color: rgba(255, 41, 111, 0.4);
         }
 
-        .feature-icon {
-            font-size: 48px;
-            margin-bottom: 25px;
-            color: #ff296f;
-            display: inline-block;
+        .event-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 20px 20px 0 0;
             transition: transform 0.4s ease;
         }
 
-        .feature-card:hover .feature-icon {
-            transform: scale(1.1) rotateY(180deg);
+        .event-card:hover img {
+            transform: scale(1.05);
         }
 
-        .feature-card h3 {
-            font-size: 22px;
+        .event-card-content {
+            padding: 25px;
+        }
+
+        .event-card h3 {
+            font-size: 20px;
             margin-bottom: 15px;
             color: #fff;
             font-weight: 600;
             letter-spacing: 0.5px;
         }
 
-        .feature-card p {
+        .event-card p {
             color: rgba(255, 255, 255, 0.8);
             line-height: 1.7;
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 300;
+            margin-bottom: 20px;
+        }
+
+        .event-btn {
+            display: inline-block;
+            padding: 10px 25px;
+            background: linear-gradient(135deg, #ff296f, #ff6b9d);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 12px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .event-btn:hover {
+            background: #fff;
+            color: #ff296f;
+            border-color: #ff296f;
+            transform: translateY(-2px);
         }
 
         /* Social Section */
@@ -684,16 +659,7 @@
                 padding: 80px 5%;
             }
 
-            .hero-content h1 {
-                font-size: clamp(40px, 8vw, 110px);
-            }
-
-            .hero-content h1 .word-rotate {
-                text-align: center;
-                width: auto;
-            }
-
-            .features-section {
+            .events-section {
                 padding: 80px 5%;
             }
 
@@ -701,7 +667,7 @@
                 margin-bottom: 50px;
             }
 
-            .features-grid {
+            .events-grid {
                 gap: 25px;
                 grid-template-columns: 1fr;
             }
@@ -760,10 +726,10 @@
             <img src="https://static.starmakerstudios.com/production/cdn/vue/starx-official/prod/_next/static/assets/images/app-icon.d79097a124ad0a00.png" alt="StarMaker">
         </div>
         <ul class="menu-items">
+            <li><a href="../index.html">Home</a></li>
             <li><a href="https://m.starmakerstudios.com/v/quick-recharge/official">Recharge</a></li>
             <li><a href="https://www.starmakerstudios.com/en/songs">Songbook</a></li>
             <li><a href="https://starmaker.onelink.me/2172530114/WebsiteTopButton">Download</a></li>
-            <li><a href="https://m.starmakerstudios.com/setting/privacy/sm/index#/privacy/sm">Privacy</a></li>
             <li><a href="https://www.starmakerstudios.com/faq/#/">FAQ</a></li>
         </ul>
         <div class="menu-button" id="menuBtn">
@@ -781,10 +747,10 @@
             </svg>
         </div>
         <ul>
+            <li><a href="../index.html">Home</a></li>
             <li><a href="https://m.starmakerstudios.com/v/quick-recharge/official">Recharge</a></li>
             <li><a href="https://www.starmakerstudios.com/en/songs">Songbook</a></li>
             <li><a href="https://starmaker.onelink.me/2172530114/WebsiteTopButton">Download</a></li>
-            <li><a href="https://m.starmakerstudios.com/setting/privacy/sm/index#/privacy/sm">Privacy</a></li>
             <li><a href="https://www.starmakerstudios.com/faq/#/">FAQ</a></li>
         </ul>
     </div>
@@ -792,14 +758,11 @@
     <!-- Hero Section -->
     <section class="hero-section">
         <div class="hero-content">
-            <h1>WE&nbsp;<span class="word-rotate" id="rotatingWord">
-                <span class="word active">DISCOVER</span>
-                <span class="word">HELP</span>
-            </span></h1>
-            <p class="typing-text" id="typingText"></p>
+            <h1>EXCITING EVENTS</h1>
+            <p>Join our amazing events and win incredible rewards! Participate in contests, earn prizes, and showcase your talent to the world.</p>
             <div class="btn-group">
-                <a href="Starmaker Web/Login/login.html" class="btn">Login</a>
-                <a href="Starmaker Web/Events/events.html" class="btn">Events</a>
+                <a href="../Login/login.html" class="btn">Login to Participate</a>
+                <a href="#events" class="btn">View All Events</a>
             </div>
         </div>
         <div class="scroll-indicator">
@@ -807,200 +770,45 @@
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section class="features-section">
-        <h2 class="section-title">Why Choose StarMaker?</h2>
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fas fa-microphone"></i></div>
-                <h3>Professional Studio</h3>
-                <p>Record with studio-quality sound and professional effects to make your voice shine.</p>
+    <!-- Events Section -->
+    <section class="events-section" id="events">
+        <h2 class="section-title">Current Events</h2>
+        <div class="events-grid">
+            <div class="event-card">
+                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiEeRAAdObfwAfESe_tENCnWFCRVDDtPL_TuT7ys6JYXBKit2MLAUGF2uuGmMegj1zK0GmhefzxR2t9bjbH1KqsfQ6o7G9oXnS6yGq4qZb3pAM-VulsbH8zVIgrnSYaGYoeG0OszyCizfTCWqAsXD31_fSt4BoZRFmqIiGqvi8_mmX-9AwyrPear6sbjaA/s500/IMG_20231201_054601.png" alt="Treasure Of V-tags">
+                <div class="event-card-content">
+                    <h3>Treasure Of V-tags</h3>
+                    <p>Discover hidden treasures and collect exclusive V-tags! Complete daily challenges and unlock amazing rewards that will boost your StarMaker journey.</p>
+                    <a href="../Login/login.html" class="event-btn">Participate Now</a>
+                </div>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fas fa-users"></i></div>
-                <h3>Global Community</h3>
-                <p>Connect with millions of music lovers and performers from around the world.</p>
+
+            <div class="event-card">
+                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiwOUAiXiRVc2Ns4b3ZkiL_z0K19VI8ve8Ckhqk5IIZ2Gf848SQEbhjznK36ub6OYodhsB4DE_04nyOTutuVa5dbx7JtD3K_3piKKGjiWgxDDZryTNmBHdM3YV-jyBmGOdEHOFPSv7NeFNU-VW-tTShLppZd-8txZZmRJWeYy6n9XNK_mcdICh8gDz0bl4/s500/IMG_20231201_061936.png" alt="Gold Coins">
+                <div class="event-card-content">
+                    <h3>Gold Coins - Get all for Free</h3>
+                    <p>Earn unlimited gold coins through our special event! Join now and get access to premium features, exclusive songs, and special effects completely free.</p>
+                    <a href="../Login/login.html" class="event-btn">Claim Rewards</a>
+                </div>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fas fa-star"></i></div>
-                <h3>Discover Talent</h3>
-                <p>Showcase your talent and get discovered by music industry professionals.</p>
+
+            <div class="event-card">
+                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgYXN2Ik3qQ3DTW-_mRz4tT_n_1rbftVD5s84cNExIzjEV551zBeYXz57mcP7zw-4qBUtMkrw7wCDhOSog1460MM9wPbSnGf8wWGoUWCPe2WGS7QG11he1GGmxR6YJ1IwFR4chbbbTwaNeSpOWZfXcVggbXKdml6iU1feC-eshjsIUWcaBa81A1JU-AOJo/s500/IMG_20231201_071148.png" alt="Be Vip Forever">
+                <div class="event-card-content">
+                    <h3>Be VIP Forever</h3>
+                    <p>Unlock lifetime VIP status and enjoy all premium benefits forever! Get access to exclusive content, priority support, and special recognition in the community.</p>
+                    <a href="../Login/login.html" class="event-btn">Become VIP</a>
+                </div>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fas fa-music"></i></div>
-                <h3>Vast Song Library</h3>
-                <p>Access millions of songs across all genres and languages to perform.</p>
+
+            <div class="event-card">
+                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEioNiVV28W_zqHm1ZMgRThcIBm2-nuOpdHL5GKjB0q2esp7IYkF_Sv6ZVMYz-PZy4Bsu4deofDLf93vmznvoEoeBwEiMFJyLtQJ5lar-Kb4DzFYZPekfnMyXFDxcSNtfbZEEEtbVssfrJIGAd-qxJ8ECvQezchIkX2cvulvwO33Uv6NGuLr8rmIpbGNvhM/w400-h196/IMG_20231129_222633.png" alt="10K Room Exp Giveaway">
+                <div class="event-card-content">
+                    <h3>10K Room Exp Giveaway</h3>
+                    <p>Join our massive experience giveaway event! Boost your room level instantly and unlock new features, decorations, and exclusive privileges.</p>
+                    <a href="../Login/login.html" class="event-btn">Join Giveaway</a>
+                </div>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fas fa-trophy"></i></div>
-                <h3>Competitions</h3>
-                <p>Participate in exciting contests and win amazing prizes and recognition.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fas fa-fire"></i></div>
-                <h3>Trending Now</h3>
-                <p>Stay updated with the hottest tracks and trending performances daily.</p>
-            </div>
-        </div>
-    </section>
 
-    <!-- Social Section -->
-    <section class="social-section">
-        <h2 class="section-title">Connect With Us</h2>
-        <div class="social-links">
-            <a href="https://www.facebook.com/starmaker/" class="social-icon" title="Facebook">
-                <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="https://www.youtube.com/channel/UC79sDwQF_uD1WGFtE4PQOaw" class="social-icon" title="YouTube">
-                <i class="fab fa-youtube"></i>
-            </a>
-            <a href="https://instagram.com/starmaker_india?igshid=MTRuN2t2emF5Mnl4OA==" class="social-icon" title="Instagram">
-                <i class="fab fa-instagram"></i>
-            </a>
-            <a href="https://telegram.me/excursiongames" class="social-icon" title="Telegram">
-                <i class="fab fa-telegram-plane"></i>
-            </a>
-            <a href="https://wa.me/918305605153" class="social-icon" title="WhatsApp">
-                <i class="fab fa-whatsapp"></i>
-            </a>
-        </div>
-    </section>
-
-    <!-- Footer Section -->
-    <footer class="footer-section">
-        <div class="footer-copyright">
-            © 2025 StarMaker Studios. All Rights Reserved.
-        </div>
-        <div class="footer-links">
-            <a href="https://m.starmakerstudios.com/setting/terms/sm/index#/terms/sm">Terms</a>
-            <span class="separator">|</span>
-            <a href="https://www.starmakerstudios.com/en/law">Law Enforcement Guidelines</a>
-        </div>
-    </footer>
-
-    <script>
-        // Enhanced word rotation animation with 3D flip
-        const wordElements = document.querySelectorAll('.word-rotate .word');
-        let currentWordIndex = 0;
-
-        function rotateWord() {
-            const currentWord = wordElements[currentWordIndex];
-            const nextWordIndex = (currentWordIndex + 1) % wordElements.length;
-            const nextWord = wordElements[nextWordIndex];
-
-            // Exit animation for current word
-            currentWord.classList.add('exit');
-            
-            setTimeout(() => {
-                currentWord.classList.remove('active', 'exit');
-                
-                // Enter animation for next word
-                nextWord.classList.add('active');
-                currentWordIndex = nextWordIndex;
-            }, 600);
-        }
-
-        // Start rotation after initial load
-        setTimeout(() => {
-            setInterval(rotateWord, 5000);
-        }, 2000);
-
-        // Typing animation
-        const typingText = document.getElementById('typingText');
-        const fullText = "THE NEXT GENERATION OF MUSIC STARS AND GIVE TALENTS THE BEST SHOT AI STARDOM";
-        let charIndex = 0;
-
-        function typeText() {
-            if (charIndex < fullText.length) {
-                typingText.textContent = fullText.substring(0, charIndex + 1);
-                charIndex++;
-                setTimeout(typeText, 50);
-            } else {
-                setTimeout(() => {
-                    typingText.classList.remove('typing-text');
-                }, 500);
-            }
-        }
-
-        // Start typing after page load
-        setTimeout(() => {
-            typeText();
-        }, 1500);
-
-        // Mobile Menu
-        const menuBtn = document.getElementById('menuBtn');
-        const closeBtn = document.getElementById('closeBtn');
-        const mobileMenu = document.getElementById('mobileMenu');
-
-        menuBtn.addEventListener('click', () => {
-            mobileMenu.classList.add('active');
-            menuBtn.classList.add('hidden');
-        });
-
-        closeBtn.addEventListener('click', () => {
-            mobileMenu.classList.remove('active');
-            menuBtn.classList.remove('hidden');
-        });
-
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('.mobile-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-                menuBtn.classList.remove('hidden');
-            });
-        });
-
-        // Prevent context menu
-        document.addEventListener('contextmenu', e => e.preventDefault());
-
-        // Create particles
-        const particlesContainer = document.getElementById('particles');
-        for (let i = 0; i < 40; i++) {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            particle.style.left = Math.random() * 100 + '%';
-            particle.style.animationDelay = Math.random() * 15 + 's';
-            particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
-            particlesContainer.appendChild(particle);
-        }
-
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        });
-
-        // 3D tilt effect on feature cards
-        document.querySelectorAll('.feature-card').forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                
-                const rotateX = (y - centerY) / 15;
-                const rotateY = (centerX - x) / 15;
-                
-                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
-            });
-            
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
-            });
-        });
-
-        // Add stagger animation to mobile menu items
-        document.querySelectorAll('.mobile-menu ul li').forEach((item, index) => {
-            item.style.animation = `fadeInUp 0.5s ease forwards ${index * 0.1 + 0.3}s`;
-            item.style.opacity = '0';
-        });
-    </script>
-</body>
-</html>
+            <div class="event-card">
+                <img src="https://static.starmakerstudios.com/production/cdn/vue/starx-official/prod/_next/
