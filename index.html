@@ -43,7 +43,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.4);
+            background: rgba(0, 0, 0, 0.3);
             z-index: -1;
         }
 
@@ -60,9 +60,9 @@
 
         .particle {
             position: absolute;
-            width: 4px;
-            height: 4px;
-            background: rgba(255, 255, 255, 0.6);
+            width: 3px;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.4);
             border-radius: 50%;
             animation: float 15s infinite ease-in-out;
         }
@@ -80,7 +80,7 @@
             top: 0;
             left: 0;
             right: 0;
-            padding: 20px 5%;
+            padding: 25px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -104,11 +104,10 @@
         .logo img {
             height: 50px;
             transition: transform 0.3s ease;
-            filter: drop-shadow(0 0 10px rgba(255, 41, 111, 0.5));
         }
 
         .logo img:hover {
-            transform: scale(1.1) rotate(5deg);
+            transform: scale(1.05);
         }
 
         .menu-items {
@@ -118,28 +117,26 @@
         }
 
         .menu-items a {
-            color: #fff;
+            color: rgba(255, 255, 255, 0.9);
             text-decoration: none;
             font-size: 14px;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             position: relative;
-            padding: 5px 0;
-            transition: color 0.3s ease;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            padding: 8px 0;
+            transition: all 0.3s ease;
+            font-weight: 400;
         }
 
         .menu-items a::before {
             content: '';
             position: absolute;
             bottom: 0;
-            left: 50%;
+            left: 0;
             width: 0;
             height: 2px;
-            background: linear-gradient(90deg, #ff296f, #ff6b9d);
-            transition: all 0.3s ease;
-            transform: translateX(-50%);
-            box-shadow: 0 0 10px #ff296f;
+            background: #ff296f;
+            transition: width 0.3s ease;
         }
 
         .menu-items a:hover::before {
@@ -147,7 +144,7 @@
         }
 
         .menu-items a:hover {
-            color: #ff296f;
+            color: #fff;
         }
 
         .menu-button {
@@ -164,10 +161,9 @@
         }
 
         .menu-button svg {
-            width: 30px;
-            height: 30px;
+            width: 28px;
+            height: 28px;
             stroke: #fff;
-            filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
         }
 
         /* Hero Section */
@@ -185,29 +181,27 @@
 
         .hero-content h1 {
             font-family: 'DINPro-Bold', sans-serif;
-            font-size: clamp(40px, 10vw, 120px);
+            font-size: clamp(50px, 10vw, 130px);
             margin-bottom: 30px;
-            background: linear-gradient(135deg, #fff, #ff296f);
+            background: linear-gradient(135deg, #fff 0%, #ff296f 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             opacity: 0;
             animation: fadeInUp 1s ease forwards 0.8s;
-            filter: drop-shadow(0 0 30px rgba(255, 41, 111, 0.8));
-            transform-style: preserve-3d;
-            perspective: 1000px;
+            letter-spacing: 2px;
         }
 
         .hero-content p {
-            font-size: clamp(14px, 2vw, 20px);
-            max-width: 800px;
-            margin: 0 auto 40px;
+            font-size: clamp(16px, 2vw, 22px);
+            max-width: 850px;
+            margin: 0 auto 50px;
             line-height: 1.8;
             opacity: 0;
             animation: fadeInUp 1s ease forwards 1.2s;
             font-weight: 300;
             letter-spacing: 1px;
-            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.8);
+            color: rgba(255, 255, 255, 0.9);
         }
 
         @keyframes fadeInUp {
@@ -223,7 +217,7 @@
 
         .btn-group {
             display: flex;
-            gap: 20px;
+            gap: 25px;
             flex-wrap: wrap;
             justify-content: center;
             opacity: 0;
@@ -231,19 +225,20 @@
         }
 
         .btn {
-            padding: 15px 40px;
+            padding: 16px 45px;
             background: linear-gradient(135deg, #ff296f, #ff6b9d);
             color: #fff;
             text-decoration: none;
             border-radius: 50px;
-            font-weight: 600;
+            font-weight: 500;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
+            font-size: 14px;
             position: relative;
             overflow: hidden;
-            transition: all 0.3s ease;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 10px 30px rgba(255, 41, 111, 0.6);
+            transition: all 0.4s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transform-style: preserve-3d;
         }
 
         .btn::before {
@@ -253,7 +248,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
             transition: left 0.5s ease;
         }
 
@@ -262,15 +257,14 @@
         }
 
         .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(255, 41, 111, 0.8);
-            border-color: #fff;
+            transform: translateY(-2px) translateZ(20px);
+            border-color: rgba(255, 255, 255, 0.4);
         }
 
         /* Features Section */
         .features-section {
             min-height: 100vh;
-            padding: 100px 5%;
+            padding: 120px 5%;
             background: transparent;
             position: relative;
             z-index: 1;
@@ -278,45 +272,46 @@
 
         .section-title {
             text-align: center;
-            font-size: clamp(30px, 6vw, 60px);
-            margin-bottom: 80px;
+            font-size: clamp(35px, 6vw, 70px);
+            margin-bottom: 100px;
             background: linear-gradient(135deg, #fff, #ff296f);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            filter: drop-shadow(0 0 20px rgba(255, 41, 111, 0.6));
+            font-weight: 700;
+            letter-spacing: 1px;
         }
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 40px;
             max-width: 1200px;
             margin: 0 auto;
         }
 
         .feature-card {
-            background: rgba(0, 0, 0, 0.4);
-            padding: 40px;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.4s ease;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 45px 35px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             overflow: hidden;
             transform-style: preserve-3d;
-            backdrop-filter: blur(10px);
+            perspective: 1000px;
+            backdrop-filter: blur(5px);
         }
 
         .feature-card::before {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255, 41, 111, 0.2), transparent);
-            transform: rotate(45deg);
-            transition: all 0.6s ease;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 41, 111, 0.1), transparent);
+            transition: left 0.6s ease;
         }
 
         .feature-card:hover::before {
@@ -324,41 +319,41 @@
         }
 
         .feature-card:hover {
-            transform: translateY(-10px) rotateX(5deg);
-            background: rgba(0, 0, 0, 0.6);
-            box-shadow: 0 20px 60px rgba(255, 41, 111, 0.5);
-            border-color: rgba(255, 41, 111, 0.8);
+            transform: translateY(-8px) rotateX(2deg) rotateY(2deg);
+            background: rgba(0, 0, 0, 0.5);
+            border-color: rgba(255, 41, 111, 0.4);
         }
 
         .feature-icon {
-            font-size: 50px;
-            margin-bottom: 20px;
+            font-size: 48px;
+            margin-bottom: 25px;
             color: #ff296f;
             display: inline-block;
-            transition: transform 0.3s ease;
-            filter: drop-shadow(0 0 10px rgba(255, 41, 111, 0.8));
+            transition: transform 0.4s ease;
         }
 
         .feature-card:hover .feature-icon {
-            transform: scale(1.2) rotateY(360deg);
+            transform: scale(1.1) rotateY(180deg);
         }
 
         .feature-card h3 {
-            font-size: 24px;
+            font-size: 22px;
             margin-bottom: 15px;
             color: #fff;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            font-weight: 600;
+            letter-spacing: 0.5px;
         }
 
         .feature-card p {
-            color: rgba(255, 255, 255, 0.9);
-            line-height: 1.6;
-            text-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.7;
+            font-size: 15px;
+            font-weight: 300;
         }
 
         /* Social Section */
         .social-section {
-            padding: 80px 5%;
+            padding: 100px 5%;
             text-align: center;
             position: relative;
             z-index: 1;
@@ -367,62 +362,48 @@
         .social-links {
             display: flex;
             justify-content: center;
-            gap: 30px;
+            gap: 25px;
             flex-wrap: wrap;
-            margin-top: 40px;
+            margin-top: 50px;
         }
 
         .social-icon {
             width: 60px;
             height: 60px;
-            background: rgba(0, 0, 0, 0.5);
-            border: 2px solid rgba(255, 255, 255, 0.3);
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: #fff;
-            font-size: 24px;
+            font-size: 22px;
             transition: all 0.3s ease;
             text-decoration: none;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(5px);
+            transform-style: preserve-3d;
         }
 
         .social-icon:hover {
             background: linear-gradient(135deg, #ff296f, #ff6b9d);
-            border-color: #fff;
-            transform: translateY(-5px) rotateZ(360deg);
-            box-shadow: 0 10px 30px rgba(255, 41, 111, 0.7);
+            border-color: rgba(255, 255, 255, 0.4);
+            transform: translateY(-5px) rotateZ(360deg) translateZ(10px);
         }
 
-        /* Mobile Menu - 3D Aesthetic */
+        /* Mobile Menu - 3D Minimalist */
         .mobile-menu {
             position: fixed;
             top: 0;
             right: -100%;
-            width: 320px;
+            width: 300px;
             height: 100vh;
-            background: linear-gradient(135deg, rgba(0, 0, 0, 0.95), rgba(20, 0, 20, 0.95));
+            background: rgba(0, 0, 0, 0.92);
             backdrop-filter: blur(20px);
-            padding: 80px 0;
+            padding: 90px 0 40px;
             z-index: 1500;
             transition: right 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            border-left: 2px solid rgba(255, 41, 111, 0.5);
-            box-shadow: -10px 0 50px rgba(255, 41, 111, 0.3);
+            border-left: 1px solid rgba(255, 255, 255, 0.15);
             overflow-y: auto;
-        }
-
-        .mobile-menu::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 20% 30%, rgba(255, 41, 111, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 70%, rgba(255, 107, 157, 0.1) 0%, transparent 50%);
-            pointer-events: none;
         }
 
         .mobile-menu.active {
@@ -431,36 +412,38 @@
 
         .close-button {
             position: absolute;
-            top: 20px;
-            right: 20px;
+            top: 25px;
+            right: 25px;
             cursor: pointer;
-            width: 50px;
-            height: 50px;
+            width: 45px;
+            height: 45px;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: rgba(255, 41, 111, 0.2);
+            background: rgba(255, 255, 255, 0.05);
             border-radius: 50%;
-            border: 2px solid rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             transition: all 0.3s ease;
             z-index: 1600;
+            transform-style: preserve-3d;
         }
 
         .close-button:hover {
-            background: linear-gradient(135deg, #ff296f, #ff6b9d);
-            transform: rotate(90deg) scale(1.1);
-            box-shadow: 0 5px 20px rgba(255, 41, 111, 0.6);
+            background: rgba(255, 41, 111, 0.2);
+            border-color: rgba(255, 41, 111, 0.5);
+            transform: rotate(90deg) scale(1.05) translateZ(10px);
         }
 
         .close-button svg {
-            width: 24px;
-            height: 24px;
+            width: 22px;
+            height: 22px;
             stroke: #fff;
+            transition: all 0.3s ease;
         }
 
         .mobile-menu ul {
             list-style: none;
-            padding: 40px;
+            padding: 0 35px;
         }
 
         .mobile-menu ul li {
@@ -470,20 +453,20 @@
         }
 
         .mobile-menu ul a {
-            color: #fff;
+            color: rgba(255, 255, 255, 0.9);
             text-decoration: none;
-            font-size: 20px;
+            font-size: 16px;
             text-transform: uppercase;
             letter-spacing: 2px;
             display: block;
-            padding: 20px;
-            margin: 10px 0;
-            transition: all 0.4s ease;
+            padding: 20px 25px;
+            margin: 8px 0;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
-            border-left: 3px solid transparent;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-            font-weight: 600;
+            border-left: 2px solid transparent;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            font-weight: 400;
         }
 
         .mobile-menu ul a::before {
@@ -493,9 +476,9 @@
             top: 0;
             height: 100%;
             width: 0;
-            background: linear-gradient(90deg, rgba(255, 41, 111, 0.3), transparent);
+            background: rgba(255, 41, 111, 0.1);
             transition: width 0.4s ease;
-            border-radius: 10px 0 0 10px;
+            border-radius: 8px 0 0 8px;
         }
 
         .mobile-menu ul a:hover::before {
@@ -503,57 +486,38 @@
         }
 
         .mobile-menu ul a:hover {
-            color: #ff296f;
+            color: #fff;
             border-left-color: #ff296f;
-            transform: translateX(10px) rotateY(5deg);
-            background: rgba(255, 41, 111, 0.1);
-            box-shadow: 0 5px 20px rgba(255, 41, 111, 0.3);
+            transform: translateX(8px) rotateY(3deg) translateZ(10px);
+            background: rgba(255, 255, 255, 0.08);
         }
 
         .mobile-menu ul a::after {
             content: '→';
             position: absolute;
-            right: 20px;
+            right: 25px;
             opacity: 0;
             transition: all 0.3s ease;
+            color: #ff296f;
         }
 
         .mobile-menu ul a:hover::after {
             opacity: 1;
-            right: 15px;
-        }
-
-        /* Menu decoration lines */
-        .mobile-menu-decoration {
-            position: absolute;
-            width: 2px;
-            height: 100px;
-            background: linear-gradient(180deg, transparent, #ff296f, transparent);
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            animation: pulse 2s infinite;
-            pointer-events: none;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 0.3; height: 100px; }
-            50% { opacity: 1; height: 150px; }
+            right: 20px;
         }
 
         /* Scroll Indicator */
         .scroll-indicator {
             position: absolute;
-            bottom: 30px;
+            bottom: 40px;
             left: 50%;
             transform: translateX(-50%);
             animation: bounce 2s infinite;
         }
 
         .scroll-indicator i {
-            font-size: 30px;
-            color: rgba(255, 255, 255, 0.8);
-            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+            font-size: 28px;
+            color: rgba(255, 255, 255, 0.7);
         }
 
         @keyframes bounce {
@@ -573,7 +537,7 @@
             }
 
             nav {
-                padding: 15px 5%;
+                padding: 20px 5%;
             }
 
             .logo img {
@@ -585,15 +549,16 @@
             }
 
             .features-section {
-                padding: 60px 5%;
+                padding: 80px 5%;
             }
 
             .section-title {
-                margin-bottom: 40px;
+                margin-bottom: 50px;
             }
 
             .features-grid {
-                gap: 20px;
+                gap: 25px;
+                grid-template-columns: 1fr;
             }
 
             .btn-group {
@@ -603,7 +568,7 @@
 
             .btn {
                 width: 100%;
-                max-width: 300px;
+                max-width: 280px;
             }
 
             .mobile-menu {
@@ -651,7 +616,6 @@
 
     <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobileMenu">
-        <div class="mobile-menu-decoration"></div>
         <div class="close-button" id="closeBtn">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
@@ -769,7 +733,7 @@
 
         // Create particles
         const particlesContainer = document.getElementById('particles');
-        for (let i = 0; i < 50; i++) {
+        for (let i = 0; i < 40; i++) {
             const particle = document.createElement('div');
             particle.className = 'particle';
             particle.style.left = Math.random() * 100 + '%';
@@ -799,10 +763,10 @@
                 const centerX = rect.width / 2;
                 const centerY = rect.height / 2;
                 
-                const rotateX = (y - centerY) / 10;
-                const rotateY = (centerX - x) / 10;
+                const rotateX = (y - centerY) / 15;
+                const rotateY = (centerX - x) / 15;
                 
-                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px)`;
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
             });
             
             card.addEventListener('mouseleave', () => {
