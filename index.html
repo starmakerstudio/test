@@ -109,6 +109,129 @@
             transform: scale(1.05);
         }
 
+
+
+
+
+
+         .menu-items > li {
+            position: relative;
+        }
+
+        .menu-items a,
+        .menu-items .dropdown-trigger {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            position: relative;
+            padding: 8px 0;
+            transition: all 0.3s ease;
+            font-weight: 400;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .menu-items a::before,
+        .menu-items .dropdown-trigger::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #ff296f;
+            transition: width 0.3s ease;
+        }
+
+        .menu-items a:hover::before,
+        .menu-items .dropdown-trigger:hover::before {
+            width: 100%;
+        }
+
+        .menu-items a:hover,
+        .menu-items .dropdown-trigger:hover {
+            color: #fff;
+        }
+
+        .dropdown-arrow {
+            font-size: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .menu-items li:hover .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        /* Desktop Dropdown */
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 15px 0;
+            min-width: 220px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateX(-50%) translateY(-10px);
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            z-index: 2000;
+            margin-top: 15px;
+        }
+
+        .menu-items li:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 12px 25px;
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .dropdown-menu a::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 3px;
+            background: #ff296f;
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .dropdown-menu a:hover {
+            color: #fff;
+            background: rgba(255, 41, 111, 0.1);
+            padding-left: 35px;
+        }
+
+        .dropdown-menu a:hover::before {
+            transform: scaleY(1);
+        }
+
+
+
+
+
+        
+
         .menu-items {
             display: flex;
             gap: 40px;
@@ -189,6 +312,46 @@
             opacity: 0;
             animation: fadeInUp 1s ease forwards 0.8s;
             letter-spacing: 2px;
+            min-height: 140px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-content h1 .word-rotate {
+            display: inline-block;
+            position: relative;
+            width: auto;
+            text-align: left;
+            height: 1.2em;
+            vertical-align: middle;
+        }
+
+        .hero-content h1 .word-rotate .word {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: auto;
+            white-space: nowrap;
+            opacity: 0;
+            transform: translateY(20px) rotateX(-90deg);
+            transform-origin: center;
+            transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            background: linear-gradient(135deg, #fff 0%, #ff296f 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-content h1 .word-rotate .word.active {
+            position: relative;
+            opacity: 1;
+            transform: translateY(0) rotateX(0deg);
+        }
+
+        .hero-content h1 .word-rotate .word.exit {
+            opacity: 0;
+            transform: translateY(-20px) rotateX(90deg);
         }
 
         .hero-content p {
@@ -201,6 +364,17 @@
             font-weight: 300;
             letter-spacing: 1px;
             color: rgba(255, 255, 255, 0.9);
+            min-height: 60px;
+        }
+
+        .typing-text::after {
+            content: '|';
+            animation: blink 0.7s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
         }
 
         @keyframes fadeInUp {
@@ -279,8 +453,8 @@
             transform: translateY(-2px) translateZ(20px);
         }
 
-        /* Events Section */
-        .events-section {
+        /* Features Section */
+        .features-section {
             min-height: 100vh;
             padding: 120px 5%;
             background: transparent;
@@ -300,60 +474,73 @@
             letter-spacing: 1px;
         }
 
-        .events-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-            max-width: 900px;
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
-        .event-card {
-            background: none;
-            border-radius: 0;
-            border: none;
+        .feature-card {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 45px 35px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
-            overflow: visible;
+            overflow: hidden;
             transform-style: preserve-3d;
-            backdrop-filter: none;
-            display: block;
-            text-decoration: none;
-            cursor: pointer;
+            perspective: 1000px;
+            backdrop-filter: blur(5px);
         }
 
-        .event-card::before {
-            display: none;
-        }
-
-        .event-card:hover::before {
-            display: none;
-        }
-
-        .event-card:hover {
-            transform: translateY(-5px) scale(1.02);
-            background: none;
-            border-color: transparent;
-            box-shadow: none;
-        }
-
-        .event-card img {
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
             width: 100%;
-            height: 250px;
-            object-fit: contain;
-            object-position: center;
-            border-radius: 20px;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 41, 111, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .feature-card:hover::before {
+            left: 100%;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px) rotateX(2deg) rotateY(2deg);
+            background: rgba(0, 0, 0, 0.5);
+            border-color: rgba(255, 41, 111, 0.4);
+        }
+
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 25px;
+            color: #ff296f;
+            display: inline-block;
             transition: transform 0.4s ease;
-            display: block;
-            background: none;
         }
 
-        .event-card:hover img {
-            transform: scale(1.05);
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1) rotateY(180deg);
         }
 
-        .event-card-content {
-            display: none;
+        .feature-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #fff;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .feature-card p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.7;
+            font-size: 15px;
+            font-weight: 300;
         }
 
         /* Social Section */
@@ -620,7 +807,16 @@
                 padding: 80px 5%;
             }
 
-            .events-section {
+            .hero-content h1 {
+                font-size: clamp(40px, 8vw, 110px);
+            }
+
+            .hero-content h1 .word-rotate {
+                text-align: center;
+                width: auto;
+            }
+
+            .features-section {
                 padding: 80px 5%;
             }
 
@@ -628,21 +824,9 @@
                 margin-bottom: 50px;
             }
 
-            .events-grid {
-                gap: 20px;
-            }
-
-            .event-card {
-                flex-direction: column;
-                min-height: auto;
-            }
-
-            .event-card img {
-                width: 100%;
-                height: 220px;
-                border-radius: 5px;
-                object-fit: contain;
-                background: none;
+            .features-grid {
+                gap: 25px;
+                grid-template-columns: 1fr;
             }
 
             .btn-group {
@@ -709,9 +893,19 @@
             <img src="https://static.starmakerstudios.com/production/cdn/vue/starx-official/prod/_next/static/assets/images/app-icon.d79097a124ad0a00.png" alt="StarMaker">
         </div>
         <ul class="menu-items">
-            <li><a href="https://starmakerstudio.github.io/web">Home</a></li>
             <li><a href="https://m.starmakerstudios.com/v/quick-recharge/official">Recharge</a></li>
             <li><a href="https://www.starmakerstudios.com/en/songs">Songbook</a></li>
+             <li>
+                <span class="dropdown-trigger">
+                    Blog
+                    <span class="dropdown-arrow">▼</span>
+                </span>
+                <div class="dropdown-menu">
+                    <a href="https://www.starmakerstudios.com/en/blog/category/inspiration">New Blog</a>
+                    <a href="https://blog.starmakerstudios.com/">Old Blog</a>
+                    <a href="https://tech.starmakerstudios.com/">Engineering Blog</a>
+                </div>
+            </li>
             <li><a href="https://starmaker.onelink.me/2172530114/WebsiteTopButton">Download</a></li>
             <li><a href="https://www.starmakerstudios.com/faq/#/">FAQ</a></li>
         </ul>
@@ -730,7 +924,6 @@
             </svg>
         </div>
         <ul>
-            <li><a href="https://starmakerstudio.github.io/web">Home</a></li>
             <li><a href="https://m.starmakerstudios.com/v/quick-recharge/official">Recharge</a></li>
             <li><a href="https://www.starmakerstudios.com/en/songs">Songbook</a></li>
             <li><a href="https://starmaker.onelink.me/2172530114/WebsiteTopButton">Download</a></li>
@@ -741,11 +934,14 @@
     <!-- Hero Section -->
     <section class="hero-section">
         <div class="hero-content">
-            <h1>EXCITING EVENTS</h1>
-            <p>Join our amazing events and win incredible rewards! Participate in contests, earn prizes, and showcase your talent to the world.</p>
+            <h1>WE&nbsp;<span class="word-rotate" id="rotatingWord">
+                <span class="word active">DISCOVER</span>
+                <span class="word">HELP</span>
+            </span></h1>
+            <p class="typing-text" id="typingText"></p>
             <div class="btn-group">
-                <a href="../Login/login.html" class="btn">Login to Participate</a>
-                <a href="#events" class="btn">View All Events</a>
+                <a href="Starmaker Web/Login/login.html" class="btn">Login</a>
+                <a href="Starmaker Web/Events/events.html" class="btn">Events</a>
             </div>
         </div>
         <div class="scroll-indicator">
@@ -753,25 +949,40 @@
         </div>
     </section>
 
-    <!-- Events Section -->
-    <section class="events-section" id="events">
-        <h2 class="section-title">Current Events</h2>
-        <div class="events-grid">
-            <a href="../Login/login.html" class="event-card">
-                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiEeRAAdObfwAfESe_tENCnWFCRVDDtPL_TuT7ys6JYXBKit2MLAUGF2uuGmMegj1zK0GmhefzxR2t9bjbH1KqsfQ6o7G9oXnS6yGq4qZb3pAM-VulsbH8zVIgrnSYaGYoeG0OszyCizfTCWqAsXD31_fSt4BoZRFmqIiGqvi8_mmX-9AwyrPear6sbjaA/s500/IMG_20231201_054601.png" alt="Treasure Of V-tags">
-            </a>
-
-            <a href="../Login/login.html" class="event-card">
-                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiwOUAiXiRVc2Ns4b3ZkiL_z0K19VI8ve8Ckhqk5IIZ2Gf848SQEbhjznK36ub6OYodhsB4DE_04nyOTutuVa5dbx7JtD3K_3piKKGjiWgxDDZryTNmBHdM3YV-jyBmGOdEHOFPSv7NeFNU-VW-tTShLppZd-8txZZmRJWeYy6n9XNK_mcdICh8gDz0bl4/s500/IMG_20231201_061936.png" alt="Gold Coins">
-            </a>
-
-            <a href="../Login/login.html" class="event-card">
-                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgYXN2Ik3qQ3DTW-_mRz4tT_n_1rbftVD5s84cNExIzjEV551zBeYXz57mcP7zw-4qBUtMkrw7wCDhOSog1460MM9wPbSnGf8wWGoUWCPe2WGS7QG11he1GGmxR6YJ1IwFR4chbbbTwaNeSpOWZfXcVggbXKdml6iU1feC-eshjsIUWcaBa81A1JU-AOJo/s500/IMG_20231201_071148.png" alt="Be Vip Forever">
-            </a>
-
-            <a href="../Login/login.html" class="event-card">
-                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEioNiVV28W_zqHm1ZMgRThcIBm2-nuOpdHL5GKjB0q2esp7IYkF_Sv6ZVMYz-PZy4Bsu4deofDLf93vmznvoEoeBwEiMFJyLtQJ5lar-Kb4DzFYZPekfnMyXFDxcSNtfbZEEEtbVssfrJIGAd-qxJ8ECvQezchIkX2cvulvwO33Uv6NGuLr8rmIpbGNvhM/w400-h196/IMG_20231129_222633.png" alt="10K Room Exp Giveaway">
-            </a>
+    <!-- Features Section -->
+    <section class="features-section">
+        <h2 class="section-title">Why Choose StarMaker?</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-microphone"></i></div>
+                <h3>Professional Studio</h3>
+                <p>Record with studio-quality sound and professional effects to make your voice shine.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-users"></i></div>
+                <h3>Global Community</h3>
+                <p>Connect with millions of music lovers and performers from around the world.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-star"></i></div>
+                <h3>Discover Talent</h3>
+                <p>Showcase your talent and get discovered by music industry professionals.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-music"></i></div>
+                <h3>Vast Song Library</h3>
+                <p>Access millions of songs across all genres and languages to perform.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-trophy"></i></div>
+                <h3>Competitions</h3>
+                <p>Participate in exciting contests and win amazing prizes and recognition.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-fire"></i></div>
+                <h3>Trending Now</h3>
+                <p>Stay updated with the hottest tracks and trending performances daily.</p>
+            </div>
         </div>
     </section>
 
@@ -812,6 +1023,54 @@
     </footer>
 
     <script>
+        // Enhanced word rotation animation with 3D flip
+        const wordElements = document.querySelectorAll('.word-rotate .word');
+        let currentWordIndex = 0;
+
+        function rotateWord() {
+            const currentWord = wordElements[currentWordIndex];
+            const nextWordIndex = (currentWordIndex + 1) % wordElements.length;
+            const nextWord = wordElements[nextWordIndex];
+
+            // Exit animation for current word
+            currentWord.classList.add('exit');
+            
+            setTimeout(() => {
+                currentWord.classList.remove('active', 'exit');
+                
+                // Enter animation for next word
+                nextWord.classList.add('active');
+                currentWordIndex = nextWordIndex;
+            }, 600);
+        }
+
+        // Start rotation after initial load
+        setTimeout(() => {
+            setInterval(rotateWord, 5000);
+        }, 2000);
+
+        // Typing animation
+        const typingText = document.getElementById('typingText');
+        const fullText = "THE NEXT GENERATION OF MUSIC STARS AND GIVE TALENTS THE BEST SHOT AI STARDOM";
+        let charIndex = 0;
+
+        function typeText() {
+            if (charIndex < fullText.length) {
+                typingText.textContent = fullText.substring(0, charIndex + 1);
+                charIndex++;
+                setTimeout(typeText, 50);
+            } else {
+                setTimeout(() => {
+                    typingText.classList.remove('typing-text');
+                }, 500);
+            }
+        }
+
+        // Start typing after page load
+        setTimeout(() => {
+            typeText();
+        }, 1500);
+
         // Mobile Menu
         const menuBtn = document.getElementById('menuBtn');
         const closeBtn = document.getElementById('closeBtn');
@@ -860,8 +1119,8 @@
             });
         });
 
-        // 3D tilt effect on event cards
-        document.querySelectorAll('.event-card').forEach(card => {
+        // 3D tilt effect on feature cards
+        document.querySelectorAll('.feature-card').forEach(card => {
             card.addEventListener('mousemove', (e) => {
                 const rect = card.getBoundingClientRect();
                 const x = e.clientX - rect.left;
@@ -870,14 +1129,14 @@
                 const centerX = rect.width / 2;
                 const centerY = rect.height / 2;
                 
-                const rotateX = (y - centerY) / 25;
-                const rotateY = (centerX - x) / 25;
+                const rotateX = (y - centerY) / 15;
+                const rotateY = (centerX - x) / 15;
                 
-                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-5px) scale(1.02)`;
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
             });
             
             card.addEventListener('mouseleave', () => {
-                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0) scale(1)';
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
             });
         });
 
@@ -886,29 +1145,7 @@
             item.style.animation = `fadeInUp 0.5s ease forwards ${index * 0.1 + 0.3}s`;
             item.style.opacity = '0';
         });
-
-        // Intersection Observer for scroll animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        // Observe event cards for scroll animations
-        document.querySelectorAll('.event-card').forEach((card, index) => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(30px)';
-            card.style.transition = `all 0.6s ease ${index * 0.1}s`;
-            observer.observe(card);
-        });
     </script>
 </body>
 </html>
+
