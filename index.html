@@ -520,6 +520,210 @@
             font-weight: 300;
         }
 
+        /* Security Alert Section */
+        .security-section {
+            padding: 120px 5%;
+            position: relative;
+            z-index: 1;
+        }
+
+        .security-tile-container {
+            max-width: 900px;
+            margin: 0 auto;
+            perspective: 1500px;
+        }
+
+        .security-tile {
+            background: rgba(0, 0, 0, 0.4);
+            border: 2px solid rgba(255, 41, 111, 0.3);
+            border-radius: 25px;
+            padding: 60px 50px;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            transform-style: preserve-3d;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            text-decoration: none;
+            display: block;
+        }
+
+        .security-tile::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 41, 111, 0.1) 0%, transparent 70%);
+            animation: securityPulse 4s ease-in-out infinite;
+            opacity: 0.5;
+        }
+
+        @keyframes securityPulse {
+            0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.3; }
+            50% { transform: scale(1.2) rotate(180deg); opacity: 0.6; }
+        }
+
+        .security-tile::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 41, 111, 0.2), transparent);
+            transition: left 0.8s ease;
+        }
+
+        .security-tile:hover::after {
+            left: 100%;
+        }
+
+        .security-tile:hover {
+            transform: translateY(-12px) rotateX(5deg);
+            border-color: rgba(255, 41, 111, 0.6);
+            background: rgba(0, 0, 0, 0.6);
+            box-shadow: 0 25px 60px rgba(255, 41, 111, 0.3);
+        }
+
+        .security-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .security-icon-wrapper {
+            margin-bottom: 30px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .security-icon {
+            font-size: 80px;
+            color: #ff296f;
+            display: inline-block;
+            transition: all 0.5s ease;
+            animation: shieldFloat 3s ease-in-out infinite;
+            filter: drop-shadow(0 0 20px rgba(255, 41, 111, 0.5));
+        }
+
+        @keyframes shieldFloat {
+            0%, 100% { transform: translateY(0) rotateY(0deg); }
+            50% { transform: translateY(-15px) rotateY(180deg); }
+        }
+
+        .security-tile:hover .security-icon {
+            transform: scale(1.15) rotateZ(10deg);
+            filter: drop-shadow(0 0 30px rgba(255, 41, 111, 0.8));
+        }
+
+        .security-badge {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: linear-gradient(135deg, #ff296f, #ff6b9d);
+            color: #fff;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            animation: badgePulse 2s ease-in-out infinite;
+            box-shadow: 0 0 20px rgba(255, 41, 111, 0.6);
+        }
+
+        @keyframes badgePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        .security-content h2 {
+            font-size: clamp(32px, 5vw, 48px);
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #fff, #ff296f);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .security-content p {
+            font-size: clamp(16px, 2vw, 20px);
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.8;
+            margin-bottom: 30px;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+
+        .security-features {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 25px;
+        }
+
+        .security-feature-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 15px;
+            padding: 10px 20px;
+            background: rgba(255, 41, 111, 0.1);
+            border-radius: 25px;
+            border: 1px solid rgba(255, 41, 111, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .security-feature-item i {
+            color: #ff296f;
+            font-size: 18px;
+        }
+
+        .security-tile:hover .security-feature-item {
+            background: rgba(255, 41, 111, 0.2);
+            border-color: rgba(255, 41, 111, 0.5);
+            transform: translateY(-3px);
+        }
+
+        .security-cta {
+            margin-top: 30px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 16px;
+            color: #fff;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 15px 35px;
+            background: linear-gradient(135deg, #ff296f, #ff6b9d);
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
+        }
+
+        .security-cta i {
+            transition: transform 0.3s ease;
+        }
+
+        .security-tile:hover .security-cta {
+            background: #fff;
+            color: #ff296f;
+            border-color: #ff296f;
+        }
+
+        .security-tile:hover .security-cta i {
+            transform: translateX(5px);
+        }
+
         /* Social Section */
         .social-section {
             padding: 100px 5% 40px;
@@ -882,6 +1086,79 @@
             transition: all 0.3s ease;
         }
 
+        .mobile-blog-menu ul {
+            list-style: none;
+            padding: 0;
+            max-width: 600px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .mobile-blog-menu ul li {
+            margin: 0;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .mobile-blog-menu ul a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            font-size: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            display: block;
+            padding: 18px 22px;
+            margin: 0;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            border-left: 2px solid transparent;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            font-weight: 400;
+            text-align: center;
+        }
+
+        .mobile-blog-menu ul a::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 0;
+            background: rgba(255, 41, 111, 0.1);
+            transition: width 0.4s ease;
+            border-radius: 8px 0 0 8px;
+        }
+
+        .mobile-blog-menu ul a:hover::before {
+            width: 100%;
+        }
+
+        .mobile-blog-menu ul a:hover {
+            color: #fff;
+            border-left-color: #ff296f;
+            transform: translateY(-3px) scale(1.02) translateZ(10px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .mobile-blog-menu ul a::after {
+            content: '↓';
+            position: absolute;
+            bottom: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: all 0.3s ease;
+            color: #ff296f;
+        }
+
+        .mobile-blog-menu ul a:hover::after {
+            opacity: 1;
+            bottom: -5px;
+        }
+
         /* Scroll Indicator */
         .scroll-indicator {
             position: absolute;
@@ -970,78 +1247,9 @@
                 grid-template-columns: 1fr;
             }
 
-          .mobile-blog-menu ul {
-            list-style: none;
-            padding: 0;
-            max-width: 600px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
-        }
-
-        .mobile-blog-menu ul li {
-            margin: 0;
-            transform-style: preserve-3d;
-            perspective: 1000px;
-        }
-
-        .mobile-blog-menu ul a {
-            color: rgba(255, 255, 255, 0.9);
-            text-decoration: none;
-            font-size: 15px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            display: block;
-            padding: 18px 22px;
-            margin: 0;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            border-left: 2px solid transparent;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 8px;
-            font-weight: 400;
-            text-align: center;
-        }
-
-        .mobile-blog-menu ul a::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            height: 100%;
-            width: 0;
-            background: rgba(255, 41, 111, 0.1);
-            transition: width 0.4s ease;
-            border-radius: 8px 0 0 8px;
-        }
-
-        .mobile-blog-menu ul a:hover::before {
-            width: 100%;
-        }
-
-        .mobile-blog-menu ul a:hover {
-            color: #fff;
-            border-left-color: #ff296f;
-            transform: translateY(-3px) scale(1.02) translateZ(10px);
-            background: rgba(255, 255, 255, 0.08);
-        }
-
-        .mobile-blog-menu ul a::after {
-            content: '↓';
-            position: absolute;
-            bottom: 5px;
-            left: 50%;
-            transform: translateX(-50%);
-            opacity: 0;
-            transition: all 0.3s ease;
-            color: #ff296f;
-        }
-
-        .mobile-blog-menu ul a:hover::after {
-            opacity: 1;
-            bottom: -5px;
-        }
+            .mobile-blog-menu ul {
+                grid-template-columns: 1fr;
+            }
 
             .footer-links {
                 flex-direction: row;
@@ -1060,6 +1268,27 @@
 
             .footer-links a:last-child {
                 flex-basis: 100%;
+            }
+
+            .security-section {
+                padding: 80px 5%;
+            }
+
+            .security-tile {
+                padding: 40px 30px;
+            }
+
+            .security-icon {
+                font-size: 60px;
+            }
+
+            .security-features {
+                gap: 15px;
+            }
+
+            .security-feature-item {
+                font-size: 13px;
+                padding: 8px 15px;
             }
         }
 
@@ -1200,6 +1429,42 @@
                 <h3>Trending Now</h3>
                 <p>Stay updated with the hottest tracks and trending performances daily.</p>
             </div>
+        </div>
+    </section>
+
+    <!-- Security Alert Section -->
+    <section class="security-section">
+        <div class="security-tile-container">
+            <a href="https://m.starmakerstudios.com/m?promotion_id=55303&showBar=1&showNavigation=true&_sxiq_open_origin=safetyCenter" class="security-tile">
+                <div class="security-content">
+                    <div class="security-icon-wrapper">
+                        <i class="fas fa-shield-alt security-icon"></i>
+                        <div class="security-badge">
+                            <i class="fas fa-exclamation"></i>
+                        </div>
+                    </div>
+                    <h2>Security Alert Center</h2>
+                    <p>Stay protected with our comprehensive security guidelines and safety measures. Your account security is our top priority.</p>
+                    <div class="security-features">
+                        <div class="security-feature-item">
+                            <i class="fas fa-lock"></i>
+                            <span>Account Protection</span>
+                        </div>
+                        <div class="security-feature-item">
+                            <i class="fas fa-user-shield"></i>
+                            <span>Privacy Controls</span>
+                        </div>
+                        <div class="security-feature-item">
+                            <i class="fas fa-bell"></i>
+                            <span>Real-time Alerts</span>
+                        </div>
+                    </div>
+                    <div class="security-cta">
+                        Learn More
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </div>
+            </a>
         </div>
     </section>
 
@@ -1413,6 +1678,28 @@
                 card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
             });
         });
+
+        // 3D tilt effect on security tile
+        const securityTile = document.querySelector('.security-tile');
+        if (securityTile) {
+            securityTile.addEventListener('mousemove', (e) => {
+                const rect = securityTile.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = (y - centerY) / 20;
+                const rotateY = (centerX - x) / 20;
+                
+                securityTile.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-12px)`;
+            });
+            
+            securityTile.addEventListener('mouseleave', () => {
+                securityTile.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
+            });
+        }
 
         // Add stagger animation to mobile menu items
         document.querySelectorAll('.mobile-menu ul li').forEach((item, index) => {
