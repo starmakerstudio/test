@@ -893,7 +893,7 @@
                 grid-template-columns: 1fr;
             }
 
-        .mobile-blog-menu ul {
+          .mobile-blog-menu ul {
             list-style: none;
             padding: 0;
             max-width: 600px;
@@ -965,6 +965,7 @@
             opacity: 1;
             bottom: -5px;
         }
+
             .footer-links {
                 flex-direction: row;
                 flex-wrap: wrap;
@@ -1293,26 +1294,6 @@
             });
         });
 
-
-        // Add hover effect to mobile menu links
-document.querySelectorAll('.mobile-blog-menu').forEach(link => {
-    link.addEventListener('mouseenter', function() {
-        this.style.borderLeftColor = '#ff296f';
-    });
-    link.addEventListener('mouseleave', function() {
-        this.style.borderLeftColor = 'transparent';
-    });
-});
-
-// Close mobile menu when clicking on non-blog links
-document.querySelectorAll('.mobile-menu a:not(#mobileBlogBtn)').forEach(link => {
-    link.addEventListener('click', () => {
-        mobileMenu.classList.remove('active');
-        menuBtn.classList.remove('hidden');
-    });
-});
-
-        
         // 3D tilt effect on feature cards
         document.querySelectorAll('.feature-card').forEach(card => {
             card.addEventListener('mousemove', (e) => {
