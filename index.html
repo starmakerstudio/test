@@ -389,8 +389,6 @@
             transition: all 0.4s ease;
             border: 1px solid rgba(255, 255, 255, 0.2);
             transform-style: preserve-3d;
-            width: 100%;
-            max-width: 220px;
         }
 
         .btn::before {
@@ -573,6 +571,64 @@
             display: flex;
             justify-content: center;
             margin-top: 30px;
+        }
+
+        .report-btn {
+            padding: 16px 45px;
+            background: linear-gradient(135deg, #ff296f, #ff6b9d);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-size: 14px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transform-style: preserve-3d;
+            width: 100%;
+            max-width: 260px;
+        }
+
+        .report-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .report-btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 41, 111, 0.5), transparent);
+            transition: left 0.5s ease;
+            opacity: 0;
+        }
+
+        .report-btn:hover::before {
+            left: 100%;
+        }
+
+        .report-btn:hover::after {
+            left: 100%;
+            opacity: 1;
+        }
+
+        .report-btn:hover {
+            background: #fff;
+            color: #ff296f;
+            border: 1px solid #ff296f;
+            transform: translateY(-2px) translateZ(20px);
         }
 
         /* Footer Section */
@@ -900,6 +956,11 @@
                 max-width: 280px;
             }
 
+            .report-btn {
+                width: 100%;
+                max-width: 280px;
+            }
+
             .mobile-menu {
                 width: 100%;
                 padding: 80px 20px 30px;
@@ -1165,10 +1226,10 @@
     <!-- Report Problem Section -->
     <section class="report-section">
         <div class="report-btn-container">
-            <a href="https://m.starmakerstudios.com/v/feedback/index?showBar=1&showNavigation=true&new=true&pg_rf_ca_vn=543" class="btn">Report a Problem</a>
+            <a href="https://m.starmakerstudios.com/v/feedback/index?showBar=1&showNavigation=true&new=true&pg_rf_ca_vn=543" class="report-btn">Report a Problem</a>
         </div>
         <div class="report-btn-container">
-            <a href="https://m.starmakerstudios.com/v/search-song/feedback?title=Request%20a%20Song&showNavigation=true" class="btn">Feedback</a>
+            <a href="https://m.starmakerstudios.com/v/search-song/feedback?title=Request%20a%20Song&showNavigation=true" class="report-btn">Feedback</a>
         </div>
     </section>
 
