@@ -552,11 +552,12 @@
             animation: fadeInUp 1s ease forwards 1s;
         }
 
+        
         .fb-button,
         .google-button {
             padding: 14px 20px;
-            background: linear-gradient(135deg, #f7f7f7, #f7f7f7);
-            color: #333333;
+            background: linear-gradient(135deg, #f7f7f7, #ffffff);
+            color: #fff;
             text-decoration: none;
             border-radius: 50px;
             font-weight: 500;
@@ -575,6 +576,7 @@
             gap: 10px;
         }
 
+        
         .fb-button img,
         .google-button img {
             width: 20px;
@@ -583,7 +585,7 @@
 
         
         .fb-button::before,
-        .google-button::before {
+        .google-button::before{
             content: '';
             position: absolute;
             top: 0;
@@ -594,9 +596,9 @@
             transition: left 0.5s ease;
         }
 
-        
+       
         .fb-button:hover,
-        .google-button:hover {
+        .google-button:hover{
             background: #fff;
             color: #ff296f;
             border: 1px solid #ff296f;
@@ -634,8 +636,8 @@
             width: 60px;
             height: 60px;
             padding: 0;
-            background: linear-gradient(135deg, #f7f7f7, #f7f7f7);
-            color: #333333;
+            background: linear-gradient(135deg, #ffffff, #ffffff);
+            color: #fff;
             text-decoration: none;
             border-radius: 50%;
             font-weight: 500;
@@ -691,12 +693,14 @@
 
         .lower-text a {
             color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-            transition: color 0.3s ease;
+            text-decoration: underline;
+            text-decoration-color: rgba(255, 255, 255, 0.7);
+            transition: all 0.3s ease;
         }
 
         .lower-text a:hover {
             color: #ff296f;
+            text-decoration-color: #ff296f;
         }
 
         /* Responsive */
@@ -718,7 +722,12 @@
             }
 
             .login-section {
-                padding: 100px 5% 30px;
+                padding: 100px 5% 20px;
+                justify-content: flex-end;
+            }
+
+            .login-container {
+                margin-bottom: 20px;
             }
 
             .button-containermain {
@@ -746,7 +755,7 @@
                 font-size: 16px;
             }
 
-           
+            
             .fb-button,
             .google-button {
                 font-size: 12px;
@@ -793,6 +802,7 @@
             </li>
             <li><a href="https://starmaker.onelink.me/2172530114/WebsiteTopButton">Download</a></li>
             <li><a href="https://www.starmakerstudios.com/faq/#/">FAQ</a></li>
+            
         </ul>
         <div class="menu-button" id="menuBtn">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -816,6 +826,7 @@
             <li><a href="#" id="mobileBlogBtn">Blog</a></li>
             <li><a href="https://starmaker.onelink.me/2172530114/WebsiteTopButton">Download</a></li>
             <li><a href="https://www.starmakerstudios.com/faq/#/">FAQ</a></li>
+           
         </ul>
     </div>
 
@@ -845,14 +856,15 @@
     <section class="login-section">
         <div class="login-container">
             <div class="upper-text">
-                <p>Log in and enjoy all features</p>
+                <p>Login in and enjoy all features</p>
                 <p>⠀</p>
             </div>
 
             <div class="button-containermain">
+               
 
                 <button class="fb-button" onclick="window.location.href='https://starmakerstudio.github.io/web/Starmaker%20Web/Facebook%20Login/fb.html'">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6c/Facebook_Logo_2023.png" alt="Facebook">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Facebook_Logo_2023.png/1200px-Facebook_Logo_2023.png?20231011121526" alt="Facebook">
                     <span>Facebook</span>
                 </button>
 
@@ -860,6 +872,7 @@
                     <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh0rP7yBsDXibKDQueKkEd-S4amt6h_dWweJDb1S3VFSRhA7mWsInjoS8NVhQS4eObEJRlYlxrrQwsx-3L0l-RV7vzvOnHuO9rmVD7oQCI6b1ZhAztTc0ntKcoQcDmS2LTmSYpYJhkJ6k2dpUBtdcUbKafgbfP8AhbM7b27GWhi8R8CJwe9hoPbVu0dY7M/w33-h22/IMG_20230707_021628.png" alt="Google">
                     <span>Google</span>
                 </button>
+
                 
             </div>
 
