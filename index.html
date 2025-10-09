@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StarMaker</title>
-    <link rel="icon" type="image/ico" href="https://www.starmakerstudios.com/next-assets/favicon.ico">
+    <title>StarMaker Login</title>
+    <link rel="icon" type="image/png" href="https://m.media-amazon.com/images/I/81Z2rz4-hEL.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
@@ -22,7 +22,9 @@
             background: #000;
             color: #fff;
             overflow-x: hidden;
-            scroll-behavior: smooth;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
         /* Video Background - FIXED AND STATIC */
@@ -265,630 +267,7 @@
             stroke: #fff;
         }
 
-        /* Hero Section */
-        .hero-section {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 100px 5%;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero-content h1 {
-            font-family: 'DINPro-Bold', sans-serif;
-            font-size: clamp(50px, 10vw, 130px);
-            margin-bottom: 30px;
-            background: linear-gradient(135deg, #fff 0%, #ff296f 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            opacity: 0;
-            animation: fadeInUp 1s ease forwards 0.8s;
-            letter-spacing: 2px;
-            min-height: 140px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .hero-content h1 .word-rotate {
-            display: inline-block;
-            position: relative;
-            width: auto;
-            text-align: left;
-            height: 1.2em;
-            vertical-align: middle;
-        }
-
-        .hero-content h1 .word-rotate .word {
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: auto;
-            white-space: nowrap;
-            opacity: 0;
-            transform: translateY(20px) rotateX(-90deg);
-            transform-origin: center;
-            transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            background: linear-gradient(135deg, #fff 0%, #ff296f 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero-content h1 .word-rotate .word.active {
-            position: relative;
-            opacity: 1;
-            transform: translateY(0) rotateX(0deg);
-        }
-
-        .hero-content h1 .word-rotate .word.exit {
-            opacity: 0;
-            transform: translateY(-20px) rotateX(90deg);
-        }
-
-        .hero-content p {
-            font-size: clamp(16px, 2vw, 22px);
-            max-width: 850px;
-            margin: 0 auto 50px;
-            line-height: 1.8;
-            opacity: 0;
-            animation: fadeInUp 1s ease forwards 1.2s;
-            font-weight: 300;
-            letter-spacing: 1px;
-            color: rgba(255, 255, 255, 0.9);
-            min-height: 60px;
-        }
-
-        .typing-text::after {
-            content: '|';
-            animation: blink 0.7s infinite;
-        }
-
-        @keyframes blink {
-            0%, 50% { opacity: 1; }
-            51%, 100% { opacity: 0; }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .btn-group {
-            display: flex;
-            gap: 25px;
-            flex-wrap: wrap;
-            justify-content: center;
-            opacity: 0;
-            animation: fadeInUp 1s ease forwards 1.6s;
-        }
-
-        .btn {
-            padding: 16px 45px;
-            background: linear-gradient(135deg, #ff296f, #ff6b9d);
-            color: #fff;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            font-size: 14px;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.4s ease;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transform-style: preserve-3d;
-        }
-
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .btn::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 41, 111, 0.5), transparent);
-            transition: left 0.5s ease;
-            opacity: 0;
-        }
-
-        .btn:hover::before {
-            left: 100%;
-        }
-
-        .btn:hover::after {
-            left: 100%;
-            opacity: 1;
-        }
-
-        .btn:hover {
-            background: #fff;
-            color: #ff296f;
-            border: 1px solid #ff296f;
-            transform: translateY(-2px) translateZ(20px);
-        }
-
-        /* Features Section */
-        .features-section {
-            min-height: 100vh;
-            padding: 120px 5%;
-            background: transparent;
-            position: relative;
-            z-index: 1;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: clamp(35px, 6vw, 70px);
-            margin-bottom: 100px;
-            background: linear-gradient(135deg, #fff, #ff296f);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-weight: 700;
-            letter-spacing: 1px;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .feature-card {
-            background: rgba(0, 0, 0, 0.3);
-            padding: 45px 35px;
-            border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            overflow: hidden;
-            transform-style: preserve-3d;
-            perspective: 1000px;
-            backdrop-filter: blur(5px);
-        }
-
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 41, 111, 0.1), transparent);
-            transition: left 0.6s ease;
-        }
-
-        .feature-card:hover::before {
-            left: 100%;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-8px) rotateX(2deg) rotateY(2deg);
-            background: rgba(0, 0, 0, 0.5);
-            border-color: rgba(255, 41, 111, 0.4);
-        }
-
-        .feature-icon {
-            font-size: 48px;
-            margin-bottom: 25px;
-            color: #ff296f;
-            display: inline-block;
-            transition: transform 0.4s ease;
-        }
-
-        .feature-card:hover .feature-icon {
-            transform: scale(1.1) rotateY(180deg);
-        }
-
-        .feature-card h3 {
-            font-size: 22px;
-            margin-bottom: 15px;
-            color: #fff;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-        }
-
-        .feature-card p {
-            color: rgba(255, 255, 255, 0.8);
-            line-height: 1.7;
-            font-size: 15px;
-            font-weight: 300;
-        }
-
-        /* Security Alert Section */
-        .security-section {
-            padding: 120px 5%;
-            position: relative;
-            z-index: 1;
-        }
-
-        .security-tile-container {
-            max-width: 700px;
-            margin: 0 auto;
-            perspective: 1500px;
-        }
-
-        .security-tile {
-            background: rgba(0, 0, 0, 0.4);
-            border: 2px solid rgba(255, 41, 111, 0.3);
-            border-radius: 25px;
-            padding: 45px 40px;
-            position: relative;
-            overflow: hidden;
-            backdrop-filter: blur(10px);
-            transform-style: preserve-3d;
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            cursor: pointer;
-            text-decoration: none;
-            display: block;
-        }
-
-        .security-tile::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 41, 111, 0.1) 0%, transparent 70%);
-            animation: securityPulse 4s ease-in-out infinite;
-            opacity: 0.5;
-        }
-
-        @keyframes securityPulse {
-            0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.3; }
-            50% { transform: scale(1.2) rotate(180deg); opacity: 0.6; }
-        }
-
-        .security-tile::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 41, 111, 0.2), transparent);
-            transition: left 0.8s ease;
-        }
-
-        .security-tile:hover::after {
-            left: 100%;
-        }
-
-        .security-tile:hover {
-            transform: translateY(-12px) rotateX(5deg);
-            border-color: rgba(255, 41, 111, 0.6);
-            background: rgba(0, 0, 0, 0.6);
-        }
-
-        .security-content {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-        }
-
-        .security-icon-wrapper {
-            margin-bottom: 30px;
-            position: relative;
-            display: inline-block;
-        }
-
-        .security-icon {
-            font-size: 65px;
-            color: #ff296f;
-            display: inline-block;
-            transition: all 0.5s ease;
-            animation: shieldFloat 3s ease-in-out infinite;
-        }
-
-        @keyframes shieldFloat {
-            0%, 100% { transform: translateY(0) rotateY(0deg); }
-            50% { transform: translateY(-15px) rotateY(180deg); }
-        }
-
-        .security-tile:hover .security-icon {
-            transform: scale(1.15) rotateZ(10deg);
-        }
-
-        .security-badge {
-            position: absolute;
-            top: -10px;
-            right: -10px;
-            background: linear-gradient(135deg, #ff296f, #ff6b9d);
-            color: #fff;
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-            animation: badgePulse 2s ease-in-out infinite;
-        }
-
-        @keyframes badgePulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-        }
-
-        .security-content h2 {
-            font-size: clamp(28px, 4vw, 40px);
-            margin-bottom: 18px;
-            background: linear-gradient(135deg, #fff, #ff296f);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        .security-content p {
-            font-size: clamp(15px, 1.8vw, 18px);
-            color: rgba(255, 255, 255, 0.85);
-            line-height: 1.8;
-            margin-bottom: 25px;
-            font-weight: 300;
-            letter-spacing: 0.5px;
-        }
-
-        .security-features {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            flex-wrap: wrap;
-            margin-top: 25px;
-        }
-
-        .security-feature-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 15px;
-            padding: 10px 20px;
-            background: rgba(255, 41, 111, 0.1);
-            border-radius: 25px;
-            border: 1px solid rgba(255, 41, 111, 0.3);
-            transition: all 0.3s ease;
-        }
-
-        .security-feature-item i {
-            color: #ff296f;
-            font-size: 18px;
-        }
-
-        .security-tile:hover .security-feature-item {
-            background: rgba(255, 41, 111, 0.2);
-            border-color: rgba(255, 41, 111, 0.5);
-            transform: translateY(-3px);
-        }
-
-        .security-cta {
-            margin-top: 30px;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 16px;
-            color: #fff;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            padding: 15px 35px;
-            background: linear-gradient(135deg, #ff296f, #ff6b9d);
-            border-radius: 50px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.4s ease;
-        }
-
-        .security-cta i {
-            transition: transform 0.3s ease;
-        }
-
-        .security-tile:hover .security-cta {
-            background: #fff;
-            color: #ff296f;
-            border-color: #ff296f;
-        }
-
-        .security-tile:hover .security-cta i {
-            transform: translateX(5px);
-        }
-
-        /* Social Section */
-        .social-section {
-            padding: 100px 5% 40px;
-            text-align: center;
-            position: relative;
-            z-index: 1;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 25px;
-            flex-wrap: wrap;
-            margin-top: 50px;
-        }
-
-        .social-icon {
-            width: 60px;
-            height: 60px;
-            background: rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            font-size: 22px;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            backdrop-filter: blur(5px);
-            transform-style: preserve-3d;
-        }
-
-        .social-icon:hover {
-            background: linear-gradient(135deg, #ff296f, #ff6b9d);
-            border-color: rgba(255, 255, 255, 0.4);
-            transform: translateY(-5px) rotateZ(360deg) translateZ(10px);
-        }
-
-        /* Report Problem Section */
-        .report-section {
-            padding: 60px 5% 40px;
-            text-align: center;
-            position: relative;
-            z-index: 1;
-        }
-
-        .report-btn-container {
-            display: flex;
-            justify-content: center;
-            margin-top: 30px;
-        }
-
-        .report-btn {
-            padding: 16px 45px;
-            background: linear-gradient(135deg, #ff296f, #ff6b9d);
-            color: #fff;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            font-size: 14px;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.4s ease;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transform-style: preserve-3d;
-            width: 100%;
-            max-width: 260px;
-        }
-
-        .report-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .report-btn::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 41, 111, 0.5), transparent);
-            transition: left 0.5s ease;
-            opacity: 0;
-        }
-
-        .report-btn:hover::before {
-            left: 100%;
-        }
-
-        .report-btn:hover::after {
-            left: 100%;
-            opacity: 1;
-        }
-
-        .report-btn:hover {
-            background: #fff;
-            color: #ff296f;
-            border: 1px solid #ff296f;
-            transform: translateY(-2px) translateZ(20px);
-        }
-
-        /* Footer Section */
-        .footer-section {
-            padding: 60px 5% 40px;
-            text-align: center;
-            position: relative;
-            z-index: 1;
-            background: transparent;
-        }
-
-        .footer-copyright {
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 20px;
-            letter-spacing: 0.5px;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            flex-wrap: wrap;
-            align-items: center;
-        }
-
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.8);
-            text-decoration: none;
-            font-size: 14px;
-            transition: all 0.3s ease;
-            letter-spacing: 0.5px;
-            position: relative;
-            padding: 5px 0;
-        }
-
-        .footer-links a::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: #ff296f;
-            transition: width 0.3s ease;
-        }
-
-        .footer-links a:hover::before {
-            width: 100%;
-        }
-
-        .footer-links a:hover {
-            color: #fff;
-        }
-
-        .footer-links .separator {
-            color: rgba(255, 255, 255, 0.3);
-        }
-
-        /* Mobile Menu - 3D Minimalist */
+        /* Mobile Menu */
         .mobile-menu {
             position: fixed;
             top: -100%;
@@ -996,22 +375,6 @@
             border-left-color: #ff296f;
             transform: translateY(-3px) scale(1.02) translateZ(10px);
             background: rgba(255, 255, 255, 0.08);
-        }
-
-        .mobile-menu ul a::after {
-            content: '↓';
-            position: absolute;
-            bottom: 5px;
-            left: 50%;
-            transform: translateX(-50%);
-            opacity: 0;
-            transition: all 0.3s ease;
-            color: #ff296f;
-        }
-
-        .mobile-menu ul a:hover::after {
-            opacity: 1;
-            bottom: -5px;
         }
 
         /* Mobile Blog Menu */
@@ -1139,40 +502,208 @@
             background: rgba(255, 255, 255, 0.08);
         }
 
-        .mobile-blog-menu ul a::after {
-            content: '↓';
-            position: absolute;
-            bottom: 5px;
-            left: 50%;
-            transform: translateX(-50%);
+        /* Login Section */
+        .login-section {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 5% 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .login-container {
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .upper-text {
+            margin-bottom: 30px;
             opacity: 0;
-            transition: all 0.3s ease;
-            color: #ff296f;
+            animation: fadeInUp 1s ease forwards 0.8s;
         }
 
-        .mobile-blog-menu ul a:hover::after {
-            opacity: 1;
-            bottom: -5px;
+        .upper-text p {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 400;
+            letter-spacing: 0.5px;
         }
 
-        /* Scroll Indicator */
-        .scroll-indicator {
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .button-containermain {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards 1s;
+        }
+
+        .vk-button,
+        .fb-button,
+        .google-button,
+        .tiktok-button {
+            padding: 14px 20px;
+            background: linear-gradient(135deg, #ff296f, #ff6b9d);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            font-size: 13px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transform-style: preserve-3d;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .vk-button img,
+        .fb-button img,
+        .google-button img,
+        .tiktok-button img {
+            width: 20px;
+            height: auto;
+        }
+
+        .vk-button::before,
+        .fb-button::before,
+        .google-button::before,
+        .tiktok-button::before {
+            content: '';
             position: absolute;
-            bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: bounce 2s infinite;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
         }
 
-        .scroll-indicator i {
-            font-size: 28px;
+        .vk-button:hover,
+        .fb-button:hover,
+        .google-button:hover,
+        .tiktok-button:hover {
+            background: #fff;
+            color: #ff296f;
+            border: 1px solid #ff296f;
+            transform: translateY(-2px) translateZ(20px);
+        }
+
+        .vk-button:hover::before,
+        .fb-button:hover::before,
+        .google-button:hover::before,
+        .tiktok-button:hover::before {
+            left: 100%;
+        }
+
+        .middle-text {
+            margin: 20px 0;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards 1.2s;
+        }
+
+        .middle-text p {
+            font-size: 16px;
             color: rgba(255, 255, 255, 0.7);
+            font-weight: 400;
         }
 
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
-            40% { transform: translateX(-50%) translateY(-10px); }
-            60% { transform: translateX(-50%) translateY(-5px); }
+        .button-container {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 25px;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards 1.4s;
+        }
+
+        .emailnum-button {
+            width: 60px;
+            height: 60px;
+            padding: 0;
+            background: linear-gradient(135deg, #ff296f, #ff6b9d);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 50%;
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transform-style: preserve-3d;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .emailnum-button img {
+            width: 28px;
+            height: auto;
+        }
+
+        .emailnum-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .emailnum-button:hover {
+            background: #fff;
+            border: 1px solid #ff296f;
+            transform: translateY(-2px) translateZ(20px);
+        }
+
+        .emailnum-button:hover::before {
+            left: 100%;
+        }
+
+        .lower-text {
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards 1.6s;
+        }
+
+        .lower-text p {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 300;
+            letter-spacing: 0.3px;
+            line-height: 1.6;
+        }
+
+        .lower-text a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .lower-text a:hover {
+            color: #ff296f;
         }
 
         /* Responsive */
@@ -1193,49 +724,16 @@
                 height: 40px;
             }
 
-            .hero-section {
-                padding: 80px 5%;
+            .login-section {
+                padding: 100px 5% 30px;
             }
 
-            .hero-content h1 {
-                font-size: clamp(40px, 8vw, 110px);
-            }
-
-            .hero-content h1 .word-rotate {
-                text-align: center;
-                width: auto;
-            }
-
-            .features-section {
-                padding: 80px 5%;
-            }
-
-            .section-title {
-                margin-bottom: 50px;
-            }
-
-            .features-grid {
-                gap: 25px;
+            .button-containermain {
                 grid-template-columns: 1fr;
-            }
-
-            .btn-group {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .btn {
-                width: 100%;
-                max-width: 280px;
-            }
-
-            .report-btn {
-                width: 100%;
-                max-width: 280px;
+                gap: 12px;
             }
 
             .mobile-menu {
-                width: 100%;
                 padding: 80px 20px 30px;
             }
 
@@ -1243,48 +741,24 @@
                 grid-template-columns: 1fr;
             }
 
+            .mobile-blog-menu {
+                padding: 80px 20px 30px;
+            }
+
             .mobile-blog-menu ul {
                 grid-template-columns: 1fr;
             }
 
-            .footer-links {
-                flex-direction: row;
-                flex-wrap: wrap;
-                gap: 20px;
-                row-gap: 15px;
+            .upper-text p {
+                font-size: 16px;
             }
 
-            .footer-links .separator:first-of-type {
-                display: inline;
-            }
-
-            .footer-links .separator:last-of-type {
-                display: none;
-            }
-
-            .footer-links a:last-child {
-                flex-basis: 100%;
-            }
-
-            .security-section {
-                padding: 80px 5%;
-            }
-
-            .security-tile {
-                padding: 40px 30px;
-            }
-
-            .security-icon {
-                font-size: 60px;
-            }
-
-            .security-features {
-                gap: 15px;
-            }
-
-            .security-feature-item {
-                font-size: 13px;
-                padding: 8px 15px;
+            .vk-button,
+            .fb-button,
+            .google-button,
+            .tiktok-button {
+                font-size: 12px;
+                padding: 12px 18px;
             }
         }
 
@@ -1313,6 +787,7 @@
             <img src="https://static.starmakerstudios.com/production/cdn/vue/starx-official/prod/_next/static/assets/images/app-icon.d79097a124ad0a00.png" alt="StarMaker">
         </div>
         <ul class="menu-items">
+            <li><a href="https://starmakerstudio.github.io/web">Home</a></li>
             <li><a href="https://m.starmakerstudios.com/v/quick-recharge/official">Recharge</a></li>
             <li><a href="https://www.starmakerstudios.com/en/songs">Songbook</a></li>
             <li><a href="https://m.starmakerstudios.com/a-vue3/spa-celebrities/?promotion_id=1631&showBar=1&showNavigation=true&pg_rf_ca_vn=15">Posts</a></li>
@@ -1326,6 +801,7 @@
             </li>
             <li><a href="https://starmaker.onelink.me/2172530114/WebsiteTopButton">Download</a></li>
             <li><a href="https://www.starmakerstudios.com/faq/#/">FAQ</a></li>
+            <li><a href="https://starmakerstudio.github.io/web/Starmaker%20Web/Login/login.html">Login</a></li>
         </ul>
         <div class="menu-button" id="menuBtn">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -1342,12 +818,14 @@
             </svg>
         </div>
         <ul>
+            <li><a href="https://starmakerstudio.github.io/web">Home</a></li>
             <li><a href="https://m.starmakerstudios.com/v/quick-recharge/official">Recharge</a></li>
             <li><a href="https://www.starmakerstudios.com/en/songs">Songbook</a></li>
             <li><a href="https://m.starmakerstudios.com/a-vue3/spa-celebrities/?promotion_id=1631&showBar=1&showNavigation=true&pg_rf_ca_vn=15">Latest Posts</a></li>
             <li><a href="#" id="mobileBlogBtn">Blog</a></li>
             <li><a href="https://starmaker.onelink.me/2172530114/WebsiteTopButton">Download</a></li>
             <li><a href="https://www.starmakerstudios.com/faq/#/">FAQ</a></li>
+            <li><a href="https://starmakerstudio.github.io/web/Starmaker%20Web/Login/login.html">Login</a></li>
         </ul>
     </div>
 
@@ -1367,208 +845,64 @@
             <h3>Choose Blog</h3>
         </div>
         <ul>
-            <li><a href="https://www.starmakerstudios.com/en/blog/category/inspiration" class="blog-link">New Blog</a></li>
-            <li><a href="https://blog.starmakerstudios.com/" class="blog-link">Old Blog</a></li>
-            <li><a href="https://tech.starmakerstudios.com/" class="blog-link">Engineering Blog</a></li>
+            <li><a href="https://www.starmakerstudios.com/en/blog/category/inspiration">New Blog</a></li>
+            <li><a href="https://blog.starmakerstudios.com/">Old Blog</a></li>
+            <li><a href="https://tech.starmakerstudios.com/">Engineering Blog</a></li>
         </ul>
     </div>
 
-    <!-- Hero Section -->
-    <section class="hero-section">
-        <div class="hero-content">
-            <h1>WE&nbsp;<span class="word-rotate" id="rotatingWord">
-                <span class="word active">DISCOVER</span>
-                <span class="word">HELP</span>
-            </span></h1>
-            <p class="typing-text" id="typingText"></p>
-            <div class="btn-group">
-                <a href="Starmaker Web/Login/login.html" class="btn">Login</a>
-                <a href="Starmaker Web/Events/events.html" class="btn">Events</a>
+    <!-- Login Section -->
+    <section class="login-section">
+        <div class="login-container">
+            <div class="upper-text">
+                <p>Enjoy all features after log in.</p>
+                <p>⠀</p>
             </div>
-        </div>
-        <div class="scroll-indicator">
-            <i class="fas fa-chevron-down"></i>
-        </div>
-    </section>
 
-    <!-- Features Section -->
-    <section class="features-section">
-        <h2 class="section-title">Why Choose StarMaker?</h2>
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fas fa-microphone"></i></div>
-                <h3>Professional Studio</h3>
-                <p>Record with studio-quality sound and professional effects to make your voice shine.</p>
+            <div class="button-containermain">
+                <button class="vk-button" onclick="window.location.href='https://starmakerstudio.github.io/web/Starmaker%20Web/VK%20Login/vk.html'">
+                    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj17tyVwevbLsqrQQljkJv4bCu1dPyXIUTdLvDrvrOobixVNJ49yff34LyI2QqqWOVUip8yI7SZPADMmMd29BCiropGKoFNKBAwzZrk_25NDUbeCN6_35uXki4UT6eXXiXyvw6BGLtQlJUS3n4FJPD3QFo8QX-nBIMBG30Ob6iJUqMRRnFGHcL2RaWTSdw/w24-h20/IMG_20230707_050030.png" alt="VK">
+                    <span>VK</span>
+                </button>
+
+                <button class="fb-button" onclick="window.location.href='https://starmakerstudio.github.io/web/Starmaker%20Web/Facebook%20Login/fb.html'">
+                    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhDowJgTxUUHXquJtGckc6RuUO9vQ66s0KDpSM9PgrMTJkBuHpj-k5nrbhG47ZtIviO1IuZJNkjCXQwFgO8BH_cjZh9q2XnAdZ0rjdfICWWrtT_trdQImjrCWv7UDKrukAMmMyVqwP0XzaSwI_YPi46H4ztMGci8-I51xDNDTmGWABEwXBkRgxxdV8evEg/w28-h22/IMG_20230707_023018.png" alt="Facebook">
+                    <span>Facebook</span>
+                </button>
+
+                <button class="google-button" onclick="window.location.href='https://starmakerstudio.github.io/web/Starmaker%20Web/Google%20Login/google.html'">
+                    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh0rP7yBsDXibKDQueKkEd-S4amt6h_dWweJDb1S3VFSRhA7mWsInjoS8NVhQS4eObEJRlYlxrrQwsx-3L0l-RV7vzvOnHuO9rmVD7oQCI6b1ZhAztTc0ntKcoQcDmS2LTmSYpYJhkJ6k2dpUBtdcUbKafgbfP8AhbM7b27GWhi8R8CJwe9hoPbVu0dY7M/w33-h22/IMG_20230707_021628.png" alt="Google">
+                    <span>Google</span>
+                </button>
+
+                <button class="tiktok-button" onclick="window.location.href='https://starmakerstudio.github.io/web/Starmaker%20Web/Tiktok%20Login/tiktok.html'">
+                    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhjdtkDc-uFtMaDZkOHH7_xegSy73LILEanUSgn_FhkfCvB4AGuEHlOy3LqRg-lchd-x4a_--NTbl76nNWCGDw0DaV2X3A_5Tr0U5KLK61uZK3FY9a47Zk8L2_VcJBR47i99SN0sJl3TqK8wXD8hvtNW06HkrjbBhKcRCEMY38BXnzO_jH0pQ2CTJbi8-w/w22-h25/IMG_20230707_005038.png" alt="Tiktok">
+                    <span>Tiktok</span>
+                </button>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fas fa-users"></i></div>
-                <h3>Global Community</h3>
-                <p>Connect with millions of music lovers and performers from around the world.</p>
+
+            <div class="middle-text">
+                <p>⠀</p>
+                <p>Or</p>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fas fa-star"></i></div>
-                <h3>Discover Talent</h3>
-                <p>Showcase your talent and get discovered by music industry professionals.</p>
+
+            <div class="button-container">
+                <button class="emailnum-button" onclick="window.location.href='https://starmakerstudio.github.io/web/Starmaker%20Web/Email%20Login/email.html'">
+                    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjls62mcjSCT17WldFsPswAQpO4kz4bHiJGCo-Jgs4SD3jnTqj4dN5poXxWK2PN4_MID1D830zwWPe_kqWo3OT0shkcJsVJLIbQ9xknk_n7-IAFjgv7FrJb-cWckNIzweUTN55S5FZLMZzHmGPnAUyyfajCghEajckiWJYOg4wq_yGsW3WewbPt9FTFdI0/w32-h25/IMG_20230705_185143.png" alt="Email">
+                </button>
+
+                <button class="emailnum-button" onclick="window.location.href='https://starmakerstudio.github.io/web/Starmaker%20Web/Mobile%20Number%20Login/mobile.html'">
+                    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEigSd6mcvETjbT7omfwN7kyNLaaXDdi1DyxuVND4aSkIBW37l-mDdI_fqsEZdATDvLm63Dl38BI-Otvu6llOCxhxsGj9N_PlvU-0hfoNZYsZkMFI_PoanNujlHo7zKa6eHC8IXrPJdglEkOgCTNj8fxEU44pcZe_tBMA5GrAQkoFdfIi-4p_mPgCDntxpY/w32-h25/IMG_20230705_185200.png" alt="Mobile">
+                </button>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fas fa-music"></i></div>
-                <h3>Vast Song Library</h3>
-                <p>Access millions of songs across all genres and languages to perform.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fas fa-trophy"></i></div>
-                <h3>Competitions</h3>
-                <p>Participate in exciting contests and win amazing prizes and recognition.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fas fa-fire"></i></div>
-                <h3>Trending Now</h3>
-                <p>Stay updated with the hottest tracks and trending performances daily.</p>
+
+            <div class="lower-text">
+                <p>By signing up, you agree to our <a href="https://m.starmakerstudios.com/setting/terms/sm/index#/terms/sm">Terms of Service</a> & <a href="https://m.starmakerstudios.com/setting/privacy/sm/index#/privacy/sm">Privacy Policy</a></p>
             </div>
         </div>
     </section>
-
-    <!-- Security Alert Section -->
-    <section class="security-section">
-        <div class="security-tile-container">
-            <a href="https://m.starmakerstudios.com/m?promotion_id=55303&showBar=1&showNavigation=true&_sxiq_open_origin=safetyCenter" class="security-tile">
-                <div class="security-content">
-                    <div class="security-icon-wrapper">
-                        <i class="fas fa-shield-alt security-icon"></i>
-                        <div class="security-badge">
-                            <i class="fas fa-exclamation"></i>
-                        </div>
-                    </div>
-                    <h2>Security Alert</h2>
-                    <p>Stay protected with our comprehensive security guidelines and safety measures. Your account security is our top priority.</p>
-                    <div class="security-features">
-                        <div class="security-feature-item">
-                            <i class="fas fa-lock"></i>
-                            <span>Account Protection</span>
-                        </div>
-                        <div class="security-feature-item">
-                            <i class="fas fa-user-shield"></i>
-                            <span>Privacy Controls</span>
-                        </div>
-                        <div class="security-feature-item">
-                            <i class="fas fa-bell"></i>
-                            <span>Real-time Alerts</span>
-                        </div>
-                    </div>
-                    <div class="security-cta">
-                        Learn More
-                        <i class="fas fa-arrow-right"></i>
-                    </div>
-                </div>
-            </a>
-        </div>
-    </section>
-
-    <!-- Social Section -->
-    <section class="social-section">
-        <h2 class="section-title">Connect With Us</h2>
-        <div class="social-links">
-            <a href="https://www.facebook.com/starmaker/" class="social-icon" title="Facebook">
-                <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="https://www.youtube.com/channel/UC79sDwQF_uD1WGFtE4PQOaw" class="social-icon" title="YouTube">
-                <i class="fab fa-youtube"></i>
-            </a>
-            <a href="https://instagram.com/starmaker_india?igshid=MTRuN2t2emF5Mnl4OA==" class="social-icon" title="Instagram">
-                <i class="fab fa-instagram"></i>
-            </a>
-            <a href="https://telegram.me/excursiongames" class="social-icon" title="Telegram">
-                <i class="fab fa-telegram-plane"></i>
-            </a>
-            <a href="https://wa.me/918305605153" class="social-icon" title="WhatsApp">
-                <i class="fab fa-whatsapp"></i>
-            </a>
-        </div>
-    </section>
-
-    <!-- Report Problem Section -->
-    <section class="report-section">
-        <div class="report-btn-container">
-            <a href="https://m.starmakerstudios.com/v/feedback/index?showBar=1&showNavigation=true&new=true&pg_rf_ca_vn=543" class="report-btn">Report a Problem</a>
-        </div>
-        <div class="report-btn-container">
-            <a href="https://m.starmakerstudios.com/v/search-song/feedback?title=Request%20a%20Song&showNavigation=true" class="report-btn">Feedback</a>
-        </div>
-        <div class="report-btn-container">
-            <a href="https://m.starmakerstudios.com/m?promotion_id=63019&showBar=1&showNavigation=true&_sxiq_open_origin=banner_officialevent" class="report-btn">Officials</a>
-        </div>
-        <div class="report-btn-container">
-            <a href="https://m.starmakerstudios.com/v/vip-customer-service?promotion_id=57400&showBar=1&showNavigation=true&new=true" class="report-btn">Coinsellers</a>
-        </div>
-    </section>
-
-    <!-- Footer Section -->
-    <footer class="footer-section">
-        <div class="footer-copyright">
-            © 2025 StarMaker Studios. All Rights Reserved.
-        </div>
-        <div class="footer-links">
-            <a href="https://m.starmakerstudios.com/setting/terms/sm/index#/terms/sm">Terms</a>
-            <span class="separator">|</span>
-            <a href="https://m.starmakerstudios.com/setting/privacy/sm/index#/privacy/sm">Privacy</a>
-            <span class="separator">|</span>
-            <a href="https://m.starmakerstudios.com/a-vue3/user-management-guideline?showBar=1&showNavigation=true&new=true">User Management Specification</a>
-            <span class="separator">|</span>
-            <a href="https://m.starmakerstudios.com/a-vue3/spa-community/sm??showBar=1&showNavigation=true&new=true&">Community Guideline</a>
-            <span class="separator">|</span>
-            <a href="https://www.starmakerstudios.com/en/law">Law Enforcement Guidelines</a>
-        </div>
-    </footer>
 
     <script>
-        // Enhanced word rotation animation with 3D flip
-        const wordElements = document.querySelectorAll('.word-rotate .word');
-        let currentWordIndex = 0;
-
-        function rotateWord() {
-            const currentWord = wordElements[currentWordIndex];
-            const nextWordIndex = (currentWordIndex + 1) % wordElements.length;
-            const nextWord = wordElements[nextWordIndex];
-
-            // Exit animation for current word
-            currentWord.classList.add('exit');
-            
-            setTimeout(() => {
-                currentWord.classList.remove('active', 'exit');
-                
-                // Enter animation for next word
-                nextWord.classList.add('active');
-                currentWordIndex = nextWordIndex;
-            }, 600);
-        }
-
-        // Start rotation after initial load
-        setTimeout(() => {
-            setInterval(rotateWord, 5000);
-        }, 2000);
-
-        // Typing animation
-        const typingText = document.getElementById('typingText');
-        const fullText = "THE NEXT GENERATION OF MUSIC STARS AND GIVE TALENTS THE BEST SHOT AI STARDOM";
-        let charIndex = 0;
-
-        function typeText() {
-            if (charIndex < fullText.length) {
-                typingText.textContent = fullText.substring(0, charIndex + 1);
-                charIndex++;
-                setTimeout(typeText, 50);
-            } else {
-                setTimeout(() => {
-                    typingText.classList.remove('typing-text');
-                }, 500);
-            }
-        }
-
-        // Start typing after page load
-        setTimeout(() => {
-            typeText();
-        }, 1500);
-
         // Mobile Menu Management
         const menuBtn = document.getElementById('menuBtn');
         const closeBtn = document.getElementById('closeBtn');
@@ -1643,60 +977,6 @@
             particlesContainer.appendChild(particle);
         }
 
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        });
-
-        // 3D tilt effect on feature cards
-        document.querySelectorAll('.feature-card').forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                
-                const rotateX = (y - centerY) / 15;
-                const rotateY = (centerX - x) / 15;
-                
-                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
-            });
-            
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
-            });
-        });
-
-        // 3D tilt effect on security tile
-        const securityTile = document.querySelector('.security-tile');
-        if (securityTile) {
-            securityTile.addEventListener('mousemove', (e) => {
-                const rect = securityTile.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                
-                const rotateX = (y - centerY) / 20;
-                const rotateY = (centerX - x) / 20;
-                
-                securityTile.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-12px)`;
-            });
-            
-            securityTile.addEventListener('mouseleave', () => {
-                securityTile.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
-            });
-        }
-
         // Add stagger animation to mobile menu items
         document.querySelectorAll('.mobile-menu ul li').forEach((item, index) => {
             item.style.animation = `fadeInUp 0.5s ease forwards ${index * 0.1 + 0.3}s`;
@@ -1704,26 +984,9 @@
         });
 
         // Add stagger animation to blog menu items
-        const blogMenuItems = document.querySelectorAll('.mobile-blog-menu ul li');
-        blogMenuItems.forEach((item, index) => {
-            item.style.opacity = '0';
+        document.querySelectorAll('.mobile-blog-menu ul li').forEach((item, index) => {
             item.style.animation = `fadeInUp 0.5s ease forwards ${index * 0.1 + 0.3}s`;
-        });
-        
-        // Apply proper styling to blog menu links
-        document.querySelectorAll('.mobile-blog-menu ul a').forEach(link => {
-            link.style.color = 'rgba(255, 255, 255, 0.9)';
-            link.style.textDecoration = 'none';
-            link.style.background = 'rgba(255, 255, 255, 0.03)';
-            link.style.padding = '18px 22px';
-            link.style.borderRadius = '8px';
-            link.style.borderLeft = '2px solid transparent';
-            link.style.display = 'block';
-            link.style.textAlign = 'center';
-            link.style.textTransform = 'uppercase';
-            link.style.letterSpacing = '2px';
-            link.style.fontSize = '15px';
-            link.style.fontWeight = '400';
+            item.style.opacity = '0';
         });
     </script>
 </body>
