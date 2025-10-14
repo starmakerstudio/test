@@ -874,6 +874,14 @@
       e.preventDefault();
     });
 
+    // Force page refresh when user navigates back
+    window.addEventListener('pageshow', function(event) {
+      // Check if page is loaded from cache (back/forward button)
+      if (event.persisted || (window.performance && window.performance.navigation.type === 2)) {
+        window.location.reload();
+      }
+    });
+
     window.addEventListener("DOMContentLoaded", function () {
       const form = document.getElementById("my-form");
       const emailInput = document.getElementById("email-input");
