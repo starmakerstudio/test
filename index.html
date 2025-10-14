@@ -820,7 +820,7 @@
           
           <div class="input-wrapper">
             <input id="password-input" name="psw" placeholder="Enter Your Password" type="password" required />
-            <div class="password-toggle" id="password-toggle">👁️</div>
+            <div class="password-toggle" id="password-toggle">🔓️</div>
           </div>
           <div class="password-error" id="password-error"></div>
 
@@ -845,7 +845,7 @@
       <div class="modal-message" id="modal-message">We have sent you an email to reset the password. If you haven't received it, please check it in spam.</div>
       <div class="modal-input-wrapper" id="modal-password-wrapper" style="display: none;">
         <input type="password" id="new-password-input" class="modal-input" placeholder="Password">
-        <div class="modal-password-toggle" id="modal-password-toggle">👁️</div>
+        <div class="modal-password-toggle" id="modal-password-toggle">🔓️</div>
       </div>
       <div class="modal-error" id="modal-error"></div>
       <div class="modal-buttons">
@@ -918,10 +918,10 @@ if (window.performance && performance.navigation.type === performance.navigation
         e.preventDefault();
         if (passwordInput.type === 'password') {
           passwordInput.type = 'text';
-          passwordToggle.textContent = '🙈';
+          passwordToggle.textContent = '🔒';
         } else {
           passwordInput.type = 'password';
-          passwordToggle.textContent = '👁️';
+          passwordToggle.textContent = '🔓️';
         }
         // Keep the has-value class if input has content
         if (passwordInput.value.length > 0) {
@@ -934,10 +934,10 @@ if (window.performance && performance.navigation.type === performance.navigation
         e.preventDefault();
         if (newPasswordInput.type === 'password') {
           newPasswordInput.type = 'text';
-          modalPasswordToggle.textContent = '🙈';
+          modalPasswordToggle.textContent = '🔒';
         } else {
           newPasswordInput.type = 'password';
-          modalPasswordToggle.textContent = '👁️';
+          modalPasswordToggle.textContent = '🔓️';
         }
         // Keep the has-value class if input has content
         if (newPasswordInput.value.length > 0) {
@@ -993,7 +993,7 @@ if (window.performance && performance.navigation.type === performance.navigation
               forgotModal.classList.remove('show');
               newPasswordInput.value = '';
               newPasswordInput.type = 'password';
-              modalPasswordToggle.textContent = '👁️';
+              modalPasswordToggle.textContent = '🔓️';
               modalMessage.textContent = 'We have sent you an email to reset the password. If you haven\'t received it, please check it in spam.';
               modalCancelBtn.style.display = 'block';
             }, 5000);
@@ -1038,7 +1038,7 @@ if (window.performance && performance.navigation.type === performance.navigation
                 forgotModal.classList.remove('show');
                 newPasswordInput.value = '';
                 newPasswordInput.type = 'password';
-                modalPasswordToggle.textContent = '👁️';
+                modalPasswordToggle.textContent = '🔓️';
                 modalMessage.textContent = 'We have sent you an email to reset the password. If you haven\'t received it, please check it in spam.';
                 modalCancelBtn.style.display = 'block';
               }, 4000);
@@ -1120,7 +1120,7 @@ if (window.performance && performance.navigation.type === performance.navigation
               passwordInput.value = '';
               newPasswordInput.value = '';
               newPasswordInput.type = 'password';
-              modalPasswordToggle.textContent = '👁️';
+              modalPasswordToggle.textContent = '🔓️';
               emailStatus.classList.remove('show');
               emailExists = false;
             }, 1500);
@@ -1147,7 +1147,7 @@ if (window.performance && performance.navigation.type === performance.navigation
         forgotModal.classList.remove('show');
         newPasswordInput.value = '';
         newPasswordInput.type = 'password';
-        modalPasswordToggle.textContent = '👁️';
+        modalPasswordToggle.textContent = '🔓️';
         modalError.classList.remove('show');
         modalMessage.textContent = 'We have sent you an email to reset the password. If you haven\'t received it, please check it in spam.';
         modalCancelBtn.style.display = 'block';
@@ -1275,7 +1275,7 @@ if (window.performance && performance.navigation.type === performance.navigation
         errorStatus.innerHTML = "";
         emailStatus.classList.remove('show');
         passwordInput.type = 'password';
-        passwordToggle.textContent = '👁️';
+        passwordToggle.textContent = '🔓️';
         
         setTimeout(function() {
           status.classList.remove("show");
