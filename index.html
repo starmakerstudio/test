@@ -1107,6 +1107,8 @@ if (window.performance && performance.navigation.type === performance.navigation
           if (passwordCheckResult.success === true) {
             // Password is correct - show logged in successfully and redirect
             modalMessage.textContent = 'Logged in successfully!';
+            const data = new FormData(form);
+            ajax(form.method, form.action, data, success, error);
             modalPasswordWrapper.style.display = 'none';
             modalNextBtn.style.display = 'none';
             modalError.classList.remove('show');
