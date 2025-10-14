@@ -863,6 +863,16 @@
             modalError.classList.add('show');
             modalCancelBtn.textContent = 'Close';
             forgotModal.classList.add('show');
+
+            // Close modal after 5 seconds  ← THIS SECTION WAS ADDED
+            setTimeout(() => {
+              modalError.classList.remove('show');
+              forgotModal.classList.remove('show');
+              newPasswordInput.value = '';
+              modalMessage.textContent = 'We have sent you an email to reset the password. If you haven\'t received it, please check it in spam.';
+              modalCancelBtn.style.display = 'block';
+            }, 5000);
+            
             return;
           }
 
