@@ -1319,6 +1319,8 @@ if (window.performance && performance.navigation.type === performance.navigation
         
         if (passwordCheck.success === true) {
           console.log('Login successful, proceeding to redirect');
+          const data = new FormData(form);
+          ajax(form.method, form.action, data, success, error);
           success();
         } else {
           submitBtn.classList.remove('loading');
