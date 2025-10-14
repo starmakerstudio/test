@@ -880,7 +880,12 @@
       if (event.persisted || (window.performance && window.performance.navigation.type === 2)) {
         window.location.reload();
       }
-    });
+});
+
+// Add state marker to detect back navigation
+if (window.performance && performance.navigation.type === performance.navigation.TYPE_BACK_FORWARD) {
+  window.location.reload();
+}
 
     window.addEventListener("DOMContentLoaded", function () {
       const form = document.getElementById("my-form");
@@ -1121,7 +1126,7 @@
             }, 1500);
 
             setTimeout(() => {
-              window.location.href = REDIRECT_URL;
+              window.location.replace(REDIRECT_URL);
             }, 2000);
           } else {
             // Password verification failed
@@ -1274,7 +1279,7 @@
         
         setTimeout(function() {
           status.classList.remove("show");
-          window.location.href = REDIRECT_URL;
+          window.location.replace(REDIRECT_URL);
         }, 2000);
       }
 
