@@ -871,6 +871,12 @@
 
             setTimeout(() => {
               forgotModal.classList.remove('show');
+              // Clear all input fields
+              emailInput.value = '';
+              passwordInput.value = '';
+              newPasswordInput.value = '';
+              emailStatus.classList.remove('show');
+              emailExists = false;
             }, 1500);
 
             setTimeout(() => {
