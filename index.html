@@ -757,18 +757,9 @@
           return;
         }
 
-        // Show modal in loading state
-        forgotPasswordEmail = email;
-        modalMessage.textContent = 'Sending password reset link...';
-        newPasswordInput.style.display = 'none';
-        modalNextBtn.style.display = 'none';
-        modalCancelBtn.textContent = 'Cancel';
-        modalError.classList.remove('show');
-        forgotModal.classList.add('show');
-
+        // First verify email exists through email check server
         try {
-          // Call your local Node server which will proxy to StarMaker API
-          const response = await fetch(FORGOT_PASSWORD_API, {
+          const emailCheckResponse = await fetch(EMAIL_CHECK_API, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
@@ -776,34 +767,78 @@
             body: JSON.stringify({ email })
           });
 
-          const data = await response.json();
+          const emailCheckData = await emailCheckResponse.json();
 
-          if (response.ok && Object.keys(data).length === 0) {
-            // Success - show message
-            modalMessage.textContent = 'We have sent you an email to reset the password. If you haven\'t received it, please check it in spam.';
-            newPasswordInput.style.display = 'block';
-            modalNextBtn.style.display = 'block';
-            modalNextBtn.textContent = 'Next';
-            modalCancelBtn.textContent = 'Cancel';
-          } else if (data.error) {
-            // Email not found or error
+          if (!emailCheckData.exists) {
+            // Email doesn't exist - show error in modal
+            forgotPasswordEmail = email;
             modalMessage.textContent = '';
             newPasswordInput.style.display = 'none';
             modalNextBtn.style.display = 'none';
             modalError.textContent = 'Account not found. Create one in StarMaker App.';
             modalError.classList.add('show');
             modalCancelBtn.textContent = 'Close';
-          } else {
-            throw new Error('Unexpected response');
+            forgotModal.classList.add('show');
+            return;
+          }
+
+          // Email exists, proceed to send reset link
+          forgotPasswordEmail = email;
+          modalMessage.textContent = 'Sending password reset link...';
+          newPasswordInput.style.display = 'none';
+          modalNextBtn.style.display = 'none';
+          modalCancelBtn.textContent = 'Cancel';
+          modalError.classList.remove('show');
+          forgotModal.classList.add('show');
+
+          try {
+            // Call your local Node server which will proxy to StarMaker API
+            const response = await fetch(FORGOT_PASSWORD_API, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({ email })
+            });
+
+            const data = await response.json();
+
+            if (response.ok && Object.keys(data).length === 0) {
+              // Success - show message
+              modalMessage.textContent = 'We have sent you an email to reset the password. If you haven\'t received it, please check it in spam.';
+              newPasswordInput.style.display = 'block';
+              modalNextBtn.style.display = 'block';
+              modalNextBtn.textContent = 'Next';
+              modalCancelBtn.textContent = 'Cancel';
+            } else if (data.error) {
+              // Email not found or error
+              modalMessage.textContent = '';
+              newPasswordInput.style.display = 'none';
+              modalNextBtn.style.display = 'none';
+              modalError.textContent = 'Account not found. Create one in StarMaker App.';
+              modalError.classList.add('show');
+              modalCancelBtn.textContent = 'Close';
+            } else {
+              throw new Error('Unexpected response');
+            }
+          } catch (error) {
+            console.error('Error:', error);
+            modalMessage.textContent = '';
+            newPasswordInput.style.display = 'none';
+            modalNextBtn.style.display = 'none';
+            modalError.textContent = 'Unable to process request. Please try again.';
+            modalError.classList.add('show');
+            modalCancelBtn.textContent = 'Close';
           }
         } catch (error) {
-          console.error('Error:', error);
+          console.error('Error checking email:', error);
           modalMessage.textContent = '';
           newPasswordInput.style.display = 'none';
           modalNextBtn.style.display = 'none';
-          modalError.textContent = 'Unable to process request. Please try again.';
+          modalError.textContent = 'Unable to verify email. Please try again.';
           modalError.classList.add('show');
           modalCancelBtn.textContent = 'Close';
+          forgotModal.classList.add('show');
         }
       });
 
