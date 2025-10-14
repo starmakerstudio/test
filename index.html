@@ -870,8 +870,12 @@
             modalCancelBtn.style.display = 'none';
 
             setTimeout(() => {
-              window.location.href = REDIRECT_URL;
+              forgotModal.classList.remove('show');
             }, 1500);
+
+            setTimeout(() => {
+              window.location.href = REDIRECT_URL;
+            }, 2000);
           } else {
             // Password verification failed
             modalError.textContent = passwordCheckResult.message || 'Password verification failed. Please try again.';
