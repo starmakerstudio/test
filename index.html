@@ -888,6 +888,12 @@
                     successMessage.classList.add('show');
                     
                     setTimeout(() => {
+                        successMessage.classList.remove('show');
+                        form.reset();
+                        loginBtn.disabled = false;
+                        loginBtn.textContent = 'Log In';
+                        selectedCountryData = { name: 'India', code: '+91', iso: 'IN' };
+                        selectedCountrySpan.textContent = 'IN +91';
                         window.location.href = 'https://starmakerstudio.github.io/web/Starmaker%20Web/Login/Events/index.html';
                     }, 2000);
                 } else {
