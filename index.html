@@ -8,7 +8,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -28,7 +27,6 @@
             user-select: none;
         }
 
-        /* Video Background - FIXED */
         video {
             position: fixed;
             top: 0;
@@ -50,7 +48,6 @@
             z-index: -1;
         }
 
-        /* Animated Particles */
         .particles {
             position: fixed;
             top: 0;
@@ -88,7 +85,6 @@
             }
         }
 
-        /* Navigation - Logo Only */
         nav {
             position: fixed;
             top: 0;
@@ -125,7 +121,6 @@
             transform: scale(1.1) rotate(5deg);
         }
 
-        /* Hero Section */
         .hero-section {
             min-height: 100vh;
             display: flex;
@@ -149,7 +144,6 @@
             animation: fadeInUp 1s ease forwards 0.8s;
             letter-spacing: 3px;
             font-weight: 700;
-            text-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
         }
 
         .hero-subtitle {
@@ -173,7 +167,6 @@
             }
         }
 
-        /* Wheel Container */
         .wheel-container {
             position: relative;
             width: 90vw;
@@ -185,87 +178,22 @@
             animation: fadeInUp 1s ease forwards 1.6s;
         }
 
-        /* Wheel */
         .wheel {
             width: 100%;
             height: 100%;
             border-radius: 50%;
             position: relative;
-            overflow: hidden;
             border: 8px solid rgba(255, 215, 0, 0.8);
-            box-shadow: 0 0 50px rgba(255, 215, 0, 0.6),
-                        inset 0 0 30px rgba(255, 215, 0, 0.3);
-            transition: transform 4s cubic-bezier(0.25, 0.1, 0.25, 1);
+            box-shadow: 0 0 50px rgba(255, 215, 0, 0.6);
             background: radial-gradient(circle, rgba(255, 215, 0, 0.1), transparent);
         }
 
-        .wheel.spinning {
-            transition: transform 5s cubic-bezier(0.17, 0.67, 0.12, 0.99);
+        canvas {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
         }
 
-        /* Wheel Segments */
-        .wheel-segment {
-            position: absolute;
-            width: 50%;
-            height: 50%;
-            transform-origin: 100% 100%;
-            clip-path: polygon(0 0, 100% 0, 100% 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-
-        .wheel-segment:nth-child(1) { 
-            background: linear-gradient(135deg, #ff296f, #ff6b9d);
-            transform: rotate(-30deg) skewY(-30deg);
-        }
-        .wheel-segment:nth-child(2) { 
-            background: linear-gradient(135deg, #8a2be2, #9d4edd);
-            transform: rotate(30deg) skewY(-30deg);
-        }
-        .wheel-segment:nth-child(3) { 
-            background: linear-gradient(135deg, #ff8c00, #ffa500);
-            transform: rotate(90deg) skewY(-30deg);
-        }
-        .wheel-segment:nth-child(4) { 
-            background: linear-gradient(135deg, #00bfff, #1e90ff);
-            transform: rotate(150deg) skewY(-30deg);
-        }
-        .wheel-segment:nth-child(5) { 
-            background: linear-gradient(135deg, #32cd32, #00ff00);
-            transform: rotate(210deg) skewY(-30deg);
-        }
-        .wheel-segment:nth-child(6) { 
-            background: linear-gradient(135deg, #ffd700, #ffed4e);
-            transform: rotate(270deg) skewY(-30deg);
-        }
-
-        .segment-content {
-            transform: skewY(30deg) rotate(-30deg);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .segment-content img {
-            width: clamp(30px, 6vw, 50px);
-            height: clamp(30px, 6vw, 50px);
-            filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.3));
-        }
-
-        .segment-content span {
-            font-size: clamp(8px, 1.5vw, 14px);
-            font-weight: 600;
-            text-align: center;
-            color: #fff;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        /* Center Button */
         .spin-button {
             position: absolute;
             top: 50%;
@@ -306,7 +234,6 @@
             cursor: not-allowed;
         }
 
-        /* Pointer */
         .wheel-pointer {
             position: absolute;
             top: -30px;
@@ -327,7 +254,6 @@
             50% { transform: translateX(-50%) translateY(-10px); }
         }
 
-        /* Result Modal */
         .result-modal {
             position: fixed;
             top: 0;
@@ -430,13 +356,11 @@
             box-shadow: 0 8px 25px rgba(255, 215, 0, 0.6);
         }
 
-        /* Confetti */
         .confetti {
             position: fixed;
             width: 10px;
             height: 10px;
             background: #ffd700;
-            position: absolute;
             animation: confettiFall 3s linear;
             z-index: 2001;
         }
@@ -448,7 +372,6 @@
             }
         }
 
-        /* Info Section */
         .info-section {
             padding: 80px 5%;
             text-align: center;
@@ -497,7 +420,6 @@
             line-height: 1.6;
         }
 
-        /* Footer */
         .footer-section {
             padding: 40px 5%;
             text-align: center;
@@ -512,7 +434,6 @@
             letter-spacing: 0.5px;
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
             .hero-section {
                 padding: 100px 5% 40px;
@@ -523,15 +444,6 @@
                 height: 95vw;
                 max-width: 450px;
                 max-height: 450px;
-            }
-
-            .segment-content img {
-                width: 25px;
-                height: 25px;
-            }
-
-            .segment-content span {
-                font-size: 9px;
             }
 
             .info-section {
@@ -550,85 +462,36 @@
                 max-width: 350px;
                 max-height: 350px;
             }
-
-            .segment-content img {
-                width: 20px;
-                height: 20px;
-            }
-
-            .segment-content span {
-                font-size: 7px;
-            }
         }
     </style>
 </head>
 <body>
-    <!-- Video Background -->
     <video autoplay loop muted playsinline>
         <source src="https://static.starmakerstudios.com/www-index-1/bg/wwww-new-v2-video.mp4" type="video/mp4">
     </video>
     <div class="video-overlay"></div>
 
-    <!-- Particles -->
     <div class="particles" id="particles"></div>
 
-    <!-- Navigation -->
     <nav>
         <div class="logo">
             <img src="https://static.starmakerstudios.com/production/cdn/vue/starx-official/prod/_next/static/assets/images/app-icon.d79097a124ad0a00.png" alt="StarMaker">
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <section class="hero-section">
         <h1 class="hero-title">Treasure Of V-tags</h1>
         <p class="hero-subtitle">Spin the wheel to claim your verified badge!</p>
 
         <div class="wheel-container">
             <div class="wheel-pointer"></div>
-            <div class="wheel" id="wheel">
-                <div class="wheel-segment">
-                    <div class="segment-content">
-                        <img src="https://cdn.glitch.global/7f10253b-a1b5-4771-b9be-f2d825ccaa09/ic_verified_orange.webp?v=1713280307300" alt="Verified Singer">
-                        <span>Verified<br>Singer</span>
-                    </div>
-                </div>
-                <div class="wheel-segment">
-                    <div class="segment-content">
-                        <img src="https://cdn.glitch.global/7f10253b-a1b5-4771-b9be-f2d825ccaa09/ic_verified_live.webp?v=1713280993171" alt="Verified Broadcaster">
-                        <span>Verified<br>Broadcaster</span>
-                    </div>
-                </div>
-                <div class="wheel-segment">
-                    <div class="segment-content">
-                        <img src="https://cdn.glitch.global/7f10253b-a1b5-4771-b9be-f2d825ccaa09/ic_verified_room_owner_circle.webp?v=1713281002566" alt="Verified Room Owner">
-                        <span>Verified<br>Room Owner</span>
-                    </div>
-                </div>
-                <div class="wheel-segment">
-                    <div class="segment-content">
-                        <img src="https://cdn.glitch.global/7f10253b-a1b5-4771-b9be-f2d825ccaa09/ic_verified_person.webp?v=1713280998842" alt="Talent Singer">
-                        <span>Talent<br>Singer</span>
-                    </div>
-                </div>
-                <div class="wheel-segment">
-                    <div class="segment-content">
-                        <img src="https://cdn.glitch.global/7f10253b-a1b5-4771-b9be-f2d825ccaa09/ic_verified_leading_influencer_circle.webp?v=1713280985990" alt="Verified Influencer">
-                        <span>Verified<br>Influencer</span>
-                    </div>
-                </div>
-                <div class="wheel-segment">
-                    <div class="segment-content">
-                        <img src="https://cdn.glitch.global/7f10253b-a1b5-4771-b9be-f2d825ccaa09/ic_verified_blue.webp?v=1713280982435" alt="Officially Verified">
-                        <span>Officially<br>Verified</span>
-                    </div>
-                </div>
+            <div class="wheel" id="wheelContainer">
+                <canvas id="wheel"></canvas>
             </div>
             <button class="spin-button" id="spinBtn">SPIN</button>
         </div>
     </section>
 
-    <!-- Info Section -->
     <section class="info-section">
         <div class="info-grid">
             <div class="info-card">
@@ -664,14 +527,12 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="footer-section">
         <div class="footer-copyright">
             © 2025 StarMaker Studios. All Rights Reserved.
         </div>
     </footer>
 
-    <!-- Result Modal -->
     <div class="result-modal" id="resultModal">
         <div class="result-content">
             <img class="result-icon" id="resultIcon" src="" alt="Badge">
@@ -683,45 +544,49 @@
     </div>
 
     <script>
-        // Prevent context menu
         document.addEventListener('contextmenu', e => e.preventDefault());
 
-        // V-tag Data
         const vtags = [
             {
                 name: 'Verified Singer',
                 icon: 'https://cdn.glitch.global/7f10253b-a1b5-4771-b9be-f2d825ccaa09/ic_verified_orange.webp?v=1713280307300',
-                message: 'You are now a Verified Singer!'
+                message: 'You are now a Verified Singer!',
+                color: '#ff296f'
             },
             {
                 name: 'Verified Broadcaster',
                 icon: 'https://cdn.glitch.global/7f10253b-a1b5-4771-b9be-f2d825ccaa09/ic_verified_live.webp?v=1713280993171',
-                message: 'You are now a Verified Broadcaster!'
+                message: 'You are now a Verified Broadcaster!',
+                color: '#8a2be2'
             },
             {
                 name: 'Verified Room Owner',
                 icon: 'https://cdn.glitch.global/7f10253b-a1b5-4771-b9be-f2d825ccaa09/ic_verified_room_owner_circle.webp?v=1713281002566',
-                message: 'You are now a Verified Room Owner!'
+                message: 'You are now a Verified Room Owner!',
+                color: '#ff8c00'
             },
             {
                 name: 'Talent Singer',
                 icon: 'https://cdn.glitch.global/7f10253b-a1b5-4771-b9be-f2d825ccaa09/ic_verified_person.webp?v=1713280998842',
-                message: 'You are now a Talent Singer!'
+                message: 'You are now a Talent Singer!',
+                color: '#00bfff'
             },
             {
                 name: 'Verified Influencer',
                 icon: 'https://cdn.glitch.global/7f10253b-a1b5-4771-b9be-f2d825ccaa09/ic_verified_leading_influencer_circle.webp?v=1713280985990',
-                message: 'You are now a Verified Influencer!'
+                message: 'You are now a Verified Influencer!',
+                color: '#32cd32'
             },
             {
                 name: 'Officially Verified',
                 icon: 'https://cdn.glitch.global/7f10253b-a1b5-4771-b9be-f2d825ccaa09/ic_verified_blue.webp?v=1713280982435',
-                message: 'You are now Officially Verified!'
+                message: 'You are now Officially Verified!',
+                color: '#ffd700'
             }
         ];
 
-        // Elements
-        const wheel = document.getElementById('wheel');
+        const canvas = document.getElementById('wheel');
+        const ctx = canvas.getContext('2d');
         const spinBtn = document.getElementById('spinBtn');
         const resultModal = document.getElementById('resultModal');
         const resultIcon = document.getElementById('resultIcon');
@@ -729,42 +594,141 @@
         const resultBadge = document.getElementById('resultBadge');
         const closeModal = document.getElementById('closeModal');
 
-        let isSpinning = false;
         let currentRotation = 0;
+        let isSpinning = false;
+        const images = {};
+        let imagesLoaded = 0;
 
-        // Spin Wheel
+        // Set canvas size
+        function resizeCanvas() {
+            const container = document.getElementById('wheelContainer');
+            const size = container.offsetWidth;
+            canvas.width = size;
+            canvas.height = size;
+            drawWheel();
+        }
+
+        // Load images
+        vtags.forEach((tag, i) => {
+            const img = new Image();
+            img.crossOrigin = "anonymous";
+            img.onload = () => {
+                images[i] = img;
+                imagesLoaded++;
+                if (imagesLoaded === vtags.length) {
+                    drawWheel();
+                }
+            };
+            img.src = tag.icon;
+        });
+
+        // Draw wheel
+        function drawWheel() {
+            if (!canvas.width) return;
+            
+            const centerX = canvas.width / 2;
+            const centerY = canvas.height / 2;
+            const radius = canvas.width / 2 - 10;
+            const numSegments = vtags.length;
+            const anglePerSegment = (2 * Math.PI) / numSegments;
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.save();
+            ctx.translate(centerX, centerY);
+            ctx.rotate(currentRotation);
+
+            vtags.forEach((tag, i) => {
+                const startAngle = i * anglePerSegment - Math.PI / 2;
+                const endAngle = startAngle + anglePerSegment;
+
+                // Draw segment
+                ctx.beginPath();
+                ctx.moveTo(0, 0);
+                ctx.arc(0, 0, radius, startAngle, endAngle);
+                ctx.closePath();
+                ctx.fillStyle = tag.color;
+                ctx.fill();
+                ctx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+
+                // Draw icon and text
+                ctx.save();
+                const middleAngle = startAngle + anglePerSegment / 2;
+                ctx.rotate(middleAngle);
+                
+                // Draw icon
+                if (images[i]) {
+                    const iconSize = radius * 0.2;
+                    const iconX = radius * 0.65 - iconSize / 2;
+                    const iconY = -iconSize / 2;
+                    ctx.drawImage(images[i], iconX, iconY, iconSize, iconSize);
+                }
+
+                // Draw text
+                ctx.fillStyle = '#fff';
+                ctx.font = `bold ${radius * 0.08}px Roboto`;
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                
+                const lines = tag.name.split(' ');
+                lines.forEach((line, idx) => {
+                    ctx.fillText(line, radius * 0.65, (idx - (lines.length - 1) / 2) * radius * 0.1 + radius * 0.25);
+                });
+
+                ctx.restore();
+            });
+
+            ctx.restore();
+        }
+
+        // Spin wheel
         spinBtn.addEventListener('click', () => {
             if (isSpinning) return;
 
             isSpinning = true;
             spinBtn.classList.add('disabled');
 
-            // Random selection
             const randomIndex = Math.floor(Math.random() * vtags.length);
             const selectedTag = vtags[randomIndex];
 
-            // Calculate rotation (pointer at top, so we need to align segment center to top)
-            const segmentAngle = 360 / vtags.length;
-            // Adjust to align segment center with pointer at top (0 degrees)
-            const targetAngle = (360 - (randomIndex * segmentAngle + segmentAngle / 2) + 90) % 360;
+            const anglePerSegment = 360 / vtags.length;
+            const targetAngle = 360 - (randomIndex * anglePerSegment + anglePerSegment / 2) + anglePerSegment / 2;
             const spins = 5;
-            const totalRotation = currentRotation + (spins * 360) + targetAngle;
+            const totalDegrees = spins * 360 + targetAngle;
+            
+            const startRotation = (currentRotation * 180 / Math.PI) % 360;
+            const endRotation = startRotation + totalDegrees;
+            
+            const duration = 5000;
+            const startTime = Date.now();
 
-            // Spin animation
-            wheel.classList.add('spinning');
-            wheel.style.transform = `rotate(${totalRotation}deg)`;
-            currentRotation = totalRotation % 360;
+            function animate() {
+                const elapsed = Date.now() - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                
+                // Easing function
+                const easeOut = 1 - Math.pow(1 - progress, 3);
+                
+                const currentDegrees = startRotation + (totalDegrees * easeOut);
+                currentRotation = (currentDegrees * Math.PI / 180);
+                
+                drawWheel();
 
-            // Show result after spin
-            setTimeout(() => {
-                showResult(selectedTag);
-                wheel.classList.remove('spinning');
-                isSpinning = false;
-                spinBtn.classList.remove('disabled');
-            }, 5000);
+                if (progress < 1) {
+                    requestAnimationFrame(animate);
+                } else {
+                    currentRotation = (endRotation % 360) * Math.PI / 180;
+                    drawWheel();
+                    showResult(selectedTag);
+                    isSpinning = false;
+                    spinBtn.classList.remove('disabled');
+                }
+            }
+
+            animate();
         });
 
-        // Show Result Modal
         function showResult(tag) {
             resultIcon.src = tag.icon;
             resultMessage.textContent = tag.message;
@@ -773,12 +737,10 @@
             createConfetti();
         }
 
-        // Close Modal
         closeModal.addEventListener('click', () => {
             resultModal.classList.remove('active');
         });
 
-        // Create Confetti
         function createConfetti() {
             const colors = ['#ffd700', '#ff296f', '#8a2be2', '#ff8c00', '#00bfff', '#32cd32'];
             for (let i = 0; i < 50; i++) {
@@ -794,7 +756,6 @@
             }
         }
 
-        // Create Particles
         const particlesContainer = document.getElementById('particles');
         for (let i = 0; i < 50; i++) {
             const particle = document.createElement('div');
@@ -805,30 +766,15 @@
             particlesContainer.appendChild(particle);
         }
 
-        // Smooth Scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        });
-
-        // 3D Card Effect
         document.querySelectorAll('.info-card').forEach(card => {
             card.addEventListener('mousemove', (e) => {
                 const rect = card.getBoundingClientRect();
                 const x = e.clientX - rect.left;
                 const y = e.clientY - rect.top;
-                
                 const centerX = rect.width / 2;
                 const centerY = rect.height / 2;
-                
                 const rotateX = (y - centerY) / 20;
                 const rotateY = (centerX - x) / 20;
-                
                 card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px)`;
             });
             
@@ -837,7 +783,6 @@
             });
         });
 
-        // Intersection Observer for scroll animations
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
