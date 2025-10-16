@@ -192,6 +192,7 @@
             width: 100%;
             height: 100%;
             border-radius: 50%;
+            display: block;
         }
 
         .spin-button {
@@ -616,7 +617,8 @@
                 images[i] = img;
                 imagesLoaded++;
                 if (imagesLoaded === vtags.length) {
-                    drawWheel();
+                    resizeCanvas();
+                    window.addEventListener('resize', resizeCanvas);
                 }
             };
             img.src = tag.icon;
@@ -659,21 +661,24 @@
                 
                 // Draw icon
                 if (images[i]) {
-                    const iconSize = radius * 0.2;
-                    const iconX = radius * 0.65 - iconSize / 2;
+                    const iconSize = radius * 0.22;
+                    const iconDist = radius * 0.55;
+                    const iconX = iconDist - iconSize / 2;
                     const iconY = -iconSize / 2;
                     ctx.drawImage(images[i], iconX, iconY, iconSize, iconSize);
                 }
 
                 // Draw text
                 ctx.fillStyle = '#fff';
-                ctx.font = `bold ${radius * 0.08}px Roboto`;
+                ctx.font = `bold ${radius * 0.072}px Roboto`;
                 ctx.textAlign = 'center';
                 ctx.textBaseline = 'middle';
                 
+                const textDist = radius * 0.75;
                 const lines = tag.name.split(' ');
                 lines.forEach((line, idx) => {
-                    ctx.fillText(line, radius * 0.65, (idx - (lines.length - 1) / 2) * radius * 0.1 + radius * 0.25);
+                    const offsetY = (idx - (lines.length - 1) / 2) * radius * 0.11;
+                    ctx.fillText(line, textDist, offsetY);
                 });
 
                 ctx.restore();
