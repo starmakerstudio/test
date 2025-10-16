@@ -690,11 +690,15 @@
             const selectedTag = vtags[randomIndex];
 
             const anglePerSegment = (2 * Math.PI) / vtags.length;
-            const targetAngle = randomIndex * anglePerSegment + anglePerSegment / 2;
             const spins = 5;
-            const totalRotation = spins * 2 * Math.PI + (2 * Math.PI - targetAngle);
             
-            const startRotation = currentRotation % (2 * Math.PI);
+            // Calculate the angle where the selected segment's CENTER will be at the TOP (pointer position)
+            // The pointer points up (at angle 0 from top), so we need the segment center at -π/2 (top)
+            const segmentCenterAngle = randomIndex * anglePerSegment + anglePerSegment / 2;
+            const targetRotation = -segmentCenterAngle + Math.PI / 2;
+            
+            const startRotation = currentRotation;
+            const totalRotation = spins * 2 * Math.PI + (targetRotation - (startRotation % (2 * Math.PI)));
             const endRotation = startRotation + totalRotation;
             
             const duration = 5000;
@@ -713,7 +717,7 @@
                 if (progress < 1) {
                     requestAnimationFrame(animate);
                 } else {
-                    currentRotation = endRotation % (2 * Math.PI);
+                    currentRotation = endRotation;
                     drawWheel();
                     showResult(selectedTag);
                     isSpinning = false;
