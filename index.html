@@ -698,7 +698,8 @@
             const selectedTag = vtags[randomIndex];
 
             const anglePerSegment = 360 / vtags.length;
-            const targetAngle = randomIndex * anglePerSegment;
+            const offsetAngle = 30; // Offset for Verified Singer at top
+            const targetAngle = offsetAngle + randomIndex * anglePerSegment;
             const spins = 5;
             const totalDegrees = spins * 360 + targetAngle;
             
