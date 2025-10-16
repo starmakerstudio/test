@@ -655,24 +655,12 @@
                 ctx.rotate(middleAngle);
                 
                 if (images[i]) {
-                    const iconSize = radius * 0.22;
-                    const iconDist = radius * 0.55;
+                    const iconSize = radius * 0.35;
+                    const iconDist = radius * 0.62;
                     const iconX = iconDist - iconSize / 2;
                     const iconY = -iconSize / 2;
                     ctx.drawImage(images[i], iconX, iconY, iconSize, iconSize);
                 }
-
-                ctx.fillStyle = '#fff';
-                ctx.font = `bold ${radius * 0.072}px Roboto`;
-                ctx.textAlign = 'center';
-                ctx.textBaseline = 'middle';
-                
-                const textDist = radius * 0.75;
-                const lines = tag.name.split(' ');
-                lines.forEach((line, idx) => {
-                    const offsetY = (idx - (lines.length - 1) / 2) * radius * 0.11;
-                    ctx.fillText(line, textDist, offsetY);
-                });
 
                 ctx.restore();
             });
