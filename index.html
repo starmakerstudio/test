@@ -218,27 +218,27 @@
 
         .wheel-segment:nth-child(1) { 
             background: linear-gradient(135deg, #ff296f, #ff6b9d);
-            transform: rotate(0deg) skewY(-30deg);
+            transform: rotate(-30deg) skewY(-30deg);
         }
         .wheel-segment:nth-child(2) { 
             background: linear-gradient(135deg, #8a2be2, #9d4edd);
-            transform: rotate(60deg) skewY(-30deg);
+            transform: rotate(30deg) skewY(-30deg);
         }
         .wheel-segment:nth-child(3) { 
             background: linear-gradient(135deg, #ff8c00, #ffa500);
-            transform: rotate(120deg) skewY(-30deg);
+            transform: rotate(90deg) skewY(-30deg);
         }
         .wheel-segment:nth-child(4) { 
             background: linear-gradient(135deg, #00bfff, #1e90ff);
-            transform: rotate(180deg) skewY(-30deg);
+            transform: rotate(150deg) skewY(-30deg);
         }
         .wheel-segment:nth-child(5) { 
             background: linear-gradient(135deg, #32cd32, #00ff00);
-            transform: rotate(240deg) skewY(-30deg);
+            transform: rotate(210deg) skewY(-30deg);
         }
         .wheel-segment:nth-child(6) { 
             background: linear-gradient(135deg, #ffd700, #ffed4e);
-            transform: rotate(300deg) skewY(-30deg);
+            transform: rotate(270deg) skewY(-30deg);
         }
 
         .segment-content {
@@ -730,6 +730,7 @@
         const closeModal = document.getElementById('closeModal');
 
         let isSpinning = false;
+        let currentRotation = 0;
 
         // Spin Wheel
         spinBtn.addEventListener('click', () => {
@@ -742,15 +743,17 @@
             const randomIndex = Math.floor(Math.random() * vtags.length);
             const selectedTag = vtags[randomIndex];
 
-            // Calculate rotation
+            // Calculate rotation (pointer at top, so we need to align segment center to top)
             const segmentAngle = 360 / vtags.length;
-            const targetAngle = (randomIndex * segmentAngle) + (segmentAngle / 2);
+            // Adjust to align segment center with pointer at top (0 degrees)
+            const targetAngle = (360 - (randomIndex * segmentAngle + segmentAngle / 2) + 90) % 360;
             const spins = 5;
-            const totalRotation = (spins * 360) + (360 - targetAngle);
+            const totalRotation = currentRotation + (spins * 360) + targetAngle;
 
             // Spin animation
             wheel.classList.add('spinning');
             wheel.style.transform = `rotate(${totalRotation}deg)`;
+            currentRotation = totalRotation % 360;
 
             // Show result after spin
             setTimeout(() => {
