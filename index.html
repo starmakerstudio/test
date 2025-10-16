@@ -698,7 +698,7 @@
             const selectedTag = vtags[randomIndex];
 
             const anglePerSegment = 360 / vtags.length;
-            const targetAngle = 360 - (randomIndex * anglePerSegment + anglePerSegment / 2) + anglePerSegment / 2;
+            const targetAngle = randomIndex * anglePerSegment;
             const spins = 5;
             const totalDegrees = spins * 360 + targetAngle;
             
