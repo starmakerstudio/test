@@ -692,13 +692,21 @@
             const anglePerSegment = (2 * Math.PI) / vtags.length;
             const spins = 5;
             
-            // Calculate the angle where the selected segment's CENTER will be at the TOP (pointer position)
-            // The pointer points up (at angle 0 from top), so we need the segment center at -π/2 (top)
+            // The pointer is at the TOP. Segments are drawn starting from 0 (right side) going counter-clockwise
+            // To land segment at top, we need to rotate so its center is at -π/2 (top position)
             const segmentCenterAngle = randomIndex * anglePerSegment + anglePerSegment / 2;
-            const targetRotation = -segmentCenterAngle + Math.PI / 2;
+            const targetRotation = -segmentCenterAngle - Math.PI / 2;
             
             const startRotation = currentRotation;
-            const totalRotation = spins * 2 * Math.PI + (targetRotation - (startRotation % (2 * Math.PI)));
+            const normalizedStart = startRotation % (2 * Math.PI);
+            const normalizedTarget = targetRotation % (2 * Math.PI);
+            
+            let rotationDiff = normalizedTarget - normalizedStart;
+            if (rotationDiff > 0) {
+                rotationDiff -= 2 * Math.PI;
+            }
+            
+            const totalRotation = spins * 2 * Math.PI + rotationDiff;
             const endRotation = startRotation + totalRotation;
             
             const duration = 5000;
