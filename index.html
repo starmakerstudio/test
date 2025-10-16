@@ -3,13 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Treasure of V-Tags - StarMaker</title>
+    <title>Treasure Of V-tags</title>
     <link rel="icon" type="image/ico" href="https://www.starmakerstudios.com/next-assets/favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.cdnfonts.com/css/dinpro-bold" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -29,7 +28,7 @@
             user-select: none;
         }
 
-        /* Video Background */
+        /* Video Background - FIXED */
         video {
             position: fixed;
             top: 0;
@@ -38,6 +37,7 @@
             height: 100%;
             object-fit: cover;
             z-index: -2;
+            filter: hue-rotate(45deg) brightness(0.8);
         }
 
         .video-overlay {
@@ -67,23 +67,40 @@
             height: 4px;
             background: rgba(255, 215, 0, 0.6);
             border-radius: 50%;
-            animation: float 15s infinite ease-in-out;
+            animation: float 12s infinite ease-in-out;
             box-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
         }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0) translateX(0); opacity: 0; }
+            0%, 100% { 
+                transform: translateY(0) translateX(0) scale(1); 
+                opacity: 0; 
+            }
             10% { opacity: 1; }
+            50% { 
+                transform: translateY(-50vh) translateX(30px) scale(1.5); 
+                opacity: 1; 
+            }
             90% { opacity: 1; }
-            100% { transform: translateY(-100vh) translateX(50px); opacity: 0; }
+            100% { 
+                transform: translateY(-100vh) translateX(60px) scale(0.5); 
+                opacity: 0; 
+            }
         }
 
-        /* Logo */
-        .logo-container {
-            position: absolute;
-            top: 25px;
-            left: 5%;
+        /* Navigation - Logo Only */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 25px 5%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             z-index: 1000;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
             opacity: 0;
             animation: slideDown 0.8s ease forwards 0.5s;
         }
@@ -98,52 +115,51 @@
             }
         }
 
-        .logo-container img {
+        .logo img {
             height: 50px;
             transition: transform 0.3s ease;
+            filter: drop-shadow(0 0 15px rgba(255, 41, 111, 0.6));
         }
 
-        .logo-container img:hover {
-            transform: scale(1.05);
+        .logo img:hover {
+            transform: scale(1.1) rotate(5deg);
         }
 
-        /* Main Content */
-        .main-content {
+        /* Hero Section */
+        .hero-section {
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            align-items: center;
             justify-content: center;
-            padding: 120px 5% 80px;
+            align-items: center;
+            text-align: center;
+            padding: 120px 5% 60px;
             position: relative;
             z-index: 1;
         }
 
-        .page-title {
-            font-family: 'DINPro-Bold', sans-serif;
+        .hero-title {
             font-size: clamp(40px, 8vw, 90px);
             margin-bottom: 20px;
-            background: linear-gradient(135deg, #FFD700 0%, #ff296f 100%);
+            background: linear-gradient(135deg, #ffd700 0%, #ff296f 50%, #fff 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             opacity: 0;
             animation: fadeInUp 1s ease forwards 0.8s;
-            letter-spacing: 2px;
-            text-align: center;
+            letter-spacing: 3px;
+            font-weight: 700;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
         }
 
-        .page-subtitle {
-            font-size: clamp(16px, 2vw, 20px);
-            max-width: 600px;
-            margin: 0 auto 60px;
-            line-height: 1.6;
+        .hero-subtitle {
+            font-size: clamp(16px, 2vw, 22px);
+            margin-bottom: 50px;
             opacity: 0;
             animation: fadeInUp 1s ease forwards 1.2s;
-            font-weight: 300;
-            letter-spacing: 1px;
             color: rgba(255, 255, 255, 0.9);
-            text-align: center;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
         }
 
         @keyframes fadeInUp {
@@ -160,136 +176,134 @@
         /* Wheel Container */
         .wheel-container {
             position: relative;
-            width: clamp(300px, 80vw, 500px);
-            height: clamp(300px, 80vw, 500px);
-            margin: 0 auto 60px;
+            width: 90vw;
+            max-width: 600px;
+            height: 90vw;
+            max-height: 600px;
+            margin: 0 auto;
             opacity: 0;
             animation: fadeInUp 1s ease forwards 1.6s;
         }
 
+        /* Wheel */
         .wheel {
             width: 100%;
             height: 100%;
             border-radius: 50%;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 0 40px rgba(255, 215, 0, 0.5), 0 0 80px rgba(255, 41, 111, 0.3);
             border: 8px solid rgba(255, 215, 0, 0.8);
-            transition: transform 3s cubic-bezier(0.17, 0.67, 0.12, 0.99);
+            box-shadow: 0 0 50px rgba(255, 215, 0, 0.6),
+                        inset 0 0 30px rgba(255, 215, 0, 0.3);
+            transition: transform 4s cubic-bezier(0.25, 0.1, 0.25, 1);
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.1), transparent);
         }
 
+        .wheel.spinning {
+            transition: transform 5s cubic-bezier(0.17, 0.67, 0.12, 0.99);
+        }
+
+        /* Wheel Segments */
         .wheel-segment {
             position: absolute;
             width: 50%;
             height: 50%;
             transform-origin: 100% 100%;
+            clip-path: polygon(0 0, 100% 0, 100% 100%);
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
+            padding: 20px;
         }
 
-        .wheel-segment::before {
-            content: '';
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            top: 0;
-            left: 0;
+        .wheel-segment:nth-child(1) { 
+            background: linear-gradient(135deg, #ff296f, #ff6b9d);
+            transform: rotate(0deg) skewY(-30deg);
+        }
+        .wheel-segment:nth-child(2) { 
+            background: linear-gradient(135deg, #8a2be2, #9d4edd);
+            transform: rotate(60deg) skewY(-30deg);
+        }
+        .wheel-segment:nth-child(3) { 
+            background: linear-gradient(135deg, #ff8c00, #ffa500);
+            transform: rotate(120deg) skewY(-30deg);
+        }
+        .wheel-segment:nth-child(4) { 
+            background: linear-gradient(135deg, #00bfff, #1e90ff);
+            transform: rotate(180deg) skewY(-30deg);
+        }
+        .wheel-segment:nth-child(5) { 
+            background: linear-gradient(135deg, #32cd32, #00ff00);
+            transform: rotate(240deg) skewY(-30deg);
+        }
+        .wheel-segment:nth-child(6) { 
+            background: linear-gradient(135deg, #ffd700, #ffed4e);
+            transform: rotate(300deg) skewY(-30deg);
         }
 
         .segment-content {
-            position: absolute;
-            top: 30%;
-            left: 50%;
-            transform: translate(-50%, -50%) rotate(22.5deg);
+            transform: skewY(30deg) rotate(-30deg);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .segment-content img {
+            width: clamp(30px, 6vw, 50px);
+            height: clamp(30px, 6vw, 50px);
+            filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.3));
+        }
+
+        .segment-content span {
+            font-size: clamp(8px, 1.5vw, 14px);
+            font-weight: 600;
             text-align: center;
-            z-index: 2;
-            width: 80%;
-        }
-
-        .segment-icon {
-            width: clamp(25px, 5vw, 35px);
-            height: clamp(25px, 5vw, 35px);
-            margin-bottom: 3px;
-        }
-
-        .segment-text {
-            font-size: clamp(7px, 1.3vw, 10px);
-            font-weight: bold;
             color: #fff;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-            line-height: 1.1;
-            white-space: nowrap;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
-        .wheel-segment:nth-child(1) { transform: rotate(0deg) skewY(-45deg); }
-        .wheel-segment:nth-child(2) { transform: rotate(45deg) skewY(-45deg); }
-        .wheel-segment:nth-child(3) { transform: rotate(90deg) skewY(-45deg); }
-        .wheel-segment:nth-child(4) { transform: rotate(135deg) skewY(-45deg); }
-        .wheel-segment:nth-child(5) { transform: rotate(180deg) skewY(-45deg); }
-        .wheel-segment:nth-child(6) { transform: rotate(225deg) skewY(-45deg); }
-        .wheel-segment:nth-child(7) { transform: rotate(270deg) skewY(-45deg); }
-        .wheel-segment:nth-child(8) { transform: rotate(315deg) skewY(-45deg); }
-
-        .wheel-segment:nth-child(1)::before { background: linear-gradient(135deg, #FF6B9D, #C738BD); }
-        .wheel-segment:nth-child(2)::before { background: linear-gradient(135deg, #FFD700, #FFA500); }
-        .wheel-segment:nth-child(3)::before { background: linear-gradient(135deg, #00CED1, #1E90FF); }
-        .wheel-segment:nth-child(4)::before { background: linear-gradient(135deg, #9370DB, #8A2BE2); }
-        .wheel-segment:nth-child(5)::before { background: linear-gradient(135deg, #FF1493, #FF69B4); }
-        .wheel-segment:nth-child(6)::before { background: linear-gradient(135deg, #32CD32, #00FF00); }
-        .wheel-segment:nth-child(7)::before { background: linear-gradient(135deg, #FF4500, #FF6347); }
-        .wheel-segment:nth-child(8)::before { background: linear-gradient(135deg, #4169E1, #6495ED); }
-
-        /* Wheel Center */
-        .wheel-center {
+        /* Center Button */
+        .spin-button {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: clamp(80px, 15vw, 120px);
-            height: clamp(80px, 15vw, 120px);
-            background: linear-gradient(135deg, #FFD700, #FFA500);
+            width: clamp(100px, 20vw, 150px);
+            height: clamp(100px, 20vw, 150px);
             border-radius: 50%;
+            background: linear-gradient(135deg, #ff296f, #ffd700);
+            border: 6px solid #fff;
+            cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 10;
-            box-shadow: 0 0 30px rgba(255, 215, 0, 0.8), inset 0 0 20px rgba(255, 255, 255, 0.3);
-            border: 5px solid rgba(255, 255, 255, 0.5);
-            cursor: pointer;
+            font-size: clamp(14px, 3vw, 20px);
+            font-weight: 700;
+            color: #fff;
+            text-transform: uppercase;
+            box-shadow: 0 10px 40px rgba(255, 41, 111, 0.6),
+                        inset 0 0 20px rgba(255, 255, 255, 0.3);
             transition: all 0.3s ease;
+            z-index: 10;
+            letter-spacing: 1px;
         }
 
-        .wheel-center:hover {
+        .spin-button:hover:not(.disabled) {
             transform: translate(-50%, -50%) scale(1.1);
-            box-shadow: 0 0 50px rgba(255, 215, 0, 1), inset 0 0 30px rgba(255, 255, 255, 0.5);
+            box-shadow: 0 15px 50px rgba(255, 41, 111, 0.8),
+                        inset 0 0 25px rgba(255, 255, 255, 0.4);
         }
 
-        .wheel-center:active {
+        .spin-button:active:not(.disabled) {
             transform: translate(-50%, -50%) scale(0.95);
         }
 
-        .spin-btn {
-            background: none;
-            border: none;
-            color: #000;
-            font-size: clamp(12px, 2.5vw, 16px);
-            font-weight: bold;
-            cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
-        }
-
-        .wheel-center.spinning {
-            pointer-events: none;
-            animation: pulse 0.5s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: translate(-50%, -50%) scale(1); }
-            50% { transform: translate(-50%, -50%) scale(1.1); }
+        .spin-button.disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
         }
 
         /* Pointer */
@@ -302,9 +316,15 @@
             height: 0;
             border-left: 20px solid transparent;
             border-right: 20px solid transparent;
-            border-top: 40px solid #FFD700;
+            border-top: 40px solid #ffd700;
+            filter: drop-shadow(0 5px 10px rgba(255, 215, 0, 0.8));
             z-index: 11;
-            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
+            animation: pointerBounce 1s ease-in-out infinite;
+        }
+
+        @keyframes pointerBounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-10px); }
         }
 
         /* Result Modal */
@@ -325,98 +345,118 @@
             transition: all 0.4s ease;
         }
 
-        .result-modal.show {
+        .result-modal.active {
             opacity: 1;
             visibility: visible;
         }
 
         .result-content {
-            background: linear-gradient(135deg, rgba(255, 41, 111, 0.2), rgba(138, 43, 226, 0.2));
-            backdrop-filter: blur(20px);
-            border: 2px solid rgba(255, 215, 0, 0.5);
-            border-radius: 20px;
-            padding: clamp(30px, 5vw, 50px);
-            max-width: 90%;
-            width: clamp(300px, 80vw, 500px);
+            background: linear-gradient(135deg, rgba(255, 41, 111, 0.95), rgba(138, 43, 226, 0.95));
+            border-radius: 30px;
+            padding: 50px 40px;
             text-align: center;
-            transform: scale(0.7);
-            transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            max-width: 500px;
+            width: 90%;
+            border: 3px solid rgba(255, 215, 0, 0.8);
+            box-shadow: 0 20px 60px rgba(255, 41, 111, 0.6);
+            transform: scale(0.8);
+            transition: transform 0.4s ease;
         }
 
-        .result-modal.show .result-content {
+        .result-modal.active .result-content {
             transform: scale(1);
         }
 
         .result-icon {
-            width: clamp(60px, 15vw, 100px);
-            height: clamp(60px, 15vw, 100px);
+            width: 100px;
+            height: 100px;
             margin: 0 auto 20px;
-            animation: bounceIn 0.6s ease;
+            animation: celebrate 0.8s ease;
         }
 
-        @keyframes bounceIn {
-            0% { transform: scale(0); }
-            50% { transform: scale(1.2); }
-            100% { transform: scale(1); }
+        @keyframes celebrate {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            25% { transform: scale(1.2) rotate(-10deg); }
+            50% { transform: scale(1.1) rotate(10deg); }
+            75% { transform: scale(1.2) rotate(-5deg); }
         }
 
         .result-title {
             font-size: clamp(24px, 5vw, 36px);
-            font-weight: bold;
-            background: linear-gradient(135deg, #FFD700, #ff296f);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            font-weight: 700;
             margin-bottom: 15px;
+            color: #ffd700;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
-        .result-text {
-            font-size: clamp(14px, 3vw, 18px);
-            line-height: 1.6;
-            color: rgba(255, 255, 255, 0.9);
+        .result-message {
+            font-size: clamp(16px, 3vw, 22px);
             margin-bottom: 30px;
+            color: #fff;
+            line-height: 1.6;
         }
 
-        .result-close-btn {
-            padding: 12px 40px;
-            background: linear-gradient(135deg, #FFD700, #FFA500);
-            color: #000;
+        .result-badge {
+            display: inline-block;
+            padding: 12px 30px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            font-size: clamp(14px, 2.5vw, 18px);
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 30px;
+            border: 2px solid rgba(255, 215, 0, 0.6);
+        }
+
+        .close-modal {
+            padding: 15px 50px;
+            background: linear-gradient(135deg, #ffd700, #ff296f);
+            color: #fff;
             border: none;
             border-radius: 50px;
-            font-size: clamp(14px, 2.5vw, 16px);
-            font-weight: bold;
+            font-size: clamp(14px, 2.5vw, 18px);
+            font-weight: 600;
             cursor: pointer;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             transition: all 0.3s ease;
             box-shadow: 0 5px 20px rgba(255, 215, 0, 0.4);
         }
 
-        .result-close-btn:hover {
-            transform: translateY(-2px);
+        .close-modal:hover {
+            transform: translateY(-3px);
             box-shadow: 0 8px 25px rgba(255, 215, 0, 0.6);
+        }
+
+        /* Confetti */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: #ffd700;
+            position: absolute;
+            animation: confettiFall 3s linear;
+            z-index: 2001;
+        }
+
+        @keyframes confettiFall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
         }
 
         /* Info Section */
         .info-section {
             padding: 80px 5%;
+            text-align: center;
             position: relative;
             z-index: 1;
-            text-align: center;
         }
 
-        .info-title {
-            font-size: clamp(28px, 5vw, 40px);
-            margin-bottom: 40px;
-            background: linear-gradient(135deg, #fff, #FFD700);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-weight: 700;
-        }
-
-        .vtags-grid {
+        .info-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 30px;
@@ -424,47 +464,46 @@
             margin: 0 auto;
         }
 
-        .vtag-card {
-            background: rgba(0, 0, 0, 0.5);
+        .info-card {
+            background: rgba(0, 0, 0, 0.6);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 215, 0, 0.3);
-            border-radius: 15px;
-            padding: 30px 20px;
-            transition: all 0.3s ease;
-            transform-style: preserve-3d;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 20px;
+            padding: 30px;
+            transition: all 0.4s ease;
         }
 
-        .vtag-card:hover {
-            transform: translateY(-5px) scale(1.02);
-            border-color: rgba(255, 215, 0, 0.6);
-            box-shadow: 0 10px 40px rgba(255, 215, 0, 0.3);
+        .info-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(255, 215, 0, 0.8);
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.3);
         }
 
-        .vtag-card-icon {
+        .info-card img {
             width: 60px;
             height: 60px;
-            margin: 0 auto 15px;
+            margin-bottom: 15px;
         }
 
-        .vtag-card-title {
+        .info-card h3 {
             font-size: 18px;
-            font-weight: bold;
-            color: #FFD700;
             margin-bottom: 10px;
+            color: #ffd700;
         }
 
-        .vtag-card-desc {
+        .info-card p {
             font-size: 14px;
             color: rgba(255, 255, 255, 0.8);
-            line-height: 1.5;
+            line-height: 1.6;
         }
 
         /* Footer */
         .footer-section {
-            padding: 60px 5% 40px;
+            padding: 40px 5%;
             text-align: center;
             position: relative;
             z-index: 1;
+            background: rgba(0, 0, 0, 0.5);
         }
 
         .footer-copyright {
@@ -475,25 +514,50 @@
 
         /* Responsive */
         @media (max-width: 768px) {
-            .logo-container {
-                left: 3%;
+            .hero-section {
+                padding: 100px 5% 40px;
             }
 
-            .logo-container img {
-                height: 40px;
+            .wheel-container {
+                width: 95vw;
+                height: 95vw;
+                max-width: 450px;
+                max-height: 450px;
             }
 
-            .main-content {
-                padding: 100px 3% 60px;
+            .segment-content img {
+                width: 25px;
+                height: 25px;
             }
 
-            .vtags-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
+            .segment-content span {
+                font-size: 9px;
             }
 
             .info-section {
-                padding: 60px 3%;
+                padding: 60px 5%;
+            }
+
+            .result-content {
+                padding: 40px 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .wheel-container {
+                width: 90vw;
+                height: 90vw;
+                max-width: 350px;
+                max-height: 350px;
+            }
+
+            .segment-content img {
+                width: 20px;
+                height: 20px;
+            }
+
+            .segment-content span {
+                font-size: 7px;
             }
         }
     </style>
@@ -501,124 +565,101 @@
 <body>
     <!-- Video Background -->
     <video autoplay loop muted playsinline>
-        <source src="https://cdn.glitch.global/125983ca-b6c6-4e1e-bba0-b269566c651c/golden-particles-background.mp4?v=1700000000000" type="video/mp4">
+        <source src="https://static.starmakerstudios.com/www-index-1/bg/wwww-new-v2-video.mp4" type="video/mp4">
     </video>
     <div class="video-overlay"></div>
 
     <!-- Particles -->
     <div class="particles" id="particles"></div>
 
-    <!-- Logo -->
-    <div class="logo-container">
-        <img src="https://static.starmakerstudios.com/production/cdn/vue/starx-official/prod/_next/static/assets/images/app-icon.d79097a124ad0a00.png" alt="StarMaker">
-    </div>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">
+            <img src="https://static.starmakerstudios.com/production/cdn/vue/starx-official/prod/_next/static/assets/images/app-icon.d79097a124ad0a00.png" alt="StarMaker">
+        </div>
+    </nav>
 
-    <!-- Main Content -->
-    <section class="main-content">
-        <h1 class="page-title">Treasure of V-Tags</h1>
-        <p class="page-subtitle">Spin the wheel and discover your special V-Tag! Each badge represents your unique identity in the StarMaker community.</p>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <h1 class="hero-title">Treasure Of V-tags</h1>
+        <p class="hero-subtitle">Spin the wheel to claim your verified badge!</p>
 
         <div class="wheel-container">
             <div class="wheel-pointer"></div>
             <div class="wheel" id="wheel">
                 <div class="wheel-segment">
                     <div class="segment-content">
-                        <img src="https://cdn.glitch.global/125983ca-b6c6-4e1e-bba0-b269566c651c/recorderlib_song_edit_vip_diamond.png?v=1713287062492" alt="VIP" class="segment-icon">
-                        <div class="segment-text">7 Days</div>
+                        <img src="https://cdn.glitch.global/7f10253b-a1b5-4771-b9be-f2d825ccaa09/ic_verified_orange.webp?v=1713280307300" alt="Verified Singer">
+                        <span>Verified<br>Singer</span>
                     </div>
                 </div>
                 <div class="wheel-segment">
                     <div class="segment-content">
-                        <img src="https://cdn.glitch.global/125983ca-b6c6-4e1e-bba0-b269566c651c/recorderlib_song_edit_vip_diamond.png?v=1713287062492" alt="VIP" class="segment-icon">
-                        <div class="segment-text">14 Days</div>
+                        <img src="https://cdn.glitch.global/7f10253b-a1b5-4771-b9be-f2d825ccaa09/ic_verified_live.webp?v=1713280993171" alt="Verified Broadcaster">
+                        <span>Verified<br>Broadcaster</span>
                     </div>
                 </div>
                 <div class="wheel-segment">
                     <div class="segment-content">
-                        <img src="https://cdn.glitch.global/125983ca-b6c6-4e1e-bba0-b269566c651c/recorderlib_song_edit_vip_diamond.png?v=1713287062492" alt="VIP" class="segment-icon">
-                        <div class="segment-text">1 Month</div>
+                        <img src="https://cdn.glitch.global/7f10253b-a1b5-4771-b9be-f2d825ccaa09/ic_verified_room_owner_circle.webp?v=1713281002566" alt="Verified Room Owner">
+                        <span>Verified<br>Room Owner</span>
                     </div>
                 </div>
                 <div class="wheel-segment">
                     <div class="segment-content">
-                        <img src="https://cdn.glitch.global/125983ca-b6c6-4e1e-bba0-b269566c651c/recorderlib_song_edit_vip_diamond.png?v=1713287062492" alt="VIP" class="segment-icon">
-                        <div class="segment-text">3 Months</div>
+                        <img src="https://cdn.glitch.global/7f10253b-a1b5-4771-b9be-f2d825ccaa09/ic_verified_person.webp?v=1713280998842" alt="Talent Singer">
+                        <span>Talent<br>Singer</span>
                     </div>
                 </div>
                 <div class="wheel-segment">
                     <div class="segment-content">
-                        <img src="https://cdn.glitch.global/125983ca-b6c6-4e1e-bba0-b269566c651c/recorderlib_song_edit_vip_diamond.png?v=1713287062492" alt="VIP" class="segment-icon">
-                        <div class="segment-text">6 Months</div>
+                        <img src="https://cdn.glitch.global/7f10253b-a1b5-4771-b9be-f2d825ccaa09/ic_verified_leading_influencer_circle.webp?v=1713280985990" alt="Verified Influencer">
+                        <span>Verified<br>Influencer</span>
                     </div>
                 </div>
                 <div class="wheel-segment">
                     <div class="segment-content">
-                        <img src="https://cdn.glitch.global/125983ca-b6c6-4e1e-bba0-b269566c651c/recorderlib_song_edit_vip_diamond.png?v=1713287062492" alt="VIP" class="segment-icon">
-                        <div class="segment-text">1 Year</div>
-                    </div>
-                </div>
-                <div class="wheel-segment">
-                    <div class="segment-content">
-                        <img src="https://cdn.glitch.global/125983ca-b6c6-4e1e-bba0-b269566c651c/icon_visitor_vip.webp?v=1713287042991" alt="VIP Badge" class="segment-icon">
-                        <div class="segment-text">VIP Badge</div>
-                    </div>
-                </div>
-                <div class="wheel-segment">
-                    <div class="segment-content">
-                        <img src="https://cdn.glitch.global/125983ca-b6c6-4e1e-bba0-b269566c651c/recorderlib_song_edit_vip_diamond.png?v=1713287062492" alt="Forever" class="segment-icon">
-                        <div class="segment-text">Forever</div>
+                        <img src="https://cdn.glitch.global/7f10253b-a1b5-4771-b9be-f2d825ccaa09/ic_verified_blue.webp?v=1713280982435" alt="Officially Verified">
+                        <span>Officially<br>Verified</span>
                     </div>
                 </div>
             </div>
-            <div class="wheel-center" id="spinBtn">
-                <button class="spin-btn">SPIN</button>
-            </div>
+            <button class="spin-button" id="spinBtn">SPIN</button>
         </div>
     </section>
 
     <!-- Info Section -->
     <section class="info-section">
-        <h2 class="info-title">Available V-Tags</h2>
-        <div class="vtags-grid">
-            <div class="vtag-card">
-                <img src="https://cdn.glitch.global/125983ca-b6c6-4e1e-bba0-b269566c651c/recorderlib_song_edit_vip_diamond.png?v=1713287062492" alt="7 Days VIP" class="vtag-card-icon">
-                <h3 class="vtag-card-title">7 Days VIP</h3>
-                <p class="vtag-card-desc">Enjoy one week of VIP access with premium features</p>
+        <div class="info-grid">
+            <div class="info-card">
+                <img src="https://cdn.glitch.global/7f10253b-a1b5-4771-b9be-f2d825ccaa09/ic_verified_orange.webp?v=1713280307300" alt="Verified Singer">
+                <h3>Verified Singer</h3>
+                <p>Stand out with the orange verification badge for talented singers</p>
             </div>
-            <div class="vtag-card">
-                <img src="https://cdn.glitch.global/125983ca-b6c6-4e1e-bba0-b269566c651c/recorderlib_song_edit_vip_diamond.png?v=1713287062492" alt="14 Days VIP" class="vtag-card-icon">
-                <h3 class="vtag-card-title">14 Days VIP</h3>
-                <p class="vtag-card-desc">Two weeks of exclusive VIP membership benefits</p>
+            <div class="info-card">
+                <img src="https://cdn.glitch.global/7f10253b-a1b5-4771-b9be-f2d825ccaa09/ic_verified_live.webp?v=1713280993171" alt="Verified Broadcaster">
+                <h3>Verified Broadcaster</h3>
+                <p>Exclusive badge for live streaming champions</p>
             </div>
-            <div class="vtag-card">
-                <img src="https://cdn.glitch.global/125983ca-b6c6-4e1e-bba0-b269566c651c/recorderlib_song_edit_vip_diamond.png?v=1713287062492" alt="1 Month VIP" class="vtag-card-icon">
-                <h3 class="vtag-card-title">1 Month VIP</h3>
-                <p class="vtag-card-desc">Full month access to all VIP features and perks</p>
+            <div class="info-card">
+                <img src="https://cdn.glitch.global/7f10253b-a1b5-4771-b9be-f2d825ccaa09/ic_verified_room_owner_circle.webp?v=1713281002566" alt="Verified Room Owner">
+                <h3>Verified Room Owner</h3>
+                <p>Recognition for outstanding community leaders</p>
             </div>
-            <div class="vtag-card">
-                <img src="https://cdn.glitch.global/125983ca-b6c6-4e1e-bba0-b269566c651c/recorderlib_song_edit_vip_diamond.png?v=1713287062492" alt="3 Months VIP" class="vtag-card-icon">
-                <h3 class="vtag-card-title">3 Months VIP</h3>
-                <p class="vtag-card-desc">Three months of premium VIP experience</p>
+            <div class="info-card">
+                <img src="https://cdn.glitch.global/7f10253b-a1b5-4771-b9be-f2d825ccaa09/ic_verified_person.webp?v=1713280998842" alt="Talent Singer">
+                <h3>Talent Singer</h3>
+                <p>Special badge for exceptional vocal talents</p>
             </div>
-            <div class="vtag-card">
-                <img src="https://cdn.glitch.global/125983ca-b6c6-4e1e-bba0-b269566c651c/recorderlib_song_edit_vip_diamond.png?v=1713287062492" alt="6 Months VIP" class="vtag-card-icon">
-                <h3 class="vtag-card-title">6 Months VIP</h3>
-                <p class="vtag-card-desc">Half-year VIP membership with exclusive benefits</p>
+            <div class="info-card">
+                <img src="https://cdn.glitch.global/7f10253b-a1b5-4771-b9be-f2d825ccaa09/ic_verified_leading_influencer_circle.webp?v=1713280985990" alt="Verified Influencer">
+                <h3>Verified Influencer</h3>
+                <p>Premium badge for trending content creators</p>
             </div>
-            <div class="vtag-card">
-                <img src="https://cdn.glitch.global/125983ca-b6c6-4e1e-bba0-b269566c651c/recorderlib_song_edit_vip_diamond.png?v=1713287062492" alt="1 Year VIP" class="vtag-card-icon">
-                <h3 class="vtag-card-title">1 Year VIP</h3>
-                <p class="vtag-card-desc">Complete year of VIP status and premium access</p>
-            </div>
-            <div class="vtag-card">
-                <img src="https://cdn.glitch.global/125983ca-b6c6-4e1e-bba0-b269566c651c/icon_visitor_vip.webp?v=1713287042991" alt="VIP Badge" class="vtag-card-icon">
-                <h3 class="vtag-card-title">VIP Badge</h3>
-                <p class="vtag-card-desc">Special VIP badge to show your premium status</p>
-            </div>
-            <div class="vtag-card">
-                <img src="https://cdn.glitch.global/125983ca-b6c6-4e1e-bba0-b269566c651c/recorderlib_song_edit_vip_diamond.png?v=1713287062492" alt="Forever VIP" class="vtag-card-icon">
-                <h3 class="vtag-card-title">Forever VIP</h3>
-                <p class="vtag-card-desc">Lifetime VIP membership - Be VIP Forever!</p>
+            <div class="info-card">
+                <img src="https://cdn.glitch.global/7f10253b-a1b5-4771-b9be-f2d825ccaa09/ic_verified_blue.webp?v=1713280982435" alt="Officially Verified">
+                <h3>Officially Verified</h3>
+                <p>The ultimate blue checkmark for official accounts</p>
             </div>
         </div>
     </section>
@@ -633,10 +674,11 @@
     <!-- Result Modal -->
     <div class="result-modal" id="resultModal">
         <div class="result-content">
-            <img src="" alt="V-Tag" class="result-icon" id="resultIcon">
-            <h2 class="result-title">🎉 Congratulations! 🎉</h2>
-            <p class="result-text" id="resultText"></p>
-            <button class="result-close-btn" id="closeModalBtn">Awesome!</button>
+            <img class="result-icon" id="resultIcon" src="" alt="Badge">
+            <h2 class="result-title">🎉 CONGRATULATIONS! 🎉</h2>
+            <p class="result-message" id="resultMessage"></p>
+            <div class="result-badge" id="resultBadge"></div>
+            <button class="close-modal" id="closeModal">AWESOME!</button>
         </div>
     </div>
 
@@ -644,118 +686,123 @@
         // Prevent context menu
         document.addEventListener('contextmenu', e => e.preventDefault());
 
-        // Create particles
+        // V-tag Data
+        const vtags = [
+            {
+                name: 'Verified Singer',
+                icon: 'https://cdn.glitch.global/7f10253b-a1b5-4771-b9be-f2d825ccaa09/ic_verified_orange.webp?v=1713280307300',
+                message: 'You are now a Verified Singer!'
+            },
+            {
+                name: 'Verified Broadcaster',
+                icon: 'https://cdn.glitch.global/7f10253b-a1b5-4771-b9be-f2d825ccaa09/ic_verified_live.webp?v=1713280993171',
+                message: 'You are now a Verified Broadcaster!'
+            },
+            {
+                name: 'Verified Room Owner',
+                icon: 'https://cdn.glitch.global/7f10253b-a1b5-4771-b9be-f2d825ccaa09/ic_verified_room_owner_circle.webp?v=1713281002566',
+                message: 'You are now a Verified Room Owner!'
+            },
+            {
+                name: 'Talent Singer',
+                icon: 'https://cdn.glitch.global/7f10253b-a1b5-4771-b9be-f2d825ccaa09/ic_verified_person.webp?v=1713280998842',
+                message: 'You are now a Talent Singer!'
+            },
+            {
+                name: 'Verified Influencer',
+                icon: 'https://cdn.glitch.global/7f10253b-a1b5-4771-b9be-f2d825ccaa09/ic_verified_leading_influencer_circle.webp?v=1713280985990',
+                message: 'You are now a Verified Influencer!'
+            },
+            {
+                name: 'Officially Verified',
+                icon: 'https://cdn.glitch.global/7f10253b-a1b5-4771-b9be-f2d825ccaa09/ic_verified_blue.webp?v=1713280982435',
+                message: 'You are now Officially Verified!'
+            }
+        ];
+
+        // Elements
+        const wheel = document.getElementById('wheel');
+        const spinBtn = document.getElementById('spinBtn');
+        const resultModal = document.getElementById('resultModal');
+        const resultIcon = document.getElementById('resultIcon');
+        const resultMessage = document.getElementById('resultMessage');
+        const resultBadge = document.getElementById('resultBadge');
+        const closeModal = document.getElementById('closeModal');
+
+        let isSpinning = false;
+
+        // Spin Wheel
+        spinBtn.addEventListener('click', () => {
+            if (isSpinning) return;
+
+            isSpinning = true;
+            spinBtn.classList.add('disabled');
+
+            // Random selection
+            const randomIndex = Math.floor(Math.random() * vtags.length);
+            const selectedTag = vtags[randomIndex];
+
+            // Calculate rotation
+            const segmentAngle = 360 / vtags.length;
+            const targetAngle = (randomIndex * segmentAngle) + (segmentAngle / 2);
+            const spins = 5;
+            const totalRotation = (spins * 360) + (360 - targetAngle);
+
+            // Spin animation
+            wheel.classList.add('spinning');
+            wheel.style.transform = `rotate(${totalRotation}deg)`;
+
+            // Show result after spin
+            setTimeout(() => {
+                showResult(selectedTag);
+                wheel.classList.remove('spinning');
+                isSpinning = false;
+                spinBtn.classList.remove('disabled');
+            }, 5000);
+        });
+
+        // Show Result Modal
+        function showResult(tag) {
+            resultIcon.src = tag.icon;
+            resultMessage.textContent = tag.message;
+            resultBadge.textContent = tag.name;
+            resultModal.classList.add('active');
+            createConfetti();
+        }
+
+        // Close Modal
+        closeModal.addEventListener('click', () => {
+            resultModal.classList.remove('active');
+        });
+
+        // Create Confetti
+        function createConfetti() {
+            const colors = ['#ffd700', '#ff296f', '#8a2be2', '#ff8c00', '#00bfff', '#32cd32'];
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.animationDelay = Math.random() * 0.5 + 's';
+                    document.body.appendChild(confetti);
+                    setTimeout(() => confetti.remove(), 3000);
+                }, i * 30);
+            }
+        }
+
+        // Create Particles
         const particlesContainer = document.getElementById('particles');
         for (let i = 0; i < 50; i++) {
             const particle = document.createElement('div');
             particle.className = 'particle';
             particle.style.left = Math.random() * 100 + '%';
-            particle.style.animationDelay = Math.random() * 15 + 's';
-            particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+            particle.style.animationDelay = Math.random() * 12 + 's';
+            particle.style.animationDuration = (Math.random() * 8 + 10) + 's';
             particlesContainer.appendChild(particle);
         }
 
-        // V-Tags data
-        const vTags = [
-            {
-                name: '7 Days VIP',
-                icon: 'https://cdn.glitch.global/125983ca-b6c6-4e1e-bba0-b269566c651c/recorderlib_song_edit_vip_diamond.png?v=1713287062492',
-                message: 'Congratulations! You won 7 Days VIP membership! Enjoy premium features for one week.'
-            },
-            {
-                name: '14 Days VIP',
-                icon: 'https://cdn.glitch.global/125983ca-b6c6-4e1e-bba0-b269566c651c/recorderlib_song_edit_vip_diamond.png?v=1713287062492',
-                message: 'Amazing! You won 14 Days VIP! Two weeks of exclusive access awaits you.'
-            },
-            {
-                name: '1 Month VIP',
-                icon: 'https://cdn.glitch.global/125983ca-b6c6-4e1e-bba0-b269566c651c/recorderlib_song_edit_vip_diamond.png?v=1713287062492',
-                message: 'Fantastic! You won 1 Month VIP! Enjoy a full month of premium features.'
-            },
-            {
-                name: '3 Months VIP',
-                icon: 'https://cdn.glitch.global/125983ca-b6c6-4e1e-bba0-b269566c651c/recorderlib_song_edit_vip_diamond.png?v=1713287062492',
-                message: 'Excellent! You won 3 Months VIP! Three months of premium experience is yours.'
-            },
-            {
-                name: '6 Months VIP',
-                icon: 'https://cdn.glitch.global/125983ca-b6c6-4e1e-bba0-b269566c651c/recorderlib_song_edit_vip_diamond.png?v=1713287062492',
-                message: 'Incredible! You won 6 Months VIP! Half a year of exclusive benefits.'
-            },
-            {
-                name: '1 Year VIP',
-                icon: 'https://cdn.glitch.global/125983ca-b6c6-4e1e-bba0-b269566c651c/recorderlib_song_edit_vip_diamond.png?v=1713287062492',
-                message: 'Outstanding! You won 1 Year VIP! A complete year of VIP status is yours.'
-            },
-            {
-                name: 'VIP Badge',
-                icon: 'https://cdn.glitch.global/125983ca-b6c6-4e1e-bba0-b269566c651c/icon_visitor_vip.webp?v=1713287042991',
-                message: 'Wonderful! You won the VIP Badge! Show off your premium status to everyone.'
-            },
-            {
-                name: 'Forever VIP',
-                icon: 'https://cdn.glitch.global/125983ca-b6c6-4e1e-bba0-b269566c651c/recorderlib_song_edit_vip_diamond.png?v=1713287062492',
-                message: '🎉 JACKPOT! You are now VIP FOREVER! Lifetime premium membership activated! 🎉'
-            }
-        ];
-
-        // Wheel spinning logic
-        const wheel = document.getElementById('wheel');
-        const spinBtn = document.getElementById('spinBtn');
-        const resultModal = document.getElementById('resultModal');
-        const resultIcon = document.getElementById('resultIcon');
-        const resultText = document.getElementById('resultText');
-        const closeModalBtn = document.getElementById('closeModalBtn');
-        
-        let isSpinning = false;
-        let currentRotation = 0;
-
-        spinBtn.addEventListener('click', () => {
-            if (isSpinning) return;
-            
-            isSpinning = true;
-            spinBtn.classList.add('spinning');
-            
-            // Random result
-            const randomIndex = Math.floor(Math.random() * vTags.length);
-            const selectedTag = vTags[randomIndex];
-            
-            // Calculate rotation (45 degrees per segment, 8 segments total)
-            const segmentAngle = 360 / 8;
-            const targetAngle = randomIndex * segmentAngle;
-            
-            // Add multiple full rotations for effect (5-8 spins)
-            const fullRotations = (Math.floor(Math.random() * 4) + 5) * 360;
-            const finalRotation = fullRotations + (360 - targetAngle) + (segmentAngle / 2);
-            
-            currentRotation += finalRotation;
-            wheel.style.transform = `rotate(${currentRotation}deg)`;
-            
-            // Show result after spin completes
-            setTimeout(() => {
-                isSpinning = false;
-                spinBtn.classList.remove('spinning');
-                showResult(selectedTag);
-            }, 3000);
-        });
-
-        function showResult(tag) {
-            resultIcon.src = tag.icon;
-            resultText.textContent = tag.message;
-            resultModal.classList.add('show');
-        }
-
-        closeModalBtn.addEventListener('click', () => {
-            resultModal.classList.remove('show');
-        });
-
-        resultModal.addEventListener('click', (e) => {
-            if (e.target === resultModal) {
-                resultModal.classList.remove('show');
-            }
-        });
-
-        // Smooth scroll
+        // Smooth Scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -766,8 +813,8 @@
             });
         });
 
-        // 3D tilt effect on V-Tag cards
-        document.querySelectorAll('.vtag-card').forEach(card => {
+        // 3D Card Effect
+        document.querySelectorAll('.info-card').forEach(card => {
             card.addEventListener('mousemove', (e) => {
                 const rect = card.getBoundingClientRect();
                 const x = e.clientX - rect.left;
@@ -779,11 +826,11 @@
                 const rotateX = (y - centerY) / 20;
                 const rotateY = (centerX - x) / 20;
                 
-                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-5px) scale(1.02)`;
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px)`;
             });
             
             card.addEventListener('mouseleave', () => {
-                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0) scale(1)';
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
             });
         });
 
@@ -802,8 +849,7 @@
             });
         }, observerOptions);
 
-        // Observe V-Tag cards for scroll animations
-        document.querySelectorAll('.vtag-card').forEach((card, index) => {
+        document.querySelectorAll('.info-card').forEach((card, index) => {
             card.style.opacity = '0';
             card.style.transform = 'translateY(30px)';
             card.style.transition = `all 0.6s ease ${index * 0.1}s`;
