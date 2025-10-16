@@ -278,14 +278,14 @@
         }
 
         .result-content {
-            background: linear-gradient(135deg, rgba(255, 41, 111, 0.95), rgba(138, 43, 226, 0.95));
+            background: #ffffff;
             border-radius: 30px;
             padding: 50px 40px;
             text-align: center;
             max-width: 500px;
             width: 90%;
-            border: 3px solid rgba(255, 215, 0, 0.8);
-            box-shadow: 0 20px 60px rgba(255, 41, 111, 0.6);
+            border: none;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
             transform: scale(0.8);
             transition: transform 0.4s ease;
         }
@@ -312,8 +312,8 @@
             font-size: clamp(24px, 5vw, 36px);
             font-weight: 700;
             margin-bottom: 15px;
-            color: #ffd700;
-            text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+            color: #333;
+            text-shadow: none;
             text-transform: uppercase;
             letter-spacing: 2px;
         }
@@ -321,25 +321,25 @@
         .result-message {
             font-size: clamp(16px, 3vw, 22px);
             margin-bottom: 30px;
-            color: #fff;
+            color: #666;
             line-height: 1.6;
         }
 
         .result-badge {
             display: inline-block;
             padding: 12px 30px;
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 41, 111, 0.1);
             border-radius: 50px;
             font-size: clamp(14px, 2.5vw, 18px);
             font-weight: 600;
-            color: #fff;
+            color: #ff296f;
             margin-bottom: 30px;
-            border: 2px solid rgba(255, 215, 0, 0.6);
+            border: 2px solid #ff296f;
         }
 
         .claim-button {
             padding: 15px 50px;
-            background: linear-gradient(135deg, #ffd700, #ff296f);
+            background: #ff296f;
             color: #fff;
             border: none;
             border-radius: 50px;
@@ -349,7 +349,7 @@
             text-transform: uppercase;
             letter-spacing: 1.5px;
             transition: all 0.3s ease;
-            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.4);
+            box-shadow: 0 5px 20px rgba(255, 41, 111, 0.3);
             position: relative;
             overflow: hidden;
         }
@@ -374,7 +374,7 @@
 
         .claim-button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.6);
+            box-shadow: 0 8px 25px rgba(255, 41, 111, 0.5);
         }
 
         .claim-button span {
@@ -423,13 +423,13 @@
         }
 
         .contact-content {
-            background: linear-gradient(135deg, rgba(255, 41, 111, 0.95), rgba(138, 43, 226, 0.95));
+            background: #ffffff;
             border-radius: 30px;
             padding: 40px;
             max-width: 500px;
             width: 100%;
-            border: 3px solid rgba(255, 215, 0, 0.8);
-            box-shadow: 0 20px 60px rgba(255, 41, 111, 0.6);
+            border: none;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
             transform: scale(0.8);
             transition: transform 0.4s ease;
             margin: auto;
@@ -446,16 +446,32 @@
 
         .contact-header h2 {
             font-size: clamp(24px, 5vw, 32px);
-            color: #ffd700;
-            text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+            color: #333;
+            text-shadow: none;
             margin-bottom: 10px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            text-transform: capitalize;
+            letter-spacing: 1px;
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .contact-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: #ff296f;
+            border-radius: 2px;
         }
 
         .contact-header p {
             font-size: clamp(14px, 2.5vw, 16px);
-            color: rgba(255, 255, 255, 0.9);
+            color: #666;
         }
 
         .form-group {
@@ -465,9 +481,9 @@
         .form-group input {
             width: 100%;
             padding: 15px 20px;
-            border: 2px solid rgba(255, 215, 0, 0.3);
+            border: none;
             border-radius: 25px;
-            background: rgba(255, 255, 255, 0.9);
+            background: #f5f5f5;
             font-size: clamp(14px, 2.5vw, 16px);
             color: #333;
             transition: all 0.3s ease;
@@ -476,19 +492,18 @@
 
         .form-group input:focus {
             outline: none;
-            border-color: #ffd700;
-            background: #fff;
-            box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+            background: #eeeeee;
+            box-shadow: 0 0 0 2px rgba(255, 41, 111, 0.2);
         }
 
         .form-group input::placeholder {
-            color: #666;
+            color: #999;
         }
 
         .submit-button {
             width: 100%;
             padding: 15px;
-            background: linear-gradient(135deg, #ffd700, #ff296f);
+            background: #ff296f;
             color: #fff;
             border: none;
             border-radius: 25px;
@@ -498,7 +513,7 @@
             text-transform: uppercase;
             letter-spacing: 1.5px;
             transition: all 0.3s ease;
-            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.4);
+            box-shadow: 0 5px 20px rgba(255, 41, 111, 0.3);
             position: relative;
             overflow: hidden;
             margin-top: 10px;
@@ -524,7 +539,7 @@
 
         .submit-button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.6);
+            box-shadow: 0 8px 25px rgba(255, 41, 111, 0.5);
         }
 
         .submit-button span {
@@ -534,11 +549,11 @@
 
         .success-message {
             text-align: center;
-            color: #ffd700;
+            color: #4caf50;
             font-weight: bold;
             margin-top: 15px;
             font-size: clamp(14px, 2.5vw, 16px);
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+            text-shadow: none;
         }
 
         .info-section {
