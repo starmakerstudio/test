@@ -637,7 +637,7 @@
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             ctx.save();
             ctx.translate(centerX, centerY);
-            ctx.rotate(currentRotation);
+            ctx.rotate(currentRotation - Math.PI / 6);
 
             vtags.forEach((tag, i) => {
                 const startAngle = i * anglePerSegment - Math.PI / 2;
